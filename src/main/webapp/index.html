@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<head>
+<meta charset="UTF-8" />
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="js/jsonrpc.js"></script>
+<script>
+$(function(){
+    var url = "http://localhost:8080/KyotoPhotoRoganingServer/json/PhotoRogainingService";
+    new JsonRpcClient(
+        new JsonRpcRequest(url, "insertActivity", ["ayaki","waaaaay", 100],
+              function(data){
+                        new JsonRpcClient(new JsonRpcRequest(url, "getActivities", ["ayaki"],
+                           function(data){
+                             $('#result').append(JSON.stringify(data));
+                           })).rpc();
+              }
+            )).rpc();
+});
+</script>
+</head>
+<body>
+<h1>呼び出し結果</h1>
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.nkjmlab</groupId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>KyotoPhotoRogainingServer Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <langrid-version>1.0.7</langrid-version>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>net.arnx</groupId>
+      <artifactId>jsonic</artifactId>
+      <version>1.3.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.servicegrid</groupId>
+      <artifactId>jp.go.nict.langrid.servicecontainer</artifactId>
+      <version>${langrid-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.servicegrid</groupId>
+      <artifactId>jp.go.nict.langrid.client.soap</artifactId>
+      <version>${langrid-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.servicegrid</groupId>
+      <artifactId>jp.go.nict.langrid.service.language_1_2</artifactId>
+      <version>${langrid-version}</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.12</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+
+    <dependency>
+    	<groupId>com.h2database</groupId>
+    	<artifactId>h2</artifactId>
+    	<version>1.4.190</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.5</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>JSONRPCService</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <verbose>true</verbose>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.5.5</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <artifactId>KyotoPhotoRogainingServer</artifactId>
+</project>
