@@ -1,5 +1,6 @@
 package org.nkjmlab.jsonrpc.photorogaining;
 
+import java.io.File;
 import java.util.List;
 
 import org.nkjmlab.util.rdb.RDBConfig;
@@ -13,13 +14,14 @@ public class PhotoRogainingService implements PhotoRogainingServiceInterface {
 	private static RDBUtil util;
 
 	static {
-		util = new RDBUtilWithConnectionPool(new RDBConfig(
-				"jdbc:h2:tcp://localhost/file:///C:/Users/nkjm/AppData/Local/Temp/test",
-				"sa", ""));
+		String dbFile = new File(System.getProperty("java.io.tmpdir"),
+				"kyoto-photorogaining").toString();
+		log.debug(dbFile);
+		util = new RDBUtilWithConnectionPool(
+				new RDBConfig("jdbc:h2:tcp://localhost/" + dbFile, "sa", ""));
 		util.dropIfExists(Activity.TABLE_NAME);
 		util.createTableIfNotExists(Activity.TABLE_NAME
 				+ "(id int primary key auto_increment, user_id varchar, task_id varchar, score int)");
-
 	}
 
 	@Override
