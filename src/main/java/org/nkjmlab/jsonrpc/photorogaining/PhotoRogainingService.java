@@ -47,4 +47,12 @@ public class PhotoRogainingService implements PhotoRogainingServiceInterface {
 		throw new RuntimeException("ERROR");
 	}
 
+	public List<Activity> getNewActivitiesOrderById(String userId,
+			int latestActivityId) {
+		return util.readList(Activity.class,
+				"SELECT * FROM " + Activity.TABLE_NAME
+						+ " WHERE user_id=? AND id>? ORDER BY id",
+				userId, latestActivityId);
+	}
+
 }

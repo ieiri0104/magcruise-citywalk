@@ -9,8 +9,26 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="js/jsonrpc.js"></script>
+<script src="js/parseUri.js"></script>
 <script>
+
+function getEventsByWebsocket(wsUrl){
+  var connection = new WebSocket(wsUrl);
+  connection.onmessage = function (e) {
+    var messages = JSON.parse(e.data);
+    for (var i = 0; i < messages.length; i++) {
+      $('#notification').append(JSON.stringify(messages[i]));
+    }
+  };
+  return {
+    abort: function(){
+      connection.close();
+    }
+  };
+}
+
 $(function(){
+  $('#insert').on('click', function(){
     var url = "http://localhost:8080/KyotoPhotoRoganingServer/json/PhotoRogainingService";
     new JsonRpcClient(
         new JsonRpcRequest(url, "insertActivity", ["ayaki","waaaaay", 100],
@@ -21,7 +39,15 @@ $(function(){
                            })).rpc();
               }
             )).rpc();
+  });
 });
+$(function(){
+  var uri = new parseUri(location);
+  var wsUrl =  'ws://' + uri.host + ":" + uri.port + "/" + uri.path.split("/")[1] + "/websocket/newEvents/"+ "ayaki";
+  getEventsByWebsocket(wsUrl);
+});
+
+
 </script>
 </head>
 <body>
@@ -29,8 +55,11 @@ $(function(){
 <div class="row">
 <h1>JSON-RPC API呼び出しテスト</h1>
 <a href="./json/">JSON-RPC API呼び出しテストページ</a>
-<h1>呼び出し結果(F5を何度か押してください)</h1>
+<h1>JSON-RPCでInsert and Select</h1>
+<div><a id="insert" class="btn btn-primary">insert</a></div>
 <div id="result"></div>
+<h1>Websocketで通知を取得</h1>
+<div id="notification"></div>
 </div>
 </div>
 </body>
