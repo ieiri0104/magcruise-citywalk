@@ -13,4 +13,5 @@ import jp.go.nict.langrid.servicecontainer.handler.annotation.Services;
 		@Service(name = "PhotoRogainingService", impl = PhotoRogainingService.class) })
 public class PhotoRogainingServiceServlet extends
 		jp.go.nict.langrid.servicecontainer.handler.jsonrpc.servlet.JsonRpcServlet {
+
 }
