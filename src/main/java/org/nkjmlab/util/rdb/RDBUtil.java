@@ -262,7 +262,7 @@ public class RDBUtil {
 				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	public Optional<Process> userDatabaseServer() {
+	public Optional<Process> useDatabaseServer() {
 		return userDatabaseServerWithClasspath(
 				System.getProperty("java.class.path"));
 	}
