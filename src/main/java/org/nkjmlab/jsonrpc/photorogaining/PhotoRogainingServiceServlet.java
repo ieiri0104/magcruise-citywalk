@@ -7,7 +7,7 @@ import jp.go.nict.langrid.servicecontainer.handler.annotation.Service;
 import jp.go.nict.langrid.servicecontainer.handler.annotation.Services;
 
 @WebServlet(urlPatterns = "/json/*", initParams = {
-		@WebInitParam(name = "dumpRequests", value = "true"),
+		@WebInitParam(name = "dumpRequests", value = "false"),
 		@WebInitParam(name = "additionalResponseHeaders", value = "Access-Control-Allow-Origin: *") })
 @Services({
 		@Service(name = "PhotoRogainingService", impl = PhotoRogainingService.class) })

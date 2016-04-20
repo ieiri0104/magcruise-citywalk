@@ -15,6 +15,15 @@ public class RDBUtilWithConnectionPool extends RDBUtil {
 
 	private final JdbcConnectionPool connectionPool;
 
+	public RDBUtilWithConnectionPool(String jdbcURL) {
+		this(jdbcURL, "sa", "");
+	}
+
+	public RDBUtilWithConnectionPool(String jdbcURL, String username,
+			String password) {
+		this(new RDBConfig(jdbcURL, username, password));
+	}
+
 	public RDBUtilWithConnectionPool(RDBConfig conf) {
 		super(conf);
 		this.connectionPool = JdbcConnectionPool.create(conf.getJdbcURL(),

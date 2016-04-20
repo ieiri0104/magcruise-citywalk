@@ -2,6 +2,9 @@ package org.nkjmlab.util.rdb;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,6 +26,14 @@ public class RDBUtil {
 	protected static transient Logger log = LogManager.getLogger();
 
 	protected final RDBConfig conf;
+
+	public RDBUtil(String jdbcURL) {
+		this(jdbcURL, "sa", "");
+	}
+
+	public RDBUtil(String jdbcURL, String username, String password) {
+		this(new RDBConfig(jdbcURL, username, password));
+	}
 
 	public RDBUtil(RDBConfig conf) {
 		this.conf = conf;
@@ -228,6 +239,7 @@ public class RDBUtil {
 		try (Connection con = getConnection()) {
 			return true;
 		} catch (Exception e) {
+			log.warn("H2 server has not been started yet.");
 			return false;
 		}
 	}
@@ -250,31 +262,57 @@ public class RDBUtil {
 				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	public Optional<Process> startDatabase() {
+	public Optional<Process> userDatabaseServer() {
+		return userDatabaseServerWithClasspath(
+				System.getProperty("java.class.path"));
+	}
+
+	public void useDatabaseServerFromServlet() {
+		String h2Classpath = new File(
+				new File(RDBUtil.getClasspath().getParent().toFile(), "lib"),
+				"*").toString();
+		useDatabaseServer(h2Classpath);
+	}
+
+	private Optional<Process> useDatabaseServer(String h2Classpath) {
+		return userDatabaseServerWithClasspath(
+				System.getProperty("java.class.path") + File.pathSeparator
+						+ h2Classpath);
+	}
+
+	public Optional<Process> userDatabaseServerWithClasspath(String classpath) {
 		if (checkConnection()) {
 			log.debug("H2 server has been already started.");
 			return null;
 		}
 
-		String[] args = { "java", "-cp", System.getProperty("java.class.path"),
-				"org.h2.tools.Server", "-webAllowOthers", "-tcpAllowOthers" };
-		log.debug("Start h2 server. {}", Arrays.asList(args));
+		String[] args = { "java", "-cp", classpath, "org.h2.tools.Server",
+				"-webAllowOthers", "-tcpAllowOthers" };
+		log.debug("Try to start h2 server. {}", Arrays.asList(args));
 		ProcessBuilder pb = new ProcessBuilder(args);
 		Process p = null;
 		try {
 			p = pb.start();
-			Thread.sleep(1000);
+			Thread.sleep(4000);
 		} catch (InterruptedException | IOException e) {
 			log.error(e, e);
 			throw new RuntimeException(e);
 		}
 
 		if (!checkConnection()) {
-			p.destroy();
 			return null;
 		}
 		log.debug("Start h2 server is suceeded.");
 		return Optional.of(p);
+	}
+
+	public static Path getClasspath() {
+		try {
+			return Paths.get(Thread.currentThread().getContextClassLoader()
+					.getResource("").toURI());
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
