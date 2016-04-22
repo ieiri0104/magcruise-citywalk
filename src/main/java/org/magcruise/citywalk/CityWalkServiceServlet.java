@@ -1,4 +1,4 @@
-package org.nkjmlab.jsonrpc.photorogaining;
+package org.magcruise.citywalk;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +10,8 @@ import jp.go.nict.langrid.servicecontainer.handler.annotation.Services;
 		@WebInitParam(name = "dumpRequests", value = "false"),
 		@WebInitParam(name = "additionalResponseHeaders", value = "Access-Control-Allow-Origin: *") })
 @Services({
-		@Service(name = "PhotoRogainingService", impl = PhotoRogainingService.class) })
-public class PhotoRogainingServiceServlet extends
+		@Service(name = "CityWalkService", impl = CityWalkService.class) })
+public class CityWalkServiceServlet extends
 		jp.go.nict.langrid.servicecontainer.handler.jsonrpc.servlet.JsonRpcServlet {
 
 }

@@ -1,10 +1,10 @@
-package org.nkjmlab.jsonrpc.photorogaining;
+package org.magcruise.citywalk;
 
 import java.util.List;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
-public interface PhotoRogainingServiceInterface {
+public interface CityWalkServiceInterface {
 
 	public void insertActivity(@Parameter(sample = "ayaki") String userId,
 			@Parameter(sample = "activity_0") String activityId,

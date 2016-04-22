@@ -1,4 +1,4 @@
-package org.nkjmlab.jsonrpc.photorogaining;
+package org.magcruise.citywalk;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +47,7 @@ public class WebSocketManager {
 				if (Thread.interrupted()) {
 					return;
 				}
-				List<Activity> acts = new PhotoRogainingService()
+				List<Activity> acts = new CityWalkService()
 						.getNewActivitiesOrderById(userId,
 								getLatestActivityId(userId));
 				if (acts.size() > 0) {

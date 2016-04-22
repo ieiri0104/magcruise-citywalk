@@ -1,1 +1,1 @@
-# KyotoPhotoRogainingServer
+# MAGCruiseCityWalkServer

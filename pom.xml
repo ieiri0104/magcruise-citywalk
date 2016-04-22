@@ -4,7 +4,7 @@
   <groupId>org.nkjmlab</groupId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>KyotoPhotoRogainingServer Maven Webapp</name>
+  <name>MAGCruiseCityWalkServer Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
     <langrid-version>1.0.7</langrid-version>
@@ -84,7 +84,7 @@
 
   </dependencies>
   <build>
-    <finalName>KyotoPhotoRogainingServer</finalName>
+    <finalName>MAGCruiseCityWalkServer</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -137,5 +137,5 @@
       </plugin>
     </plugins>
   </build>
-  <artifactId>KyotoPhotoRogainingServer</artifactId>
+  <artifactId>MAGCruiseCityWalkServer</artifactId>
 </project>

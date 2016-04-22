@@ -1,4 +1,4 @@
-package org.nkjmlab.jsonrpc.photorogaining;
+package org.magcruise.citywalk;
 
 import java.io.File;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.nkjmlab.util.rdb.RDBUtil;
 import org.nkjmlab.util.rdb.RDBUtilWithConnectionPool;
 
-public class PhotoRogainingService implements PhotoRogainingServiceInterface {
+public class CityWalkService implements CityWalkServiceInterface {
 	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
@@ -14,7 +14,7 @@ public class PhotoRogainingService implements PhotoRogainingServiceInterface {
 
 	static {
 		String dbFile = new File(System.getProperty("java.io.tmpdir"),
-				"kyoto-photorogaining").toString();
+				"kyoto-citywalk").toString();
 		log.debug(dbFile);
 		util = new RDBUtilWithConnectionPool(
 				"jdbc:h2:tcp://localhost/" + dbFile);

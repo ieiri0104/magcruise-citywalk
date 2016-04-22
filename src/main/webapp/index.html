@@ -29,7 +29,7 @@ function getEventsByWebsocket(wsUrl){
 
 $(function(){
   $('#insert').on('click', function(){
-    var url = "http://localhost:8080/KyotoPhotoRoganingServer/json/PhotoRogainingService";
+    var url = "http://localhost:8080/MAGCruiseCityWalkServer/json/PhotoRogainingService";
     new JsonRpcClient(
         new JsonRpcRequest(url, "insertActivity", ["ayaki","waaaaay", 100],
               function(data){
