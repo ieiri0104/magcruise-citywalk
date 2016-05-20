@@ -1,4 +1,4 @@
-package org.magcruise.citywalk;
+package org.magcruise.citywalk.srv;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;

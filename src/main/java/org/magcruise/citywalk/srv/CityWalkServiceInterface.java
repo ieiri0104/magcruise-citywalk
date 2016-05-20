@@ -1,6 +1,8 @@
-package org.magcruise.citywalk;
+package org.magcruise.citywalk.srv;
 
 import java.util.List;
+
+import org.magcruise.citywalk.model.Activity;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 

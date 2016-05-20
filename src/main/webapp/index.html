@@ -29,7 +29,7 @@ function getEventsByWebsocket(wsUrl){
 
 $(function(){
   $('#insert').on('click', function(){
-    var url = "http://localhost:8080/MAGCruiseCityWalkServer/json/PhotoRogainingService";
+    var url = "http://localhost:8080/magcruise-citywalk-server/json/CityWalkService";
     new JsonRpcClient(
         new JsonRpcRequest(url, "insertActivity", ["ayaki","waaaaay", 100],
               function(data){
@@ -53,6 +53,7 @@ $(function(){
 <body>
 <div class="container">
 <div class="row">
+  <div class="col-sm-12">
 <h1>JSON-RPC API呼び出しテスト</h1>
 <a href="./json/">JSON-RPC API呼び出しテストページ</a>
 <h1>JSON-RPCでInsert and Select</h1>
@@ -60,6 +61,7 @@ $(function(){
 <div id="result"></div>
 <h1>Websocketで通知を取得</h1>
 <div id="notification"></div>
+</div>
 </div>
 </div>
 </body>

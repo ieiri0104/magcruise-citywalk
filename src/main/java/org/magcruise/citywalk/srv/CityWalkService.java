@@ -1,43 +1,45 @@
-package org.magcruise.citywalk;
+package org.magcruise.citywalk.srv;
 
 import java.io.File;
 import java.util.List;
 
-import org.nkjmlab.util.rdb.RDBUtil;
-import org.nkjmlab.util.rdb.RDBUtilWithConnectionPool;
+import org.magcruise.citywalk.model.Activity;
+import org.nkjmlab.util.db.DbClient;
+import org.nkjmlab.util.db.DbClientFactory;
+import org.nkjmlab.util.db.H2ConfigFactory;
+import org.nkjmlab.util.db.H2Server;
 
 public class CityWalkService implements CityWalkServiceInterface {
 	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
-	private static RDBUtil util;
+	private static DbClient client;
 
 	static {
-		String dbFile = new File(System.getProperty("java.io.tmpdir"),
-				"kyoto-citywalk").toString();
+		H2Server.startFromServlet();
+		File dbFile = new File(System.getProperty("java.io.tmpdir"),
+				"kyoto-citywalk");
 		log.debug(dbFile);
-		util = new RDBUtilWithConnectionPool(
-				"jdbc:h2:tcp://localhost/" + dbFile);
-		util.useDatabaseServerFromServlet();
-		util.dropIfExists(Activity.TABLE_NAME);
-		util.createTableIfNotExists(Activity.TABLE_NAME
+		client = DbClientFactory.createH2Client(H2ConfigFactory.create(dbFile));
+		client.dropTableIfExists(Activity.TABLE_NAME);
+		client.createTableIfNotExists(Activity.TABLE_NAME
 				+ "(id int primary key auto_increment, user_id varchar, task_id varchar, score int)");
 	}
 
 	@Override
 	public void insertActivity(String userId, String taskId, int score) {
 		log.debug("{},{},{}", userId, taskId, score);
-		util.insert(new Activity(userId, taskId, score));
+		client.insert(new Activity(userId, taskId, score));
 	}
 
 	@Override
 	public void addActivity(Activity activity) {
-		util.insert(activity);
+		client.insert(activity);
 	}
 
 	@Override
 	public List<Activity> getActivities(String userId) {
-		return util.readList(Activity.class,
+		return client.readList(Activity.class,
 				"SELECT * FROM " + Activity.TABLE_NAME + " WHERE user_id=?",
 				userId);
 	}
@@ -49,7 +51,7 @@ public class CityWalkService implements CityWalkServiceInterface {
 
 	public List<Activity> getNewActivitiesOrderById(String userId,
 			int latestActivityId) {
-		return util.readList(Activity.class,
+		return client.readList(Activity.class,
 				"SELECT * FROM " + Activity.TABLE_NAME
 						+ " WHERE user_id=? AND id>? ORDER BY id",
 				userId, latestActivityId);
