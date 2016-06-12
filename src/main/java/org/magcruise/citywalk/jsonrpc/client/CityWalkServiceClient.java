@@ -1,19 +1,19 @@
-package org.magcruise.citywalk.controller;
+package org.magcruise.citywalk.jsonrpc.client;
 
 import java.net.URL;
 
-import org.magcruise.citywalk.srv.CityWalkServiceInterface;
+import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 
 public class CityWalkServiceClient {
-	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
 	public static void main(String[] args) {
 		try {
 			URL url = new URL(
-					"http://localhost:8080/MAGCruiseCityWalkServer/json/magcruise-citywalk-server");
+					"http://localhost:8080/magcruise-citywalk-server/json/magcruise-citywalk-server");
 
 			CityWalkServiceInterface client = create(url);
 			log.debug(client.getActivities("ayaki"));

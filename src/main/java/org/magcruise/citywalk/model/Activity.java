@@ -16,19 +16,28 @@ import net.sf.persist.annotations.Table;
 @Table(name = "ACTIVITIES")
 public class Activity {
 
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+			.getLogger();
+
 	public static final String TABLE_NAME = "ACTIVITIES";
 	private int id;
 	private String userId;
 	private String taskId;
 	private int score;
+	private String input;
 
 	public Activity() {
 	}
 
-	public Activity(String userId, String taskId, int score) {
+	public Activity(String userId, String taskId, int score, String input) {
 		this.userId = userId;
 		this.taskId = taskId;
 		this.score = score;
+		this.input = input;
+	}
+
+	public Activity(String userId, String taskId, int score, Input input) {
+		this(userId, taskId, score, input.toString());
 	}
 
 	public String getUserId() {
@@ -68,5 +77,13 @@ public class Activity {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getInputs() {
+		return input;
+	}
+
+	public void setInput(String inputs) {
+		this.input = inputs;
 	}
 }

@@ -1,18 +1,20 @@
-package org.magcruise.citywalk.srv;
+package org.magcruise.citywalk.jsonrpc.api;
 
 import java.util.List;
 
 import org.magcruise.citywalk.model.Activity;
+import org.magcruise.citywalk.model.Input;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
 public interface CityWalkServiceInterface {
 
-	public void insertActivity(@Parameter(sample = "ayaki") String userId,
+	void insertActivity(@Parameter(sample = "ayaki") String userId,
 			@Parameter(sample = "activity_0") String activityId,
-			@Parameter(sample = "100") int score);
+			@Parameter(sample = "100") int score,
+			@Parameter(sample = "{\"instanceClass\": \"selecgt\"}") Input inputs);
 
-	public void addActivity(
+	void addActivity(
 			@Parameter(sample = "{\"userId\": \"ayaki\", \"taskId\": \"task2\", \"score\": 9}") Activity activity);
 
 	/**
@@ -22,8 +24,7 @@ public interface CityWalkServiceInterface {
 	 * @param userId
 	 * @return
 	 */
-	public List<Activity> getActivities(
-			@Parameter(sample = "ayaki") String userId);
+	List<Activity> getActivities(@Parameter(sample = "ayaki") String userId);
 
 	void testException();
 

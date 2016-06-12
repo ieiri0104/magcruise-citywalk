@@ -5,7 +5,8 @@ import java.net.URL;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.magcruise.citywalk.controller.CityWalkServiceClient;
+import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
+import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
 
 public class CityWalkServiceTest {
 	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager

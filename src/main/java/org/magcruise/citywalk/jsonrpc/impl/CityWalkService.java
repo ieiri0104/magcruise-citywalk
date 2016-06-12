@@ -1,17 +1,17 @@
-package org.magcruise.citywalk.srv;
+package org.magcruise.citywalk.jsonrpc.impl;
 
 import java.io.File;
 import java.util.List;
 
+import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.Activity;
+import org.magcruise.citywalk.model.Input;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ConfigFactory;
 import org.nkjmlab.util.db.H2Server;
 
-public class CityWalkService implements CityWalkServiceInterface {
-	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
+public class CityWalkService extends AbstractCityWalkService implements CityWalkServiceInterface {
 
 	private static DbClient client;
 
@@ -27,9 +27,10 @@ public class CityWalkService implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public void insertActivity(String userId, String taskId, int score) {
+	public void insertActivity(String userId, String taskId, int score,
+			Input inputs) {
 		log.debug("{},{},{}", userId, taskId, score);
-		client.insert(new Activity(userId, taskId, score));
+		client.insert(new Activity(userId, taskId, score, inputs));
 	}
 
 	@Override

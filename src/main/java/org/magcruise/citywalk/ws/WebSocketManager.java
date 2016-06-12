@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.srv;
+package org.magcruise.citywalk.ws;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,16 +17,16 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
 import org.magcruise.citywalk.model.Activity;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
 @ServerEndpoint("/websocket/newEvents/{userId}")
 public class WebSocketManager {
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+			.getLogger();
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
-	private static Logger log = LogManager.getLogger();
 	private static ScheduledExecutorService pool = Executors
 			.newScheduledThreadPool(20);
 
@@ -56,7 +56,7 @@ public class WebSocketManager {
 					b.sendText(JSON.encode(acts));
 				}
 			} catch (IllegalStateException e) {
-				log.error(e.getMessage());
+				log.error(e, e);
 			} catch (Exception e) {
 				log.error(e, e);
 			}

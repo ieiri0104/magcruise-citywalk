@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Configuration;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
@@ -27,6 +26,9 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Provider
 public class ThymeleafTemplateProcessor
 		extends AbstractTemplateProcessor<String> implements Serializable {
+
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+			.getLogger();
 
 	@Context
 	private HttpServletRequest request;
