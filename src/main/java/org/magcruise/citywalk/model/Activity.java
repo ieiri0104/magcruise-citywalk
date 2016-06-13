@@ -14,12 +14,8 @@ import net.sf.persist.annotations.Table;
  *
  */
 @Table(name = "ACTIVITIES")
-public class Activity {
+public class Activity extends TableModel {
 
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
-
-	public static final String TABLE_NAME = "ACTIVITIES";
 	private int id;
 	private String userId;
 	private String taskId;
@@ -86,4 +82,11 @@ public class Activity {
 	public void setInput(String inputs) {
 		this.input = inputs;
 	}
+
+	@Override
+	protected String getTableSchema() {
+		return getTableName() + "(id int primary key auto_increment, "
+				+ "user_id varchar, " + "task_id varchar, " + "score int)";
+	}
+
 }

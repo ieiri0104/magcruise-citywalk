@@ -34,18 +34,6 @@ public class CityWalkViewService {
 	@Context
 	private ServletContext servletContext;
 
-	public static void main(String[] args) {
-		final Response response = ClientBuilder.newClient() //
-				.target("http://localhost:8080/magcruise-citywalk-server/")
-				.path("/hello/text") // リクエストを投げるURLのパス部分
-				.request(MediaType.TEXT_PLAIN_TYPE) // 受け入れ可能なレスポンス形式(HTTPヘッダでいうAcceptに相当)
-				// application/x-www-form-urlencoded形式でデータを作成(HTTPヘッダでいうContent-Typeに相当)し、リクエストを送信.
-				.post(Entity.entity("text=hoge",
-						MediaType.APPLICATION_FORM_URLENCODED_TYPE));
-		System.out.println(response.getStatusInfo());
-
-	}
-
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)

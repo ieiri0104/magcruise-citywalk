@@ -8,7 +8,7 @@ public class CheckpointService extends AbstractCityWalkService
 
 	@Override
 	public Checkpoint getCheckpoint(String id) {
-		return client.readByPrimaryKey(Checkpoint.class, id);
+		return getClient().readByPrimaryKey(Checkpoint.class, id);
 	}
 
 }

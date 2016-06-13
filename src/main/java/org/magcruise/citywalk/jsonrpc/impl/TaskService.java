@@ -10,7 +10,7 @@ public class TaskService extends AbstractCityWalkService
 
 	@Override
 	public List<Task> getTasks(String checkpointId) {
-		return client.readList(Task.class,
+		return getClient().readList(Task.class,
 				"SELECT * FROM " + Task.TABLE_NAME + " WHERE CHECKPOINT_ID=?",
 				checkpointId);
 	}

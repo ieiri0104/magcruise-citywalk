@@ -10,12 +10,7 @@ import net.sf.persist.annotations.Table;
  *
  */
 @Table(name = "USERS")
-public class User {
-
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
-
-	public static final String TABLE_NAME = "USERS";
+public class User extends TableModel {
 
 	/** e-mail address, as a general rule. **/
 	private String id;
@@ -43,6 +38,11 @@ public class User {
 
 	public void setGroupId(String groupId) {
 		this.groupId = groupId;
+	}
+
+	@Override
+	protected String getTableSchema() {
+		return getTableName();
 	}
 
 }

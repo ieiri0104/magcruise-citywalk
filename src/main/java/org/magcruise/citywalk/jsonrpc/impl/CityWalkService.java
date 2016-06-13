@@ -14,6 +14,7 @@ public class CityWalkService extends AbstractCityWalkService
 	private ActivityService activityService = new ActivityService();
 	private UserService userService = new UserService();
 	private CheckpointService checkpointService = new CheckpointService();
+	private TaskService taskService = new TaskService();
 
 	@Override
 	public void testException() {
@@ -49,12 +50,13 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public List<Activity> getNewActivitiesOrderById(String userId,
 			int latestActivityId) {
-		return activityService.getNewActivitiesOrderById(userId, latestActivityId);
+		return activityService.getNewActivitiesOrderById(userId,
+				latestActivityId);
 	}
 
 	@Override
 	public List<Task> getTasks(String checkpointId) {
-		return null;
+		return taskService.getTasks(checkpointId);
 	}
 
 }
