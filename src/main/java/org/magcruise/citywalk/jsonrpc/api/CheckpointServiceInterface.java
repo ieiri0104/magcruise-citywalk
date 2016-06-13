@@ -1,7 +1,9 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
+import org.magcruise.citywalk.model.Checkpoint;
+
 public interface CheckpointServiceInterface {
 
-	void login(String userId, String groupId);
+	Checkpoint getCheckpoint(String id);
 
 }
