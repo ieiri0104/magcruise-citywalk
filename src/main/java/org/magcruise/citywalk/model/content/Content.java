@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model;
+package org.magcruise.citywalk.model.content;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

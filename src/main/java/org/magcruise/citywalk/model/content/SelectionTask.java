@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model;
+package org.magcruise.citywalk.model.content;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,9 @@ public class SelectionTask extends TaskContent {
 	public SelectionTask() {
 	}
 
-	public SelectionTask(List<String> selections, int answerIndex) {
+	public SelectionTask(List<String> selections, int answerIndex,
+			boolean checkpoint) {
+		super(checkpoint);
 		this.selections.addAll(selections);
 		this.answer = selections.get(answerIndex);
 	}

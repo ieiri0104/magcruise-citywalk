@@ -2,7 +2,7 @@ package org.magcruise.citywalk.jsonrpc.api;
 
 import java.util.List;
 
-import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;

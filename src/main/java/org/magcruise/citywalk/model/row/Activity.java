@@ -2,7 +2,7 @@ package org.magcruise.citywalk.model.row;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.content.Input;
 
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;

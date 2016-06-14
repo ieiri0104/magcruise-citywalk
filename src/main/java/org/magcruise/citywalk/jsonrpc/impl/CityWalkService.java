@@ -3,7 +3,7 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;

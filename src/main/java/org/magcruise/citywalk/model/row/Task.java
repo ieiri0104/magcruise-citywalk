@@ -5,19 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.TaskContent;
+import org.magcruise.citywalk.model.content.TaskContent;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;
 
-/**
- * クライアントアプリとのJSONインタフェースとなるデータ構造． JSONで受け渡しをするクラスはPOJOでなくてはならない．
- * また，ORMのためのオブジェクトにもなっている．
- *
- * @author nkjm
- *
- */
 @Table(name = "TASKS")
 public class Task {
 

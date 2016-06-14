@@ -2,7 +2,7 @@ package org.magcruise.citywalk.srv;
 
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
-import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 
 public class CityWalkServiceTest {
