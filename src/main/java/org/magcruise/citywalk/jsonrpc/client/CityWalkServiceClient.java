@@ -5,10 +5,10 @@ import java.net.URL;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.Activity;
-import org.magcruise.citywalk.model.Checkpoint;
 import org.magcruise.citywalk.model.Input;
-import org.magcruise.citywalk.model.Task;
+import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.row.Checkpoint;
+import org.magcruise.citywalk.model.row.Task;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 
@@ -47,7 +47,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public void addActivity(String userId, String activityId, int score,
+	public void addActivity(String userId, long activityId, double score,
 			Input inputs) {
 		citywalkService.addActivity(userId, activityId, score, inputs);
 	}
@@ -64,7 +64,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 
 	@Override
 	public List<Activity> getNewActivitiesOrderById(String userId,
-			int latestActivityId) {
+			long latestActivityId) {
 		return citywalkService.getNewActivitiesOrderById(userId,
 				latestActivityId);
 	}

@@ -2,16 +2,16 @@ package org.magcruise.citywalk.jsonrpc.api;
 
 import java.util.List;
 
-import org.magcruise.citywalk.model.Activity;
 import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.row.Activity;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
 public interface ActivityServiceInterface {
 
 	void addActivity(@Parameter(sample = "ayaki") String userId,
-			@Parameter(sample = "activity_0") String activityId,
-			@Parameter(sample = "100") int score,
+			@Parameter(sample = "100") long activityId,
+			@Parameter(sample = "100") double score,
 			@Parameter(sample = "{\"instanceClass\": \"selecgt\"}") Input inputs);
 
 	void addActivity(
@@ -27,6 +27,6 @@ public interface ActivityServiceInterface {
 	List<Activity> getActivities(@Parameter(sample = "ayaki") String userId);
 
 	List<Activity> getNewActivitiesOrderById(String userId,
-			int latestActivityId);
+			long latestActivityId);
 
 }

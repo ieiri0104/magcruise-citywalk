@@ -2,7 +2,7 @@ package org.magcruise.citywalk.jsonrpc.api;
 
 import java.util.List;
 
-import org.magcruise.citywalk.model.Task;
+import org.magcruise.citywalk.model.row.Task;
 
 public interface TaskServiceInterface {
 

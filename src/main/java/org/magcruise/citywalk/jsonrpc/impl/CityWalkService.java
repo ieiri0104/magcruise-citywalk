@@ -3,10 +3,10 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.Activity;
-import org.magcruise.citywalk.model.Checkpoint;
 import org.magcruise.citywalk.model.Input;
-import org.magcruise.citywalk.model.Task;
+import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.row.Checkpoint;
+import org.magcruise.citywalk.model.row.Task;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
@@ -22,7 +22,7 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public void addActivity(String userId, String taskId, int score,
+	public void addActivity(String userId, long taskId, double score,
 			Input inputs) {
 		activityService.addActivity(userId, taskId, score, inputs);
 	}
@@ -49,7 +49,7 @@ public class CityWalkService extends AbstractCityWalkService
 
 	@Override
 	public List<Activity> getNewActivitiesOrderById(String userId,
-			int latestActivityId) {
+			long latestActivityId) {
 		return activityService.getNewActivitiesOrderById(userId,
 				latestActivityId);
 	}

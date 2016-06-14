@@ -3,38 +3,35 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.ActivityServiceInterface;
-import org.magcruise.citywalk.model.Activity;
 import org.magcruise.citywalk.model.Input;
+import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.table.Activities;
 
 public class ActivityService extends AbstractCityWalkService
 		implements ActivityServiceInterface {
 
+	private Activities activities = new Activities();
+
 	@Override
-	public void addActivity(String userId, String activityId, int score,
+	public void addActivity(String userId, long activityId, double score,
 			Input inputs) {
 		log.debug("{},{},{}, {}", userId, activityId, score, inputs);
-		getClient().insert(new Activity(userId, activityId, score, inputs));
+		activities.insert(new Activity(userId, activityId, score, inputs));
 	}
 
 	@Override
 	public void addActivity(Activity activity) {
-		getClient().insert(activity);
+		activities.insert(activity);
 	}
 
 	@Override
 	public List<Activity> getActivities(String userId) {
-		return getClient().readList(Activity.class, "SELECT * FROM "
-				+ new Activity().getTableName() + " WHERE user_id=?", userId);
+		return activities.readList(userId);
 	}
-
-
 
 	@Override
 	public List<Activity> getNewActivitiesOrderById(String userId,
-			int latestActivityId) {
-		return getClient().readList(Activity.class,
-				"SELECT * FROM " + new Activity().getTableName()
-						+ " WHERE user_id=? AND id>? ORDER BY id",
-				userId, latestActivityId);
+			long latestActivityId) {
+		return activities.getNewActivitiesOrderById(userId, latestActivityId);
 	}
 }

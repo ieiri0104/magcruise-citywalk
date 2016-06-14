@@ -18,7 +18,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
-import org.magcruise.citywalk.model.Activity;
+import org.magcruise.citywalk.model.row.Activity;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
@@ -30,7 +30,7 @@ public class WebSocketManager {
 	private static ScheduledExecutorService pool = Executors
 			.newScheduledThreadPool(20);
 
-	private static Map<String, Integer> latestActivityId = new ConcurrentHashMap<>();
+	private static Map<String, Long> latestActivityId = new ConcurrentHashMap<>();
 
 	@OnOpen
 	public synchronized void onOpen(@PathParam("userId") String userId,
@@ -69,8 +69,8 @@ public class WebSocketManager {
 		latestActivityId.put(userId, acts.get(acts.size() - 1).getId());
 	}
 
-	private int getLatestActivityId(String userId) {
-		latestActivityId.putIfAbsent(userId, -1);
+	private long getLatestActivityId(String userId) {
+		latestActivityId.putIfAbsent(userId, -1L);
 		return latestActivityId.get(userId);
 	}
 

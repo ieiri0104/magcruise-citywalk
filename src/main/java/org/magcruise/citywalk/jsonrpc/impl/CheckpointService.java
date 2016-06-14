@@ -1,7 +1,7 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
 import org.magcruise.citywalk.jsonrpc.api.CheckpointServiceInterface;
-import org.magcruise.citywalk.model.Checkpoint;
+import org.magcruise.citywalk.model.row.Checkpoint;
 
 public class CheckpointService extends AbstractCityWalkService
 		implements CheckpointServiceInterface {

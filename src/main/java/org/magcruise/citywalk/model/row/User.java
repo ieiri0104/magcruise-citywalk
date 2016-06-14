@@ -1,4 +1,7 @@
-package org.magcruise.citywalk.model;
+package org.magcruise.citywalk.model.row;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import net.sf.persist.annotations.Table;
 
@@ -10,7 +13,7 @@ import net.sf.persist.annotations.Table;
  *
  */
 @Table(name = "USERS")
-public class User extends TableModel {
+public class User {
 
 	/** e-mail address, as a general rule. **/
 	private String id;
@@ -41,8 +44,9 @@ public class User extends TableModel {
 	}
 
 	@Override
-	protected String getTableSchema() {
-		return getTableName();
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

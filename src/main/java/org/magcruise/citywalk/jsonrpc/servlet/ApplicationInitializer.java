@@ -6,8 +6,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.magcruise.citywalk.model.Activity;
-import org.magcruise.citywalk.model.User;
+import org.magcruise.citywalk.model.table.Activities;
+import org.magcruise.citywalk.model.table.Checkpoints;
+import org.magcruise.citywalk.model.table.Tasks;
+import org.magcruise.citywalk.model.table.Users;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;
@@ -22,7 +24,7 @@ public class ApplicationInitializer implements ServletContextListener {
 	protected static H2ClientWithConnectionPool client;
 
 	static {
-		H2Server.startFromServlet();
+		H2Server.start();
 		if (client == null) {
 			File dbFile = new File(System.getProperty("java.io.tmpdir"),
 					"citywalk");
@@ -30,6 +32,7 @@ public class ApplicationInitializer implements ServletContextListener {
 			client = DbClientFactory.createH2ClientWithConnectionPool(
 					H2ConfigFactory.create(dbFile));
 		}
+
 	}
 
 	public static DbClient getDbClient() {
@@ -38,15 +41,17 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		new Activity().createTableIfNotExists(getDbClient());
-		new User().createTableIfNotExists(getDbClient());
-		System.out.println("initialized");
+		new Activities().createTableIfNotExists(getDbClient());
+		new Tasks().createTableIfNotExists(getDbClient());
+		new Users().createTableIfNotExists(getDbClient());
+		new Checkpoints().createTableIfNotExists(getDbClient());
+		log.info("initialized");
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		client.dispose();
-		System.out.println("destroyed");
+		log.info("destroyed");
 	}
 
 }
