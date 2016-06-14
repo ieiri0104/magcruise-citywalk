@@ -15,6 +15,11 @@ public class Tasks extends TableModel<Task> {
 				+ "checkpoint_ids varchar, " + "content text)";
 	}
 
+	public List<Task> getTasks() {
+		return getClient().readList(Task.class,
+				"SELECT * from " + getTableName());
+	}
+
 	public List<Task> getTasks(String checkpointId) {
 		return getClient().readList(Task.class,
 				"SELECT * FROM " + getTableName() + " WHERE CHECKPOINT_IDS=?",
@@ -23,11 +28,6 @@ public class Tasks extends TableModel<Task> {
 
 	public void insert(Task task) {
 		getClient().insert(task);
-	}
-
-	public List<Task> readList(String string) {
-		return getClient().readList(Task.class,
-				"SELECT * from " + getTableName());
 	}
 
 }

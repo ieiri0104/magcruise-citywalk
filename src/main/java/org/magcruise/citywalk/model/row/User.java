@@ -5,13 +5,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import net.sf.persist.annotations.Table;
 
-/**
- * クライアントアプリとのJSONインタフェースとなるデータ構造． JSONで受け渡しをするクラスはPOJOでなくてはならない．
- * また，ORMのためのオブジェクトにもなっている．
- *
- * @author nkjm
- *
- */
 @Table(name = "USERS")
 public class User {
 
