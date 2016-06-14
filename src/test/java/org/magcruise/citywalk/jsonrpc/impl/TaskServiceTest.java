@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
 
 public class TaskServiceTest {
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+			.getLogger();
 
 	@Before
 	public void setUp() throws Exception {
@@ -13,7 +15,9 @@ public class TaskServiceTest {
 	@Test
 	public void test() {
 		CityWalkServiceClient client = new CityWalkServiceClient();
-		System.out.println(client.getTasks("meal"));
+		log.debug(client.getCheckpoints("waseda"));
+		log.debug(client.getCheckpoint("cafeteria"));
+		log.debug(client.getTasks("cafeteria"));
 	}
 
 }

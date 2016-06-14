@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
@@ -42,14 +41,13 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public Checkpoint getCheckpoint(String id) {
-		return citywalkService.getCheckpoint(id);
+	public Checkpoint getCheckpoint(String checkPointId) {
+		return citywalkService.getCheckpoint(checkPointId);
 	}
 
 	@Override
-	public void addActivity(String userId, long activityId, double score,
-			Input inputs) {
-		citywalkService.addActivity(userId, activityId, score, inputs);
+	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
+		return citywalkService.getCheckpoints(checkPointGroupId);
 	}
 
 	@Override
@@ -67,12 +65,6 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 			long latestActivityId) {
 		return citywalkService.getNewActivitiesOrderById(userId,
 				latestActivityId);
-	}
-
-	@Override
-	public void testException() {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	public <T> T create(Class<T> clazz, String serviceName) {

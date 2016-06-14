@@ -1,6 +1,7 @@
 package org.magcruise.citywalk.model.table;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -15,16 +16,21 @@ public abstract class TableModel<T> {
 
 	protected abstract String getTableSchema();
 
-	public void createTableIfNotExists(DbClient client) {
-		client.createTableIfNotExists(getTableSchema());
+	public void createTableIfNotExists() {
+		getClient().createTableIfNotExists(getTableSchema());
 	}
 
-	public void dropTableIfExists(DbClient client) {
-		client.dropTableIfExists(getTableName());
+	public void dropTableIfExists() {
+		getClient().dropTableIfExists(getTableName());
+	}
+
+	public void remakeTable() {
+		dropTableIfExists();
+		createTableIfNotExists();
 	}
 
 	public String getTableName() {
-		Class<T> clazz = getGenericClass(getClass());
+		Class<T> clazz = getGenericClass();
 		Table a = clazz.getAnnotation(Table.class);
 		if (a != null) {
 			return a.name();
@@ -32,9 +38,9 @@ public abstract class TableModel<T> {
 		throw new RuntimeException();
 	}
 
-	private Class<T> getGenericClass(Class<?> clazz) {
+	private Class<T> getGenericClass() {
 		@SuppressWarnings("unchecked")
-		Class<T> result = (Class<T>) ((ParameterizedType) clazz
+		Class<T> result = (Class<T>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 		return result;
 	}
@@ -47,6 +53,28 @@ public abstract class TableModel<T> {
 
 	protected DbClient getClient() {
 		return ApplicationInitializer.getDbClient();
+	}
+
+	public void insert(T object) {
+		getClient().insert(object);
+	}
+
+	public void merge(T object) {
+		getClient().merge(object);
+
+	}
+
+	public void delete() {
+		getClient().deleteAll(getTableName());
+	}
+
+	public T readByPrimaryKey(Object... primaryKeyValues) {
+		return getClient().readByPrimaryKey(getGenericClass(),
+				primaryKeyValues);
+	}
+
+	public List<T> selectAll() {
+		return getClient().selectAll(getGenericClass(), getTableName());
 	}
 
 }

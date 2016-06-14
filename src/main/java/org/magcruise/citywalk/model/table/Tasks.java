@@ -22,12 +22,9 @@ public class Tasks extends TableModel<Task> {
 
 	public List<Task> getTasks(String checkpointId) {
 		return getClient().readList(Task.class,
-				"SELECT * FROM " + getTableName() + " WHERE CHECKPOINT_IDS=?",
-				checkpointId);
-	}
-
-	public void insert(Task task) {
-		getClient().insert(task);
+				"SELECT * FROM " + getTableName()
+						+ " WHERE CHECKPOINT_IDS LIKE ?",
+				"%" + checkpointId + "%");
 	}
 
 }

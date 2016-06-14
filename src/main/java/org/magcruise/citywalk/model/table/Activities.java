@@ -13,7 +13,7 @@ public class Activities extends TableModel<Activity> {
 				+ "input varchar" + ")";
 	}
 
-	public List<Activity> readList(String userId) {
+	public List<Activity> getActivities(String userId) {
 		return getClient().readList(Activity.class,
 				"SELECT * FROM " + getTableName() + " WHERE user_id=?", userId);
 	}
@@ -26,8 +26,6 @@ public class Activities extends TableModel<Activity> {
 				userId, latestActivityId);
 	}
 
-	public void insert(Activity activity) {
-		getClient().insert(activity);
-	}
+
 
 }

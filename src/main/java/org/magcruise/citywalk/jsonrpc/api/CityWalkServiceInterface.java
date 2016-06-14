@@ -4,6 +4,4 @@ public interface CityWalkServiceInterface
 		extends UserServiceInterface, CheckpointServiceInterface,
 		ActivityServiceInterface, TaskServiceInterface {
 
-	void testException();
-
 }

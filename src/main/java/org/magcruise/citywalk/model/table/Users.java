@@ -9,8 +9,7 @@ public class Users extends TableModel<User> {
 
 	@Override
 	protected String getTableSchema() {
-		return getTableName()
-				+ "(user_id varchar primary key, group_id varchar)";
+		return getTableName() + "(id varchar primary key, group_id varchar)";
 	}
 
 }

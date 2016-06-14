@@ -41,10 +41,10 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		new Activities().createTableIfNotExists(getDbClient());
-		new Tasks().createTableIfNotExists(getDbClient());
-		new Users().createTableIfNotExists(getDbClient());
-		new Checkpoints().createTableIfNotExists(getDbClient());
+		new Activities().createTableIfNotExists();
+		new Tasks().createTableIfNotExists();
+		new Users().createTableIfNotExists();
+		new Checkpoints().createTableIfNotExists();
 		log.info("initialized");
 	}
 

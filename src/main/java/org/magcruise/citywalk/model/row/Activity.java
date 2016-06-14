@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.content.Input;
 
 import net.sf.persist.annotations.Column;
+import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
 @Table(name = "ACTIVITIES")
@@ -14,7 +15,7 @@ public class Activity {
 	private String userId;
 	private long taskId;
 	private double score;
-	private Input input;
+	private String input;
 
 	public Activity() {
 	}
@@ -23,7 +24,7 @@ public class Activity {
 		this.userId = userId;
 		this.taskId = taskId;
 		this.score = score;
-		this.input = input;
+		setInputObject(input);
 	}
 
 	public String getUserId() {
@@ -65,13 +66,21 @@ public class Activity {
 		this.id = id;
 	}
 
-	@Column(name = "INPUT")
-	public String getInputString() {
-		return input.toJson();
+	public String getInput() {
+		return input;
 	}
 
-	public void setInputString(String input) {
-		this.input = new Input().fromJson(input);
+	public void setInput(String input) {
+		this.input = input;
+	}
+
+	@NoColumn
+	public Input getInputObject() {
+		return new Input().fromJson(input);
+	}
+
+	public void setInputObject(Input input) {
+		this.input = input.toJson();
 	}
 
 }

@@ -15,14 +15,8 @@ public class Checkpoints extends TableModel<Checkpoint> {
 				+ "lon double, checkpoint_group_ids varchar)";
 	}
 
-	public void addCheckpoint(Checkpoint checkpoint) {
-		getClient().insert(checkpoint);
-
-	}
-
-	public List<Checkpoint> getCheckPoints() {
-		return getClient().readList(Checkpoint.class,
-				"SELECT * from " + getTableName());
+	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
+		return null;
 	}
 
 }

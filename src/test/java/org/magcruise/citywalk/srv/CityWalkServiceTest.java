@@ -6,7 +6,7 @@ import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 
 public class CityWalkServiceTest {
-	private static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
+	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
 	private CityWalkServiceClient client = new CityWalkServiceClient();

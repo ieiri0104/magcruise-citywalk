@@ -11,9 +11,9 @@ public class SelectionTask extends TaskContent {
 	public SelectionTask() {
 	}
 
-	public SelectionTask(List<String> selections, int answerIndex,
+	public SelectionTask(String label, List<String> selections, int answerIndex,
 			boolean checkpoint) {
-		super(checkpoint);
+		super(label, checkpoint);
 		this.selections.addAll(selections);
 		this.answer = selections.get(answerIndex);
 	}

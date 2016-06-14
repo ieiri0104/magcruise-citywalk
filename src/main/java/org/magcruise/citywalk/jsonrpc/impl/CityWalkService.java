@@ -3,60 +3,67 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.content.Input;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
+import org.magcruise.citywalk.model.table.Activities;
+import org.magcruise.citywalk.model.table.Checkpoints;
+import org.magcruise.citywalk.model.table.Tasks;
+import org.magcruise.citywalk.model.table.Users;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
 
-	private ActivityService activityService = new ActivityService();
-	private UserService userService = new UserService();
-	private CheckpointService checkpointService = new CheckpointService();
-	private TaskService taskService = new TaskService();
+	private Activities activities = new Activities();
+	private Users users = new Users();
+	private Tasks tasks = new Tasks();
+	private Checkpoints checkpoints = new Checkpoints();
 
 	@Override
-	public void testException() {
-		throw new RuntimeException("ERROR");
-	}
-
-	@Override
-	public void addActivity(String userId, long taskId, double score,
-			Input inputs) {
-		activityService.addActivity(userId, taskId, score, inputs);
+	public void login(String userId, String groupId) {
+		CityWalkSession session = getSession();
+		if (session.isLogined()) {
+			log.debug(session.getId());
+			log.debug("already logined as {}", session.getAttribute("userId"));
+			session.invalidate();
+			log.debug("session will be invalidate.");
+		} else {
+			log.debug("create new session for {}", userId);
+			session.setMaxInactiveInterval(10 * 60 * 60);
+			session.setAttribute("userId", userId);
+		}
 	}
 
 	@Override
 	public void addActivity(Activity activity) {
-		activityService.addActivity(activity);
+		activities.insert(activity);
+		log.debug(activity.getInput());
 	}
 
 	@Override
 	public List<Activity> getActivities(String userId) {
-		return activityService.getActivities(userId);
+		return activities.getActivities(userId);
 	}
 
 	@Override
-	public void login(String userId, String groupId) {
-		userService.login(userId, groupId);
+	public Checkpoint getCheckpoint(String checkPointId) {
+		return checkpoints.readByPrimaryKey(checkPointId);
 	}
 
 	@Override
-	public Checkpoint getCheckpoint(String id) {
-		return checkpointService.getCheckpoint(id);
+	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
+		return checkpoints.getCheckpoints(checkPointGroupId);
 	}
 
 	@Override
 	public List<Activity> getNewActivitiesOrderById(String userId,
 			long latestActivityId) {
-		return activityService.getNewActivitiesOrderById(userId,
-				latestActivityId);
+		return activities.getNewActivitiesOrderById(userId, latestActivityId);
 	}
 
 	@Override
 	public List<Task> getTasks(String checkpointId) {
-		return taskService.getTasks(checkpointId);
+		return tasks.getTasks(checkpointId);
 	}
 
 }
