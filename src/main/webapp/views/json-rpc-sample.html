@@ -69,41 +69,33 @@
 	});
 
 	$(function() {
-		function handleFileSelect(evt) {
-			var files = evt.target.files; // FileList object
 
-			// Loop through the FileList and render image files as thumbnails.
-			for (var i = 0, f; f = files[i]; i++) {
+		$('#files').on(
+				'change',
+				function handleFileSelect(evt) {
+					var files = evt.target.files;
+					for (var i = 0; i < files.length; i++) {
+						if (!files[i].type.match('image.*')) {
+							continue;
+						}
+						var reader = new FileReader();
 
-				// Only process image files.
-				if (!f.type.match('image.*')) {
-					continue;
-				}
-
-				var reader = new FileReader();
-
-				// Closure to capture the file information.
-				reader.onload = (function(theFile) {
-					return function(e) {
-						// Render thumbnail.
-						var span = document.createElement('span');
-						span.innerHTML = [ '<img class="thumb" src="',
-								e.target.result, '" title="',
-								escape(theFile.name), '"/>' ].join('');
-						document.getElementById('list')
-								.insertBefore(span, null);
-						new JsonRpcClient(new JsonRpcRequest(url,
-								"uploadImage", [ e.target.result ])).rpc();
-					};
-				})(f);
-
-				// Read in the image file as a data URL.
-				reader.readAsDataURL(f);
-			}
-		}
-
-		document.getElementById('files').addEventListener('change',
-				handleFileSelect, false);
+						reader.onload = (function(theFile) {
+							return function(fileContent) {
+								$('#image_outputs').append(
+								$('<span>').append(
+										$('<img>').attr('title',
+												escape(theFile.name)).attr(
+												'src',
+												fileContent.target.result)));
+								new JsonRpcClient(new JsonRpcRequest(url,
+										"uploadImage",
+										[ fileContent.target.result ])).rpc();
+							};
+						})(files[i]);
+						reader.readAsDataURL(files[i]);
+					}
+				});
 	});
 </script>
 </head>
@@ -119,7 +111,7 @@
 					<a id="login" class="btn btn-primary">login</a>
 				</div>
 				<input type="file" id="files" name="files[]" multiple />
-				<output id="list"></output>
+				<output id="image_outputs"></output>
 				<div id="result"></div>
 				<h1>Websocketで通知を取得</h1>
 				<div id="notification" class="well"></div>
