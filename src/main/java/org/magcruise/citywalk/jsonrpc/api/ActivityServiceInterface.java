@@ -14,7 +14,8 @@ public interface ActivityServiceInterface {
 
 	Activity[] getActivities(@Parameter(sample = "ayaki") String userId);
 
-	Activity[] getNewActivitiesOrderById(String userId,
-			long latestActivityId);
+	Activity[] getNewActivitiesOrderById(
+			@Parameter(sample = "ayaki") String userId,
+			@Parameter(sample = "1") long latestActivityId);
 
 }

@@ -10,9 +10,10 @@ public class ActivitiesTable extends TableModel<Activity> {
 	protected String getTableSchema() {
 		return getTableName() + "(" + ID
 				+ " bigint primary key auto_increment, " + CREATED
-				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
-				+ " varchar, " + USER_ID + " varchar, " + "task_id varchar, "
-				+ "score double," + "input varchar" + ")";
+				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + SAVED
+				+ " TIMESTAMP, " + INSTANCE_CLASS + " varchar, " + USER_ID
+				+ " varchar, " + "task_id varchar, " + "score double,"
+				+ "input varchar" + ")";
 	}
 
 	public Activity[] getActivities(String userId) {

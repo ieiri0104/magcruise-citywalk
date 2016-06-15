@@ -5,26 +5,17 @@ import java.util.Date;
 
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 
-import net.sf.persist.annotations.NoColumn;
-
 public class RowModel<T extends JsonConstructiveObject<?>>
 		extends JsonConstructiveObject<T> {
 
-	private Timestamp created = new Timestamp(new Date().getTime());
+	private Date created = new Timestamp(new Date().getTime());
 
-	public String getCreated() {
-		return created.toString();
-	}
-
-	public void setCreated(String created) {
-		this.created = Timestamp.valueOf(created);
-	}
-
-	@NoColumn
-	public Timestamp getCreatedObject() {
+	public Date getCreated() {
 		return created;
 	}
 
-	// public void setCreatedObject(Timestamp created)を作ると，無理矢理呼ぼうとして死ぬ．
+	public void setCreated(Date created) {
+		this.created = created;
+	}
 
 }

@@ -28,7 +28,7 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 	/**
 	 *
 	 * @param instanceClass
-	 *            Class<T> instanceClassにしたいけど，JSONHintが無視されるので．
+	 *            Class<T> instanceClassにするとJSON-RPCライブラリでClassが変換できずに死ぬ．
 	 */
 	@JSONHint(ignore = true)
 	public void setInstanceClassObject(String instanceClass) {
@@ -36,7 +36,7 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 	}
 
 	public String getInstanceClass() {
-		return instanceClass.toString();
+		return instanceClass.toString().replaceAll("class ", "");
 	}
 
 	@SuppressWarnings("unchecked")

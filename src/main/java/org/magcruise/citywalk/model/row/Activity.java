@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.model.row;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
@@ -17,15 +20,30 @@ public class Activity extends RowModel<Activity> {
 	private long taskId;
 	private double score;
 	private Input input;
+	private Date saved = new Timestamp(new Date().getTime());
 
 	public Activity() {
 	}
 
 	public Activity(String userId, long taskId, double score, Input input) {
+		this(new Timestamp(new Date().getTime()), userId, taskId, score, input);
+	}
+
+	public Activity(Date saved, String userId, long taskId, double score,
+			Input input) {
+		this.saved = saved;
 		this.userId = userId;
 		this.taskId = taskId;
 		this.score = score;
 		setInputObject(input);
+	}
+
+	public Date getSaved() {
+		return saved;
+	}
+
+	public void setSaved(Date saved) {
+		this.saved = saved;
 	}
 
 	public String getUserId() {
@@ -81,7 +99,7 @@ public class Activity extends RowModel<Activity> {
 	}
 
 	/**
-	 * InputはJson変換可能なのでOK．
+	 * InputはJSON-RPCライブラリでJson変換可能なのでOK．
 	 *
 	 * @param input
 	 *

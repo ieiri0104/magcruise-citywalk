@@ -24,6 +24,7 @@ public abstract class TableModel<T> {
 	public static final String USER_ID = "USER_ID";
 	public static final String CONTENT = "CONTENT";
 	public static final String GROUP_ID = "GROUP_id";
+	public static final String SAVED = "SAVED";
 
 	public TableModel() {
 		TABLE_NAME = getTableName();
