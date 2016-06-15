@@ -2,7 +2,6 @@ package org.magcruise.citywalk.jsonrpc.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.row.Activity;
@@ -46,7 +45,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
+	public Checkpoint[] getCheckpoints(String checkPointGroupId) {
 		return citywalkService.getCheckpoints(checkPointGroupId);
 	}
 
@@ -61,7 +60,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public List<Activity> getNewActivitiesOrderById(String userId,
+	public Activity[] getNewActivitiesOrderById(String userId,
 			long latestActivityId) {
 		return citywalkService.getNewActivitiesOrderById(userId,
 				latestActivityId);
@@ -78,7 +77,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public List<Task> getTasks(String checkpointId) {
+	public Task[] getTasks(String checkpointId) {
 		return citywalkService.getTasks(checkpointId);
 	}
 

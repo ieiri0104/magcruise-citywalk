@@ -1,7 +1,6 @@
 package org.magcruise.citywalk.ws;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -48,10 +47,10 @@ public class WebSocketManager {
 				if (Thread.interrupted()) {
 					return;
 				}
-				List<Activity> acts = new CityWalkService()
+				Activity[] acts = new CityWalkService()
 						.getNewActivitiesOrderById(userId,
 								getLatestActivityId(userId));
-				if (acts.size() > 0) {
+				if (acts.length > 0) {
 					registerLatestActivityId(userId, acts);
 					b.sendText(JSON.encode(acts));
 				}
@@ -65,8 +64,8 @@ public class WebSocketManager {
 		workers.put(session.getId(), f);
 	}
 
-	private void registerLatestActivityId(String userId, List<Activity> acts) {
-		latestActivityId.put(userId, acts.get(acts.size() - 1).getId());
+	private void registerLatestActivityId(String userId, Activity[] acts) {
+		latestActivityId.put(userId, acts[acts.length - 1].getId());
 	}
 
 	private long getLatestActivityId(String userId) {

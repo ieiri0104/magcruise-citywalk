@@ -14,9 +14,9 @@ public class CityWalkServiceTest {
 	@Test
 	public void test() {
 		client.addActivity(new Activity("ayaki", 1, 0, new Input()));
-		Activity[] a = client.getActivities("ayaki");
-		log.debug(a);
-		// log.debug(client.getCheckpoint("cafeteria"));
+		Activity[] as = client.getActivities("ayaki");
+		log.debug(as);
+		log.debug(client.getCheckpoint("cafeteria"));
 		log.debug(client.getNewActivitiesOrderById("ayaki", 3));
 		log.debug(client.getTasks("cafeteria"));
 		log.debug(client.login("ayaki", "waseda_user"));

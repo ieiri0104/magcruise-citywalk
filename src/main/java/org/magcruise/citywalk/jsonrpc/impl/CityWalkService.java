@@ -1,7 +1,5 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
-import java.util.List;
-
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
@@ -52,19 +50,20 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
-		List<Checkpoint> result = checkpoints.getCheckpoints(checkPointGroupId);
+	public Checkpoint[] getCheckpoints(String checkPointGroupId) {
+		Checkpoint[] result = checkpoints.getCheckpoints(checkPointGroupId);
 		return result;
 	}
 
 	@Override
-	public List<Activity> getNewActivitiesOrderById(String userId,
+	public Activity[] getNewActivitiesOrderById(String userId,
 			long latestActivityId) {
-		return activities.getNewActivitiesOrderById(userId, latestActivityId);
+		return activities.getNewActivitiesOrderById(userId, latestActivityId)
+				.toArray(new Activity[0]);
 	}
 
 	@Override
-	public List<Task> getTasks(String checkpointId) {
+	public Task[] getTasks(String checkpointId) {
 		return tasks.getTasks(checkpointId);
 	}
 

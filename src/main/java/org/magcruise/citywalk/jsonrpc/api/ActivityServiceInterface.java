@@ -1,7 +1,5 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
-import java.util.List;
-
 import org.magcruise.citywalk.model.row.Activity;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
@@ -16,7 +14,7 @@ public interface ActivityServiceInterface {
 
 	Activity[] getActivities(@Parameter(sample = "ayaki") String userId);
 
-	List<Activity> getNewActivitiesOrderById(String userId,
+	Activity[] getNewActivitiesOrderById(String userId,
 			long latestActivityId);
 
 }

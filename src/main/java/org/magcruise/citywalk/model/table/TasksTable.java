@@ -1,7 +1,5 @@
 package org.magcruise.citywalk.model.table;
 
-import java.util.List;
-
 import org.magcruise.citywalk.model.row.Task;
 
 public class TasksTable extends TableModel<Task> {
@@ -17,12 +15,11 @@ public class TasksTable extends TableModel<Task> {
 				+ CONTENT + " text)";
 	}
 
-	public List<Task> getTasks(String checkpointId) {
-		return getClient()
-				.readList(Task.class,
-						"SELECT * FROM " + TABLE_NAME + " WHERE "
-								+ CHECKPOINT_IDS + " LIKE ?",
-						"%" + checkpointId + "%");
+	public Task[] getTasks(String checkpointId) {
+		return getClient().readList(Task.class,
+				"SELECT * FROM " + TABLE_NAME + " WHERE " + CHECKPOINT_IDS
+						+ " LIKE ?",
+				"%" + checkpointId + "%").toArray(new Task[0]);
 	}
 
 }
