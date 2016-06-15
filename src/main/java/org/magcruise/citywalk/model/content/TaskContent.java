@@ -10,9 +10,9 @@ public class TaskContent extends JsonConstructiveObject<TaskContent> {
 	public TaskContent() {
 	}
 
-	public TaskContent(String label, boolean checkpoint) {
+	public TaskContent(String label, boolean checkIn) {
 		this.label = label;
-		this.checkIn = checkpoint;
+		this.checkIn = checkIn;
 	}
 
 	public boolean isCheckIn() {

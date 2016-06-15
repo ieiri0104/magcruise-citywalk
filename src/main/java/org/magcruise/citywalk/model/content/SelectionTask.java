@@ -6,24 +6,16 @@ import java.util.List;
 public class SelectionTask extends TaskContent {
 
 	private List<String> selections = new ArrayList<>();
-	private String answer;
+	private int answerIndex = -1;
 
 	public SelectionTask() {
 	}
 
 	public SelectionTask(String label, List<String> selections, int answerIndex,
-			boolean checkpoint) {
-		super(label, checkpoint);
+			boolean checkIn) {
+		super(label, checkIn);
 		this.selections.addAll(selections);
-		this.answer = selections.get(answerIndex);
-	}
-
-	public String getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(String answer) {
-		this.answer = answer;
+		setAnswerIndex(answerIndex);
 	}
 
 	public List<String> getSelections() {
@@ -31,7 +23,15 @@ public class SelectionTask extends TaskContent {
 	}
 
 	public void setSelections(List<String> selections) {
-		this.selections = selections;
+		this.selections.addAll(selections);
+	}
+
+	public int getAnswerIndex() {
+		return answerIndex;
+	}
+
+	public void setAnswerIndex(int answerIndex) {
+		this.answerIndex = answerIndex;
 	}
 
 }

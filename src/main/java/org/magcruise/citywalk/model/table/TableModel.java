@@ -77,7 +77,11 @@ public abstract class TableModel<T> {
 
 	public void merge(T object) {
 		getClient().merge(object);
+	}
 
+	@SuppressWarnings("unchecked")
+	public void mergeBatch(T... objects) {
+		getClient().mergeBatch(objects);
 	}
 
 	public void delete() {
