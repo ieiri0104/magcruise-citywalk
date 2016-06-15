@@ -5,7 +5,7 @@ public class SelectionInput extends Input {
 	private String value;
 
 	public static void main(String[] args) {
-		System.out.println(new SelectionInput("1").toJson());
+		System.out.println(new SelectionInput("1").encodeToJson());
 	}
 
 	public SelectionInput() {

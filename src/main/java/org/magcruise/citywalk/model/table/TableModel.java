@@ -14,6 +14,17 @@ public abstract class TableModel<T> {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
+	protected static String TABLE_NAME = "UNDEFINED";
+
+	protected static final String ID = "ID";
+	protected static final String INSTANCE_CLASS = "INSTANCE_CLASS";
+	protected static final String CHECKPOINT_GROUP_IDS = "CHECKPOINT_GROUP_IDS";
+	protected static final String USER_ID = "USER_ID";
+
+	public TableModel() {
+		TABLE_NAME = getTableName();
+	}
+
 	protected abstract String getTableSchema();
 
 	public void createTableIfNotExists() {

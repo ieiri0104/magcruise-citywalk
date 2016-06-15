@@ -4,15 +4,16 @@ import java.util.List;
 
 import org.magcruise.citywalk.model.row.Task;
 
-public class Tasks extends TableModel<Task> {
+public class TasksTable extends TableModel<Task> {
 
-	public Tasks() {
+	public TasksTable() {
 	}
 
 	@Override
 	protected String getTableSchema() {
 		return getTableName() + "(id bigint primary key auto_increment, "
-				+ "checkpoint_ids varchar, " + "content text)";
+				+ "instance_class varchar, " + "checkpoint_ids varchar, "
+				+ "content text)";
 	}
 
 	public List<Task> getTasks() {

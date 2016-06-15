@@ -6,10 +6,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.magcruise.citywalk.model.table.Activities;
-import org.magcruise.citywalk.model.table.Checkpoints;
-import org.magcruise.citywalk.model.table.Tasks;
-import org.magcruise.citywalk.model.table.Users;
+import org.magcruise.citywalk.model.table.ActivitiesTable;
+import org.magcruise.citywalk.model.table.CheckpointsTable;
+import org.magcruise.citywalk.model.table.TasksTable;
+import org.magcruise.citywalk.model.table.UsersTable;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;
@@ -41,10 +41,10 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		new Activities().createTableIfNotExists();
-		new Tasks().createTableIfNotExists();
-		new Users().createTableIfNotExists();
-		new Checkpoints().createTableIfNotExists();
+		new ActivitiesTable().createTableIfNotExists();
+		new TasksTable().createTableIfNotExists();
+		new UsersTable().createTableIfNotExists();
+		new CheckpointsTable().createTableIfNotExists();
 		log.info("initialized");
 	}
 

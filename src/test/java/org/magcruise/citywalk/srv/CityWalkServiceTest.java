@@ -13,9 +13,11 @@ public class CityWalkServiceTest {
 
 	@Test
 	public void test() {
-		log.debug(client.getActivities("ayaki"));
 		client.addActivity(new Activity("ayaki", 1, 0, new Input()));
-
+		log.debug(client.getActivities("ayaki"));
+		log.debug(client.getCheckpoints("waseda"));
+		log.debug(client.getCheckpoint("cafeteria"));
+		log.debug(client.getTasks("cafeteria"));
 	}
 
 }

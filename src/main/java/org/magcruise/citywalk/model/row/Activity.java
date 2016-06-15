@@ -2,20 +2,22 @@ package org.magcruise.citywalk.model.row;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.Input;
 
+import net.arnx.jsonic.JSONHint;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
 @Table(name = "ACTIVITIES")
-public class Activity {
+public class Activity extends JsonConstructiveObject<Activity> {
 
 	private long id;
 	private String userId;
 	private long taskId;
 	private double score;
-	private String input;
+	private Input input;
 
 	public Activity() {
 	}
@@ -67,20 +69,21 @@ public class Activity {
 	}
 
 	public String getInput() {
+		return input.encodeToJson();
+	}
+
+	public void setInput(String json) {
+		this.input = JsonConstructiveObject.decodeFromJson(Input.class, json);
+	}
+
+	@JSONHint(ignore = true)
+	@NoColumn
+	public Input getInputObject() {
 		return input;
 	}
 
-	public void setInput(String input) {
-		this.input = input;
-	}
-
-	@NoColumn
-	public Input getInputObject() {
-		return new Input().fromJson(input);
-	}
-
 	public void setInputObject(Input input) {
-		this.input = input.toJson();
+		this.input = input;
 	}
 
 }

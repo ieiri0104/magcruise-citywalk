@@ -6,18 +6,18 @@ import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
-import org.magcruise.citywalk.model.table.Activities;
-import org.magcruise.citywalk.model.table.Checkpoints;
-import org.magcruise.citywalk.model.table.Tasks;
-import org.magcruise.citywalk.model.table.Users;
+import org.magcruise.citywalk.model.table.ActivitiesTable;
+import org.magcruise.citywalk.model.table.CheckpointsTable;
+import org.magcruise.citywalk.model.table.TasksTable;
+import org.magcruise.citywalk.model.table.UsersTable;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
 
-	private Activities activities = new Activities();
-	private Users users = new Users();
-	private Tasks tasks = new Tasks();
-	private Checkpoints checkpoints = new Checkpoints();
+	private ActivitiesTable activities = new ActivitiesTable();
+	private UsersTable users = new UsersTable();
+	private TasksTable tasks = new TasksTable();
+	private CheckpointsTable checkpoints = new CheckpointsTable();
 
 	@Override
 	public void login(String userId, String groupId) {
@@ -36,8 +36,9 @@ public class CityWalkService extends AbstractCityWalkService
 
 	@Override
 	public void addActivity(Activity activity) {
-		activities.insert(activity);
+		log.debug(activity);
 		log.debug(activity.getInput());
+		activities.insert(activity);
 	}
 
 	@Override

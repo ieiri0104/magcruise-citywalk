@@ -1,6 +1,8 @@
 package org.magcruise.citywalk.model.content;
 
-public class TaskContent extends Content<TaskContent> {
+import org.magcruise.citywalk.model.JsonConstructiveObject;
+
+public class TaskContent extends JsonConstructiveObject<TaskContent> {
 
 	protected boolean checkIn = false;
 	protected String label;

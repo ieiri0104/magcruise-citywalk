@@ -1,5 +1,7 @@
 package org.magcruise.citywalk.model.content;
 
-public class Input extends Content<Input> {
+import org.magcruise.citywalk.model.JsonConstructiveObject;
+
+public class Input extends JsonConstructiveObject<Input> {
 
 }

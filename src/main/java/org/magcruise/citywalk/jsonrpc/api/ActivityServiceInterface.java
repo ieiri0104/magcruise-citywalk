@@ -8,9 +8,11 @@ import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
 public interface ActivityServiceInterface {
 
-	void addActivity(@Parameter(sample = "{\"userId\": \"ayaki\", "
-			+ "\"taskId\": \"task2\", " + "\"score\": 9.0, " + "\"input\": "
-			+ "{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionInput\",\"value\":\"1\"}}") Activity activity);
+	void addActivity(
+			@Parameter(sample = "{\"instanceClass\": \"org.magcruise.citywalk.model.row.Activity\","
+					+ " \"userId\": \"ayaki\", " + "\"taskId\": \"task2\", "
+					+ "\"score\": 9.0, " + "\"input\": "
+					+ "{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionInput\",\"value\":\"1\"}}") Activity activity);
 
 	List<Activity> getActivities(@Parameter(sample = "ayaki") String userId);
 

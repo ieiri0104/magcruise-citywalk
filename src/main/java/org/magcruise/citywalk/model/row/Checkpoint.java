@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.JsonConstructiveObject;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;
 
 @Table(name = "CHECKPOINTS")
-public class Checkpoint {
+public class Checkpoint extends JsonConstructiveObject<Checkpoint> {
 
 	private String id;
 	private double lat;

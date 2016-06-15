@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.magcruise.citywalk.model.content.SelectionTask;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
-import org.magcruise.citywalk.model.table.Checkpoints;
-import org.magcruise.citywalk.model.table.Tasks;
+import org.magcruise.citywalk.model.table.CheckpointsTable;
+import org.magcruise.citywalk.model.table.TasksTable;
 import org.nkjmlab.util.db.H2Server;
 
 public class ModelTest {
@@ -22,7 +22,7 @@ public class ModelTest {
 
 	@Test
 	public void test() {
-		Checkpoints checkpoints = new Checkpoints();
+		CheckpointsTable checkpoints = new CheckpointsTable();
 		checkpoints.remakeTable();
 		checkpoints.merge(new Checkpoint("aed-1", 38.4400, 134.11090,
 				Arrays.asList("waseda")));
@@ -34,7 +34,7 @@ public class ModelTest {
 				Arrays.asList("waseda")));
 		log.debug(checkpoints.selectAll());
 
-		Tasks tasks = new Tasks();
+		TasksTable tasks = new TasksTable();
 		tasks.remakeTable();
 		tasks.insert(new Task(Arrays.asList("cafeteria"),
 				new SelectionTask("次のうち、理工の学食が発祥の地であるメニューはどれ？",
