@@ -14,7 +14,7 @@ public interface ActivityServiceInterface {
 					+ "\"score\": 9.0, " + "\"input\": "
 					+ "{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionInput\",\"value\":\"1\"}}") Activity activity);
 
-	List<Activity> getActivities(@Parameter(sample = "ayaki") String userId);
+	Activity[] getActivities(@Parameter(sample = "ayaki") String userId);
 
 	List<Activity> getNewActivitiesOrderById(String userId,
 			long latestActivityId);

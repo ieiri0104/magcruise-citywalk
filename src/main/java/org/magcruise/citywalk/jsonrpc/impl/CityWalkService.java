@@ -42,7 +42,7 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public List<Activity> getActivities(String userId) {
+	public Activity[] getActivities(String userId) {
 		return activities.getActivities(userId);
 	}
 

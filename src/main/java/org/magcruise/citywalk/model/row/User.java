@@ -2,12 +2,11 @@ package org.magcruise.citywalk.model.row;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.JsonConstructiveObject;
 
 import net.sf.persist.annotations.Table;
 
 @Table(name = "USER_ACOUNTS")
-public class User extends JsonConstructiveObject<User> {
+public class User extends RowModel<User> {
 
 	/** e-mail address, as a general rule. **/
 	private String id;

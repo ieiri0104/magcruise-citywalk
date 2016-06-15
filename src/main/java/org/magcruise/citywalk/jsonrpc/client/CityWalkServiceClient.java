@@ -56,7 +56,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public List<Activity> getActivities(String userId) {
+	public Activity[] getActivities(String userId) {
 		return citywalkService.getActivities(userId);
 	}
 

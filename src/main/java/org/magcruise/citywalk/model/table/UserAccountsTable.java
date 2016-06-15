@@ -9,8 +9,9 @@ public class UserAccountsTable extends TableModel<User> {
 
 	@Override
 	protected String getTableSchema() {
-		return getTableName() + "(" + ID + " varchar primary key, "
-				+ INSTANCE_CLASS + " varchar, " + GROUP_ID + " varchar)";
+		return getTableName() + "(" + ID + " varchar primary key, " + CREATED
+				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
+				+ " varchar, " + GROUP_ID + " varchar)";
 	}
 
 }

@@ -16,7 +16,7 @@ import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
 @Table(name = "TASKS")
-public class Task extends JsonConstructiveObject<Task> {
+public class Task extends RowModel<Task> {
 
 	private long id;
 	private List<String> checkpointIds = new ArrayList<>();

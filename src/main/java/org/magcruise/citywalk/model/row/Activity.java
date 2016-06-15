@@ -5,13 +5,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.Input;
 
-import net.arnx.jsonic.JSONHint;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
 @Table(name = "ACTIVITIES")
-public class Activity extends JsonConstructiveObject<Activity> {
+public class Activity extends RowModel<Activity> {
 
 	private long id;
 	private String userId;
@@ -76,12 +75,17 @@ public class Activity extends JsonConstructiveObject<Activity> {
 		this.input = JsonConstructiveObject.decodeFromJson(Input.class, json);
 	}
 
-	@JSONHint(ignore = true)
 	@NoColumn
 	public Input getInputObject() {
 		return input;
 	}
 
+	/**
+	 * InputはJson変換可能なのでOK．
+	 *
+	 * @param input
+	 *
+	 */
 	public void setInputObject(Input input) {
 		this.input = input;
 	}

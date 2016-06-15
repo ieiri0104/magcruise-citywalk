@@ -17,6 +17,7 @@ public abstract class TableModel<T> {
 	protected String TABLE_NAME = "UNDEFINED";
 
 	public static final String ID = "ID";
+	public static final String CREATED = "CREATED";
 	public static final String INSTANCE_CLASS = "INSTANCE_CLASS";
 	public static final String CHECKPOINT_GROUP_IDS = "CHECKPOINT_GROUP_IDS";
 	public static final String CHECKPOINT_IDS = "CHECKPOINT_IDS";

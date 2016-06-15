@@ -14,7 +14,8 @@ public class CheckpointsTable extends TableModel<Checkpoint> {
 
 	@Override
 	protected String getTableSchema() {
-		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY, " + INSTANCE_CLASS
+		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY, " + CREATED
+				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
 				+ " VARCHAR, " + LAT + " DOUBLE, " + LON + " DOUBLE, "
 				+ CHECKPOINT_GROUP_IDS + " VARCHAR)";
 	}
