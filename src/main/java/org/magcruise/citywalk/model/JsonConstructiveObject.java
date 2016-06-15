@@ -25,8 +25,14 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 		return instanceClass;
 	}
 
-	public void setInstanceClassObject(Class<T> instanceClass) {
-		this.instanceClass = instanceClass;
+	/**
+	 *
+	 * @param instanceClass
+	 *            Class<T> instanceClassにしたいけど，JSONHintが無視されるので．
+	 */
+	@JSONHint(ignore = true)
+	public void setInstanceClassObject(String instanceClass) {
+		setInstanceClass(instanceClass);
 	}
 
 	public String getInstanceClass() {

@@ -14,12 +14,15 @@ public abstract class TableModel<T> {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
-	protected static String TABLE_NAME = "UNDEFINED";
+	protected String TABLE_NAME = "UNDEFINED";
 
-	protected static final String ID = "ID";
-	protected static final String INSTANCE_CLASS = "INSTANCE_CLASS";
-	protected static final String CHECKPOINT_GROUP_IDS = "CHECKPOINT_GROUP_IDS";
-	protected static final String USER_ID = "USER_ID";
+	public static final String ID = "ID";
+	public static final String INSTANCE_CLASS = "INSTANCE_CLASS";
+	public static final String CHECKPOINT_GROUP_IDS = "CHECKPOINT_GROUP_IDS";
+	public static final String CHECKPOINT_IDS = "CHECKPOINT_IDS";
+	public static final String USER_ID = "USER_ID";
+	public static final String CONTENT = "CONTENT";
+	public static final String GROUP_ID = "GROUP_id";
 
 	public TableModel() {
 		TABLE_NAME = getTableName();
@@ -86,6 +89,10 @@ public abstract class TableModel<T> {
 
 	public List<T> selectAll() {
 		return getClient().selectAll(getGenericClass(), getTableName());
+	}
+
+	public Object getLastInsertId(Class<?> object) {
+		return getClient().getLastInsertId(object);
 	}
 
 }

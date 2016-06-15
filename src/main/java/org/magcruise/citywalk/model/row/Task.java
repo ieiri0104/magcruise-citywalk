@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.TaskContent;
+import org.magcruise.citywalk.model.table.TableModel;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
@@ -38,15 +39,24 @@ public class Task extends JsonConstructiveObject<Task> {
 		this.id = id;
 	}
 
-	@Column(name = "CHECKPOINT_IDS")
-	public String getCheckpointIdString() {
+	@Column(name = TableModel.CHECKPOINT_IDS)
+	public String getCheckpointIdsString() {
 		return JSON.encode(checkpointIds);
 	}
 
-	public void setCheckpointIdString(String checkpointId) {
+	public void setCheckpointIdsString(String checkpointId) {
 		@SuppressWarnings("unchecked")
 		List<String> r = JSON.decode(checkpointId, List.class);
 		this.checkpointIds = r;
+	}
+
+	@NoColumn
+	public List<String> getCheckpointIds() {
+		return checkpointIds;
+	}
+
+	public void setCheckpointIds(List<String> checkpointIds) {
+		this.checkpointIds = checkpointIds;
 	}
 
 	public String getContent() {

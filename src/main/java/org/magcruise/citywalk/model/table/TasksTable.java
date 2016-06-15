@@ -11,21 +11,17 @@ public class TasksTable extends TableModel<Task> {
 
 	@Override
 	protected String getTableSchema() {
-		return getTableName() + "(id bigint primary key auto_increment, "
-				+ "instance_class varchar, " + "checkpoint_ids varchar, "
-				+ "content text)";
-	}
-
-	public List<Task> getTasks() {
-		return getClient().readList(Task.class,
-				"SELECT * from " + getTableName());
+		return TABLE_NAME + "(" + ID + " bigint primary key auto_increment, "
+				+ INSTANCE_CLASS + " varchar, " + CHECKPOINT_IDS + " varchar, "
+				+ CONTENT + " text)";
 	}
 
 	public List<Task> getTasks(String checkpointId) {
-		return getClient().readList(Task.class,
-				"SELECT * FROM " + getTableName()
-						+ " WHERE CHECKPOINT_IDS LIKE ?",
-				"%" + checkpointId + "%");
+		return getClient()
+				.readList(Task.class,
+						"SELECT * FROM " + TABLE_NAME + " WHERE "
+								+ CHECKPOINT_IDS + " LIKE ?",
+						"%" + checkpointId + "%");
 	}
 
 }

@@ -36,8 +36,8 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public void login(String userId, String groupId) {
-		citywalkService.login(userId, groupId);
+	public boolean login(String userId, String groupId) {
+		return citywalkService.login(userId, groupId);
 	}
 
 	@Override

@@ -4,14 +4,19 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.magcruise.citywalk.model.content.SelectionInput;
 import org.magcruise.citywalk.model.content.SelectionTask;
+import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
+import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.model.table.ActivitiesTable;
 import org.magcruise.citywalk.model.table.CheckpointsTable;
 import org.magcruise.citywalk.model.table.TasksTable;
+import org.magcruise.citywalk.model.table.UserAccountsTable;
 import org.nkjmlab.util.db.H2Server;
 
-public class ModelTest {
+public class TableModelTest {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
@@ -40,6 +45,7 @@ public class ModelTest {
 				new SelectionTask("次のうち、理工の学食が発祥の地であるメニューはどれ？",
 						Arrays.asList("豚玉丼", "チキンおろしだれ", "カツカレー", "ポーク焼肉"), 3,
 						false)));
+		long tid = Long.valueOf(tasks.getLastInsertId(Task.class).toString());
 		tasks.insert(new Task(
 				Arrays.asList("aed-1", "aed-2", "aed-3", "aed-4", "aed-5",
 						"aed-6"),
@@ -50,8 +56,20 @@ public class ModelTest {
 		tasks.insert(new Task(Arrays.asList("pc_room"),
 				new SelectionTask("次の4つの部屋を、座席の多い順に並び替えて下さい．",
 						Arrays.asList("A", "C", "E", "G"), 1, false)));
+		log.debug(tasks.selectAll());
+		ActivitiesTable activities = new ActivitiesTable();
+		activities.remakeTable();
+		activities.insert(
+				new Activity("ayaki", tid, 1.0, new SelectionInput("豚玉丼")));
 
-		log.debug(tasks.getTasks());
+		UserAccountsTable users = new UserAccountsTable();
+		users.remakeTable();
+		users.insert(new User("ayaki", "waseda-u"));
+		users.insert(new User("ieiri", "waseda-u"));
+		users.insert(new User("nkjm", "toho-u"));
+
+
+		log.debug(users.selectAll());
 
 	}
 

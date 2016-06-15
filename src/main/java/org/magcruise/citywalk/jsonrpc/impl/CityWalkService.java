@@ -9,28 +9,28 @@ import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.table.ActivitiesTable;
 import org.magcruise.citywalk.model.table.CheckpointsTable;
 import org.magcruise.citywalk.model.table.TasksTable;
-import org.magcruise.citywalk.model.table.UsersTable;
+import org.magcruise.citywalk.model.table.UserAccountsTable;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
 
 	private ActivitiesTable activities = new ActivitiesTable();
-	private UsersTable users = new UsersTable();
+	private UserAccountsTable users = new UserAccountsTable();
 	private TasksTable tasks = new TasksTable();
 	private CheckpointsTable checkpoints = new CheckpointsTable();
 
 	@Override
-	public void login(String userId, String groupId) {
+	public boolean login(String userId, String groupId) {
 		CityWalkSession session = getSession();
 		if (session.isLogined()) {
 			log.debug(session.getId());
 			log.debug("already logined as {}", session.getAttribute("userId"));
-			session.invalidate();
-			log.debug("session will be invalidate.");
+			return true;
 		} else {
 			log.debug("create new session for {}", userId);
 			session.setMaxInactiveInterval(10 * 60 * 60);
 			session.setAttribute("userId", userId);
+			return true;
 		}
 	}
 
@@ -53,7 +53,8 @@ public class CityWalkService extends AbstractCityWalkService
 
 	@Override
 	public List<Checkpoint> getCheckpoints(String checkPointGroupId) {
-		return checkpoints.getCheckpoints(checkPointGroupId);
+		List<Checkpoint> result = checkpoints.getCheckpoints(checkPointGroupId);
+		return result;
 	}
 
 	@Override

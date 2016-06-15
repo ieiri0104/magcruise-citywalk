@@ -6,7 +6,7 @@ import org.magcruise.citywalk.model.JsonConstructiveObject;
 
 import net.sf.persist.annotations.Table;
 
-@Table(name = "USERS")
+@Table(name = "USER_ACOUNTS")
 public class User extends JsonConstructiveObject<User> {
 
 	/** e-mail address, as a general rule. **/

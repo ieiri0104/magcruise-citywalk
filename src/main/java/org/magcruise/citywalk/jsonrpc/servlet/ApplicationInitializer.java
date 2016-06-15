@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebListener;
 import org.magcruise.citywalk.model.table.ActivitiesTable;
 import org.magcruise.citywalk.model.table.CheckpointsTable;
 import org.magcruise.citywalk.model.table.TasksTable;
-import org.magcruise.citywalk.model.table.UsersTable;
+import org.magcruise.citywalk.model.table.UserAccountsTable;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;
@@ -43,7 +43,7 @@ public class ApplicationInitializer implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent event) {
 		new ActivitiesTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
-		new UsersTable().createTableIfNotExists();
+		new UserAccountsTable().createTableIfNotExists();
 		new CheckpointsTable().createTableIfNotExists();
 		log.info("initialized");
 	}
