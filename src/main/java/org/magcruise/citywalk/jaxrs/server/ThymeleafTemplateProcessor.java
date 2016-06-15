@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.rs.server;
+package org.magcruise.citywalk.jaxrs.server;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -49,7 +49,7 @@ public class ThymeleafTemplateProcessor
 				servletContext);
 		templateResolver.setPrefix("/");
 		templateResolver.setTemplateMode("HTML5");
-		templateResolver.setCacheTTLMs(3600000L);
+		templateResolver.setCacheTTLMs(0L);
 
 		templateEngine = new TemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver);

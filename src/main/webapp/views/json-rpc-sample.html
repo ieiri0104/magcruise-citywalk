@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="ja">
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 <head>
 <meta charset="UTF-8" />
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="js/jsonrpc.js"></script>
-<script src="js/parseUri.js"></script>
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"
+	rel="stylesheet">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="../js/jsonrpc.js"></script>
+<script src="../js/parseUri.js"></script>
 <script>
 
 function getEventsByWebsocket(wsUrl){
@@ -31,9 +37,13 @@ function getEventsByWebsocket(wsUrl){
 
 $(function(){
   $('#insert').on('click', function(){
-    var url = "http://localhost:8080/magcruise-citywalk-server/json/CityWalkService";
+    var url = "http://localhost:8080/magcruise-citywalk-server/CityWalkService";
+    var tmp = {instanceClass: "org.magcruise.citywalk.model.row.Activity",
+            userId: "ayaki", taskId: "task2", score: 9.0,
+             input: {instanceClass: "org.magcruise.citywalk.model.content.SelectionInput",
+                 value:"1"}};
     new JsonRpcClient(
-        new JsonRpcRequest(url, "insertActivity", ["ayaki","waaaaay", 100],
+        new JsonRpcRequest(url, "addActivity", [tmp],
               function(data){
                         new JsonRpcClient(new JsonRpcRequest(url, "getActivities", ["ayaki"],
                            function(data){
@@ -53,18 +63,20 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="container">
-<div class="row">
-  <div class="col-sm-12">
-<h1>JSON-RPC API呼び出しテスト</h1>
-<a href="./json/">JSON-RPC API呼び出しテストページ</a>
-<h1>JSON-RPCでInsert and Select</h1>
-<div><a id="insert" class="btn btn-primary">insert</a></div>
-<div id="result"></div>
-<h1>Websocketで通知を取得</h1>
-<div id="notification"></div>
-</div>
-</div>
-</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>JSON-RPC API呼び出しテスト</h1>
+				<a href="../CityWalkService">JSON-RPC API呼び出しテストページ</a>
+				<h1>JSON-RPCでInsert and Select</h1>
+				<div>
+					<a id="insert" class="btn btn-primary">insert</a>
+				</div>
+				<div id="result"></div>
+				<h1>Websocketで通知を取得</h1>
+				<div id="notification"></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -64,8 +64,9 @@ public class TableModelTest {
 
 		UserAccountsTable users = new UserAccountsTable();
 		users.remakeTable();
-		users.insert(new User("ayaki", "waseda-u"));
+		users.insert(new User("ayaki", "houchimin"));
 		users.insert(new User("ieiri", "waseda-u"));
+		users.insert(new User("reiko", "waseda-u"));
 		users.insert(new User("nkjm", "toho-u"));
 
 

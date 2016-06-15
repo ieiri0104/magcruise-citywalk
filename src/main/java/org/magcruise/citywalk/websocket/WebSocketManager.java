@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.ws;
+package org.magcruise.citywalk.websocket;
 
 import java.io.IOException;
 import java.util.Map;
