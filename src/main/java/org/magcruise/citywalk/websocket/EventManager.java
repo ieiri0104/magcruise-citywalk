@@ -1,7 +1,11 @@
 package org.magcruise.citywalk.websocket;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,13 +20,12 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
 import org.magcruise.citywalk.model.row.Activity;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
 @ServerEndpoint("/websocket/newEvents/{userId}")
-public class WebSocketManager {
+public class EventManager {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
@@ -30,6 +33,21 @@ public class WebSocketManager {
 			.newScheduledThreadPool(20);
 
 	private static Map<String, Long> latestActivityId = new ConcurrentHashMap<>();
+
+	private static Map<String, BlockingQueue<Object>> events = new ConcurrentHashMap<>();
+
+	public static void putEvent(String userId, Object event) {
+		try {
+			getQueue(userId).put(event);
+		} catch (InterruptedException e) {
+			log.error(e, e);
+		}
+	}
+
+	private static synchronized BlockingQueue<Object> getQueue(String userId) {
+		events.putIfAbsent(userId, new ArrayBlockingQueue<>(100));
+		return events.get(userId);
+	}
 
 	@OnOpen
 	public synchronized void onOpen(@PathParam("userId") String userId,
@@ -47,13 +65,20 @@ public class WebSocketManager {
 				if (Thread.interrupted()) {
 					return;
 				}
-				Activity[] acts = new CityWalkService()
-						.getNewActivitiesOrderById(userId,
-								getLatestActivityId(userId));
-				if (acts.length > 0) {
-					registerLatestActivityId(userId, acts);
-					b.sendText(JSON.encode(acts));
+				BlockingQueue<Object> queue = getQueue(userId);
+				synchronized (queue) {
+					List<Object> objs = new ArrayList<>();
+					queue.drainTo(objs);
+					b.sendText(JSON.encode(objs));
 				}
+
+				// Activity[] acts = new CityWalkService()
+				// .getNewActivitiesOrderById(userId,
+				// getLatestActivityId(userId));
+				// if (acts.length > 0) {
+				// registerLatestActivityId(userId, acts);
+				// b.sendText(JSON.encode(acts));
+				// }
 			} catch (IllegalStateException e) {
 				log.error(e, e);
 			} catch (Exception e) {

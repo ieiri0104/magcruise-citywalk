@@ -1,5 +1,7 @@
 package org.magcruise.citywalk.srv;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
 import org.magcruise.citywalk.model.content.Input;
@@ -15,10 +17,10 @@ public class CityWalkServiceTest {
 	public void test() {
 		client.addActivity(new Activity("ayaki", 1, 0, new Input()));
 		Activity[] as = client.getActivities("ayaki");
-		log.debug(as);
-		log.debug(client.getCheckpoint("cafeteria"));
-		log.debug(client.getNewActivitiesOrderById("ayaki", 3));
-		log.debug(client.getTasks("cafeteria"));
+		log.debug(Arrays.asList(as));
+		log.debug(Arrays.asList(client.getCheckpoint("cafeteria")));
+		log.debug(Arrays.asList(client.getNewActivitiesOrderById("ayaki", 3)));
+		log.debug(Arrays.asList(client.getTasks("cafeteria")));
 		log.debug(client.login("ayaki", "waseda_user"));
 	}
 

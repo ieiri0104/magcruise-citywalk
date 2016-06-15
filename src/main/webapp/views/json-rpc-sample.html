@@ -19,47 +19,54 @@
 <script src="../js/jsonrpc.js"></script>
 <script src="../js/parseUri.js"></script>
 <script>
+	var url = "http://localhost:8080/magcruise-citywalk-server/CityWalkService";
+	function getEventsByWebsocket(wsUrl) {
+		var connection = new WebSocket(wsUrl);
+		connection.onmessage = function(e) {
+			var messages = JSON.parse(e.data);
+			for (var i = 0; i < messages.length; i++) {
+				$('#notification').append(JSON.stringify(messages[i]));
+			}
+		};
+		return {
+			abort : function() {
+				connection.close();
+			}
+		};
+	}
 
-function getEventsByWebsocket(wsUrl){
-  var connection = new WebSocket(wsUrl);
-  connection.onmessage = function (e) {
-    var messages = JSON.parse(e.data);
-    for (var i = 0; i < messages.length; i++) {
-      $('#notification').append(JSON.stringify(messages[i]));
-    }
-  };
-  return {
-    abort: function(){
-      connection.close();
-    }
-  };
-}
-
-$(function(){
-  $('#insert').on('click', function(){
-    var url = "http://localhost:8080/magcruise-citywalk-server/CityWalkService";
-    var tmp = {instanceClass: "org.magcruise.citywalk.model.row.Activity",
-            userId: "ayaki", taskId: "task2", score: 9.0,
-             input: {instanceClass: "org.magcruise.citywalk.model.content.SelectionInput",
-                 value:"1"}};
-    new JsonRpcClient(
-        new JsonRpcRequest(url, "addActivity", [tmp],
-              function(data){
-                        new JsonRpcClient(new JsonRpcRequest(url, "getActivities", ["ayaki"],
-                           function(data){
-                             $('#result').append(JSON.stringify(data));
-                           })).rpc();
-              }
-            )).rpc();
-  });
-});
-$(function(){
-  var uri = new parseUri(location);
-  var wsUrl =  'ws://' + uri.host + ":" + uri.port + "/" + uri.path.split("/")[1] + "/websocket/newEvents/"+ "ayaki";
-  getEventsByWebsocket(wsUrl);
-});
-
-
+	$(function() {
+		$('#insert-activity')
+				.on(
+						'click',
+						function() {
+							var arg = {
+								userId : "ayaki",
+								taskId : "task2",
+								score : 9.0,
+								input : {
+									instanceClass : "org.magcruise.citywalk.model.content.SelectionInput",
+									value : "1"
+								}
+							};
+							new JsonRpcClient(new JsonRpcRequest(url,
+									"addActivity", [ arg ])).rpc();
+						});
+	});
+	$(function() {
+		$('#login').on(
+				'click',
+				function() {
+					new JsonRpcClient(new JsonRpcRequest(url, "login", [
+							"ayaki", "houchimin" ])).rpc();
+				});
+	});
+	$(function() {
+		var uri = new parseUri(location);
+		var wsUrl = 'ws://' + uri.host + ":" + uri.port + "/"
+				+ uri.path.split("/")[1] + "/websocket/newEvents/" + "ayaki";
+		getEventsByWebsocket(wsUrl);
+	});
 </script>
 </head>
 <body>
@@ -68,13 +75,14 @@ $(function(){
 			<div class="col-sm-12">
 				<h1>JSON-RPC API呼び出しテスト</h1>
 				<a href="../CityWalkService">JSON-RPC API呼び出しテストページ</a>
-				<h1>JSON-RPCでInsert and Select</h1>
+				<h1>JSON-RPCでInsert</h1>
 				<div>
-					<a id="insert" class="btn btn-primary">insert</a>
+					<a id="insert-activity" class="btn btn-primary">insert activity</a> <a
+						id="login" class="btn btn-primary">login</a>
 				</div>
 				<div id="result"></div>
 				<h1>Websocketで通知を取得</h1>
-				<div id="notification"></div>
+				<div id="notification" class="well"></div>
 			</div>
 		</div>
 	</div>
