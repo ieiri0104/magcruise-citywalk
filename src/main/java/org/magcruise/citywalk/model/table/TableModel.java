@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.jsonrpc.servlet.ApplicationInitializer;
-import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.db.DbClient;
 
 import net.sf.persist.annotations.Table;

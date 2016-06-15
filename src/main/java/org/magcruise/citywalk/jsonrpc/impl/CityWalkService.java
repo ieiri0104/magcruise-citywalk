@@ -1,5 +1,12 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
@@ -73,6 +80,24 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public Task[] getTasks(String checkpointId) {
 		return tasks.getTasks(checkpointId);
+	}
+
+	@Override
+	public void uploadImage(String base64EncodedImage) {
+		try {
+			log.debug(base64EncodedImage);
+			byte[] decoded = Base64.getDecoder().decode(
+					base64EncodedImage.replaceFirst("data:.*?base64,", ""));
+			BufferedImage image = ImageIO
+					.read(new ByteArrayInputStream(decoded));
+			log.debug(image);
+			ImageIO.write(image, "jpg",
+					new File(System.getProperty("java.io.tmpdir"),
+							"citywalk-" + System.nanoTime() + ".jpg"));
+		} catch (Exception e) {
+			log.error(e, e);
+		}
+
 	}
 
 }

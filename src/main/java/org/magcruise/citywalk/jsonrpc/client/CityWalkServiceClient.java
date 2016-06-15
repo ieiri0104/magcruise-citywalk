@@ -81,4 +81,9 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 		return citywalkService.getTasks(checkpointId);
 	}
 
+	@Override
+	public void uploadImage(String base64EncodedImage) {
+		citywalkService.uploadImage(base64EncodedImage);
+	}
+
 }
