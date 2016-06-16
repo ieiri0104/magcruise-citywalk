@@ -58,19 +58,7 @@ public class CityWalkViewService {
 			return new Viewable("/views/" + pageName + ".html");
 		} catch (Exception e) {
 			log.error(e, e);
-			return null;
-		}
-	}
-
-	@GET
-	@Path("/citywalk/{city}/")
-	@Produces(MediaType.TEXT_HTML)
-	public Viewable cityWalk(@PathParam("city") String city) {
-		try {
-			return new Viewable("/views/citywalk.html");
-		} catch (Exception e) {
-			log.error(e, e);
-			return null;
+			throw new RuntimeException(e);
 		}
 	}
 

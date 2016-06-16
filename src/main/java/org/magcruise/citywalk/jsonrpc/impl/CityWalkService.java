@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
+import org.magcruise.citywalk.model.CityWalkContentReader;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
@@ -110,6 +111,11 @@ public class CityWalkService extends AbstractCityWalkService
 		result.put("tasks",
 				tasks.getTasksForCheckpointGroup(checkpointGroupId));
 		return result;
+	}
+
+	@Override
+	public boolean validateCheckpointsAndTasksJson(String json) {
+		return new CityWalkContentReader().validate(json);
 	}
 
 }

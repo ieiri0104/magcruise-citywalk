@@ -2,38 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<object th:include="/templates/header.html :: meta-fragment"
+	th:remove="tag"></object>
 <script src="../js/citywalk.js"></script>
 <title>AED1</title>
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<nav class="navbar navbar-default" role="navigation">
-					<ul class="nav navbar-nav nav-pills pull-right">
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown"> <i
-								class="glyphicon glyphicon-cog icon-white"></i> 情報 <b
-								class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="visited-checkpoints.html">訪問済みチェックポイント</a></li>
-								<li><a href="badge.html">バッジ</a></li>
-								<li><a href="ranking.html">ランキング</a></li>
-							</ul></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		<div th:replace="/templates/header.html::top-menu"></div>
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>AED1</h1>
 				<img class="img-rounded" src="../img/to-aed.jpg">
 				<div class="btn-group btn-group-justified" role="group">
-					<a class="btn btn-primary" href="checkin-aed.html"
-						role="button">チェックイン</a>
+					<a class="btn btn-primary" href="checkin-aed.html" role="button">チェックイン</a>
 				</div>
 			</div>
 		</div>

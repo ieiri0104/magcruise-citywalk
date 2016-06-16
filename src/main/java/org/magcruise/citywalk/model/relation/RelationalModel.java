@@ -9,8 +9,6 @@ import org.magcruise.citywalk.jsonrpc.servlet.ApplicationInitializer;
 import org.magcruise.citywalk.model.row.RowModel;
 import org.nkjmlab.util.db.DbClient;
 
-import net.sf.persist.annotations.Table;
-
 public abstract class RelationalModel<T extends RowModel<?>> {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();

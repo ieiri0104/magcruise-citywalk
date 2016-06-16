@@ -92,4 +92,9 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 		return citywalkService.getInitialData(null);
 	}
 
+	@Override
+	public boolean validateCheckpointsAndTasksJson(String json) {
+		return citywalkService.validateCheckpointsAndTasksJson(json);
+	}
+
 }
