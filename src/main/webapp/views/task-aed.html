@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/citywalk.js"></script>
+<title>タスク</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<nav class="navbar navbar-default" role="navigation">
+					<ul class="nav navbar-nav nav-pills pull-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown"> <i
+								class="glyphicon glyphicon-cog icon-white"></i> 情報 <b
+								class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="visited-checkpoints.html">訪問済みチェックポイント</a></li>
+								<li><a href="badge.html">バッジ</a></li>
+								<li><a href="ranking.html">ランキング</a></li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="alert alert-info">チェックインに成功しました！</p>
+				<h1>次のうち、AEDの使い方として、間違っているのはどれ？</h1>
+				<div class="form-group">
+					<label>パッドは右胸と左わき腹に貼る<input type="radio" name="q1"
+						value="パッドは右胸と左わき腹に貼る"></label> <label>心電図解析中は体に触らない<input
+						type="radio" name="q1" value="心電図解析中は体に触らない"></label> <label>放電ボタンを押す時は、体から離れる<input
+						type="radio" name="q1" value="放電ボタンを押す時は、体から離れる"></label> <label>呼吸が戻ったらパッドを速やかにはずす<input
+						type="radio" name="q1" value="呼吸が戻ったらパッドを速やかにはずす"></label>
+				</div>
+				<div class="btn-group btn-group-justified" role="group">
+					<a class="btn btn-primary" href="result-aed.html" role="button">回答する</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

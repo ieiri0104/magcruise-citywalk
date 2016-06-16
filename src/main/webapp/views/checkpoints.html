@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/citywalk.js"></script>
+<title>チェックポイント一覧</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<nav class="navbar navbar-default" role="navigation">
+					<ul class="nav navbar-nav nav-pills pull-right">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown"> <i
+								class="glyphicon glyphicon-cog icon-white"></i> 情報 <b
+								class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="visited-checkpoints.html">訪問済みチェックポイント</a></li>
+								<li><a href="badge.html">バッジ</a></li>
+								<li><a href="ranking.html">ランキング</a></li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>チェックポイント一覧</h1>
+				<img class="img-rounded" src="../img/checkpoints.jpg" width="66%">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<br>
+				<ul class="list-group">
+					<li class="list-group-item"><a class="btn btn-block"
+						href="navi-cafeteria.html">食堂 </a></li>
+					<li class="list-group-item"><a class="btn btn-block"
+						href="navi-pc-room.html">PCルーム</a></li>
+					<li class="list-group-item"><a class="btn btn-block"
+						href="navi-aed-1.html">AED-1</a></li>
+					<li class="list-group-item"><span
+						class="label label-success pull-right">済</span><a
+						class="btn btn-block disabled" href="navi-aed-2.html">AED-2</a></li>
+					<li class="list-group-item"><span
+						class="label label-success pull-right">済</span><a
+						class="btn btn-block disabled" href="navi-aed-3.html">AED-3</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

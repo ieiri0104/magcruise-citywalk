@@ -1,0 +1,69 @@
+{
+  checkpoints: [
+    {
+      id:"cafeteria",
+      lat: 38.4400,
+      lon: 139.11090,
+      checkpoint_group_ids: ["waseda"]
+    },
+    {
+      id : "aed1",
+      lat: 38.4400,
+      lon: 138.11090,
+      checkpoint_group_ids: ["waseda"]
+    },
+    {
+      id : "aed2",
+      lat: 38.4400,
+      lon: 134.11090,
+      checkpoint_group_ids: ["waseda"]
+    }
+  ],  
+  tasks: [
+    {
+      checkpoint_ids: ["cafeteria"],  
+      content:{
+        instanceClass: "org.magcruise.citywalk.model.content.PhotoTask",
+        checkin: true,
+        label: "表示されている写真と同じ写真を撮って下さい．",
+        answer: "task/ieiri_photo_00.jpg"
+      }
+    },
+    {
+      checkpoint_ids: ["aed1","aed2","aed3","aed4"],
+      content:{
+        instanceClass: "org.magcruise.citywalk.model.content.QRCodeTask",
+        checkin: true,
+        label: "QRコードを撮って下さい．",
+        answer: "task/ieiri_qr_code_02.jpg"
+      }
+    },
+    {
+      checkpoint_ids: ["cafeteria"],
+      content:{
+        instanceClass: "org.magcruise.citywalk.model.content.SelectionTask",
+        label: "次のうち、理工の学食が発祥の地であるメニューはどれ？",
+        selections: ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
+        answerIndex: 3
+      }
+    },
+    {
+      checkpoint_ids: ["aed1","aed2"],
+      content:{
+        instanceClass: "org.magcruise.citywalk.model.content.SelectionTask",
+        label: "次のうち、AEDの使い方として、間違っているのはどれ？",
+        selections: ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
+        answerIndex: 1
+      }
+    },
+    {
+      checkpoint_ids: ["cafeteria"],
+      content:{
+        instanceClass: "org.magcruise.citywalk.model.content.DescriptionTask",
+        label: "伏見稲荷について",
+        text: "<h3>伏見稲荷について</h3><p></p>"
+      }
+    }
+  ]
+}
+
