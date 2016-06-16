@@ -6,10 +6,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.magcruise.citywalk.model.table.ActivitiesTable;
-import org.magcruise.citywalk.model.table.CheckpointsTable;
-import org.magcruise.citywalk.model.table.TasksTable;
-import org.magcruise.citywalk.model.table.UserAccountsTable;
+import org.magcruise.citywalk.model.relation.ActivitiesTable;
+import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.TasksTable;
+import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;

@@ -7,12 +7,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.Input;
+import org.magcruise.citywalk.model.relation.ActivitiesTable;
 
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
-@Table(name = "ACTIVITIES")
+@Table(name = ActivitiesTable.TABLE_NAME)
 public class Activity extends RowModel<Activity> {
 
 	private long id;

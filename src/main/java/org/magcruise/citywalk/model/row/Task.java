@@ -7,7 +7,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.TaskContent;
-import org.magcruise.citywalk.model.table.TableModel;
+import org.magcruise.citywalk.model.relation.RelationalModel;
+import org.magcruise.citywalk.model.relation.TasksTable;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
@@ -15,7 +16,7 @@ import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
-@Table(name = "TASKS")
+@Table(name = TasksTable.TABLE_NAME)
 public class Task extends RowModel<Task> {
 
 	private long id;
@@ -39,7 +40,7 @@ public class Task extends RowModel<Task> {
 		this.id = id;
 	}
 
-	@Column(name = TableModel.CHECKPOINT_IDS)
+	@Column(name = RelationalModel.CHECKPOINT_IDS)
 	public String getCheckpointIdsString() {
 		return JSON.encode(checkpointIds);
 	}

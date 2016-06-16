@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.model.content.TaskContent;
+import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
-import org.magcruise.citywalk.model.table.CheckpointsTable;
-import org.magcruise.citywalk.model.table.TasksTable;
 
 import net.arnx.jsonic.JSON;
 

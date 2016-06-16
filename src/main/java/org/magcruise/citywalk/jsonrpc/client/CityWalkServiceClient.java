@@ -2,6 +2,7 @@ package org.magcruise.citywalk.jsonrpc.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.row.Activity;
@@ -84,6 +85,11 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	@Override
 	public void uploadImage(String base64EncodedImage) {
 		citywalkService.uploadImage(base64EncodedImage);
+	}
+
+	@Override
+	public Map<String, Object> getInitialData(String checkpointGroupId) {
+		return citywalkService.getInitialData(null);
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 
-public class RowModel<T extends JsonConstructiveObject<?>>
+public abstract class RowModel<T extends JsonConstructiveObject<?>>
 		extends JsonConstructiveObject<T> {
 
 	private Date created = new Timestamp(new Date().getTime());

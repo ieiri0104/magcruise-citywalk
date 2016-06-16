@@ -4,17 +4,20 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
 import org.magcruise.citywalk.model.content.SelectionInput;
 import org.magcruise.citywalk.model.content.SelectionTask;
+import org.magcruise.citywalk.model.relation.ActivitiesTable;
+import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.TasksTable;
+import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
-import org.magcruise.citywalk.model.table.ActivitiesTable;
-import org.magcruise.citywalk.model.table.CheckpointsTable;
-import org.magcruise.citywalk.model.table.TasksTable;
-import org.magcruise.citywalk.model.table.UserAccountsTable;
 import org.nkjmlab.util.db.H2Server;
+
+import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
 public class TableModelTest {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
@@ -35,7 +38,7 @@ public class TableModelTest {
 				Arrays.asList("waseda")));
 		checkpoints.merge(new Checkpoint("cafeteria", 38.4400, 134.11090,
 				Arrays.asList("waseda")));
-		checkpoints.merge(new Checkpoint("pc_room", 38.4400, 134.11090,
+		checkpoints.merge(new Checkpoint("pc-room", 38.4400, 134.11090,
 				Arrays.asList("waseda")));
 		log.debug(checkpoints.selectAll());
 
@@ -68,9 +71,13 @@ public class TableModelTest {
 		users.insert(new User("ieiri", "waseda-u"));
 		users.insert(new User("reiko", "waseda-u"));
 		users.insert(new User("nkjm", "toho-u"));
-
-
 		log.debug(users.selectAll());
+
+		log.debug(
+				JSON.encode(tasks.getTasksForCheckpointGroup("waseda"), true));
+
+		CityWalkService service = new CityWalkService();
+		log.debug(JSON.encode(service.getInitialData("waseda"), true));
 
 	}
 

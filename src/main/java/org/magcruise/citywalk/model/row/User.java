@@ -2,10 +2,11 @@ package org.magcruise.citywalk.model.row;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.relation.UserAccountsTable;
 
 import net.sf.persist.annotations.Table;
 
-@Table(name = "USER_ACOUNTS")
+@Table(name = UserAccountsTable.TABLE_NAME)
 public class User extends RowModel<User> {
 
 	/** e-mail address, as a general rule. **/

@@ -4,18 +4,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
+import org.magcruise.citywalk.model.relation.ActivitiesTable;
+import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.TasksTable;
+import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
-import org.magcruise.citywalk.model.table.ActivitiesTable;
-import org.magcruise.citywalk.model.table.CheckpointsTable;
-import org.magcruise.citywalk.model.table.TasksTable;
-import org.magcruise.citywalk.model.table.UserAccountsTable;
 import org.magcruise.citywalk.websocket.EventManager;
 
 public class CityWalkService extends AbstractCityWalkService
@@ -98,6 +100,16 @@ public class CityWalkService extends AbstractCityWalkService
 			log.error(e, e);
 		}
 
+	}
+
+	@Override
+	public Map<String, Object> getInitialData(String checkpointGroupId) {
+		Map<String, Object> result = new HashMap<>();
+		result.put("checkpoints",
+				checkpoints.getCheckpoints(checkpointGroupId));
+		result.put("tasks",
+				tasks.getTasksForCheckpointGroup(checkpointGroupId));
+		return result;
 	}
 
 }

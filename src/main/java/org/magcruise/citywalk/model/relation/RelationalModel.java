@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.table;
+package org.magcruise.citywalk.model.relation;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -6,15 +6,14 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.jsonrpc.servlet.ApplicationInitializer;
+import org.magcruise.citywalk.model.row.RowModel;
 import org.nkjmlab.util.db.DbClient;
 
 import net.sf.persist.annotations.Table;
 
-public abstract class TableModel<T> {
+public abstract class RelationalModel<T extends RowModel<?>> {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
-
-	protected String TABLE_NAME = "UNDEFINED";
 
 	public static final String ID = "ID";
 	public static final String CREATED = "CREATED";
@@ -26,32 +25,24 @@ public abstract class TableModel<T> {
 	public static final String GROUP_ID = "GROUP_id";
 	public static final String SAVED = "SAVED";
 
-	public TableModel() {
-		TABLE_NAME = getTableName();
+	public RelationalModel() {
 	}
 
-	protected abstract String getTableSchema();
+	protected abstract String getRelationalSchema();
+
+	protected abstract String getRelationName();
 
 	public void createTableIfNotExists() {
-		getClient().createTableIfNotExists(getTableSchema());
+		getClient().createTableIfNotExists(getRelationalSchema());
 	}
 
 	public void dropTableIfExists() {
-		getClient().dropTableIfExists(getTableName());
+		getClient().dropTableIfExists(getRelationName());
 	}
 
 	public void remakeTable() {
 		dropTableIfExists();
 		createTableIfNotExists();
-	}
-
-	public String getTableName() {
-		Class<T> clazz = getGenericClass();
-		Table a = clazz.getAnnotation(Table.class);
-		if (a != null) {
-			return a.name();
-		}
-		throw new RuntimeException();
 	}
 
 	private Class<T> getGenericClass() {
@@ -81,11 +72,11 @@ public abstract class TableModel<T> {
 
 	@SuppressWarnings("unchecked")
 	public void mergeBatch(T... objects) {
-		getClient().mergeBatch(objects);
+		getClient().mergeBatch((Object[]) objects);
 	}
 
 	public void delete() {
-		getClient().deleteAll(getTableName());
+		getClient().deleteAll(getRelationName());
 	}
 
 	public T readByPrimaryKey(Object... primaryKeyValues) {
@@ -94,7 +85,7 @@ public abstract class TableModel<T> {
 	}
 
 	public List<T> selectAll() {
-		return getClient().selectAll(getGenericClass(), getTableName());
+		return getClient().selectAll(getGenericClass(), getRelationName());
 	}
 
 	public Object getLastInsertId(Class<?> object) {

@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.table.TableModel;
+import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.RelationalModel;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;
 
-@Table(name = "CHECKPOINTS")
+@Table(name = CheckpointsTable.TABLE_NAME)
 public class Checkpoint extends RowModel<Checkpoint> {
 
 	private String id;
@@ -60,7 +61,7 @@ public class Checkpoint extends RowModel<Checkpoint> {
 				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	@Column(name = TableModel.CHECKPOINT_GROUP_IDS)
+	@Column(name = RelationalModel.CHECKPOINT_GROUP_IDS)
 	public String getCheckpointGroupIdsString() {
 		return JSON.encode(checkpointGroupIds);
 	}
