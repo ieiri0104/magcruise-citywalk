@@ -8,8 +8,8 @@
 	var u = parseUri(document.URL);
 	var urlPrefix = u.protocol + "://" + u.authority + "/"
 			+ u.directory.split("/")[1] + "/";
-
 	var url = urlPrefix + "CityWalkService";
+
 	function getEventsByWebsocket(wsUrl) {
 		var connection = new WebSocket(wsUrl);
 		connection.onmessage = function(e) {

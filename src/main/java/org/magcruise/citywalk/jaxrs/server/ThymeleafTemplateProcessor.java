@@ -66,7 +66,7 @@ public class ThymeleafTemplateProcessor
 			MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
 			OutputStream out) throws IOException {
 		WebContext context = new WebContext(request, response, servletContext);
-		context.setVariable("item", viewable.getModel());
+		context.setVariable("ctx", viewable.getModel());
 		Writer writer = new OutputStreamWriter(out);
 		templateEngine.process(templateReference, context, writer);
 		writer.flush();

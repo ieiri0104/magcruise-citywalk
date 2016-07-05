@@ -1,15 +1,22 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.magcruise.citywalk.model.row.User;
+
 public class CityWalkSession {
+	private static final String USER_ID = "userId";
+
+	private static final String GROUP_ID = "groupId";
+
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
 	private HttpSession session;
 
-	public CityWalkSession(HttpSession session) {
-		this.session = session;
+	public CityWalkSession(HttpServletRequest request) {
+		this.session = request.getSession(true);
 	}
 
 	public HttpSession getSession() {
@@ -17,12 +24,26 @@ public class CityWalkSession {
 	}
 
 	public boolean isLogined() {
-		if (getAttribute("userId") == null) {
+		if (getUserId().length() == 0) {
 			return false;
 		} else {
 			log.debug(session.getId());
 			return true;
 		}
+	}
+
+	public User getUser() {
+		return new User(getUserId(), getGroupId());
+	}
+
+	public String getGroupId() {
+		return getAttribute(GROUP_ID) == null ? ""
+				: getAttribute(GROUP_ID).toString();
+	}
+
+	public String getUserId() {
+		return getAttribute(USER_ID) == null ? ""
+				: getAttribute(USER_ID).toString();
 	}
 
 	public String getId() {
@@ -43,6 +64,14 @@ public class CityWalkSession {
 
 	public void setMaxInactiveInterval(int maxInterval) {
 		session.setMaxInactiveInterval(maxInterval);
+	}
+
+	public void setUserId(String userId) {
+		session.setAttribute(USER_ID, userId);
+	}
+
+	public void setGroupId(String groupId) {
+		session.setAttribute(GROUP_ID, groupId);
 	}
 
 }

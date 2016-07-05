@@ -36,12 +36,8 @@ public class EventManager {
 
 	private static Map<String, BlockingQueue<Object>> events = new ConcurrentHashMap<>();
 
-	public static void putEvent(String userId, Object event) {
-		try {
-			getQueue(userId).put(event);
-		} catch (InterruptedException e) {
-			log.error(e, e);
-		}
+	public static void offerEvent(String userId, Object event) {
+		getQueue(userId).offer(event);
 	}
 
 	private static synchronized BlockingQueue<Object> getQueue(String userId) {

@@ -28,7 +28,7 @@ public class ApplicationInitializer implements ServletContextListener {
 		if (client == null) {
 			File dbFile = new File(System.getProperty("java.io.tmpdir"),
 					"citywalk");
-			log.debug(dbFile);
+			log.info("Dbfile: {}",dbFile);
 			client = DbClientFactory.createH2ClientWithConnectionPool(
 					H2ConfigFactory.create(dbFile));
 		}

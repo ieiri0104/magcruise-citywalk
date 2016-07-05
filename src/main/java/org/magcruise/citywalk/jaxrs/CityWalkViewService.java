@@ -12,13 +12,14 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.server.mvc.Viewable;
+import org.magcruise.citywalk.jsonrpc.impl.CityWalkSession;
+import org.magcruise.citywalk.model.row.User;
 
 @Path("/")
 public class CityWalkViewService {
 
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
-
 	@Context
 	private HttpHeaders header;
 
@@ -60,6 +61,28 @@ public class CityWalkViewService {
 			log.error(e, e);
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GET
+	@Path("/checkpoints.html")
+	@Produces(MediaType.TEXT_HTML)
+	public Viewable getCheckpoints() {
+		try {
+			CityWalkSession s = getSession(request);
+			if (s.isLogined()) {
+				return new Viewable("/views/checkpoints.html", s.getUser());
+			}
+
+			return new Viewable("/views/checkpoints.html",
+					new User("ieiri", "waseda"));
+		} catch (Exception e) {
+			log.error(e, e);
+			throw new RuntimeException(e);
+		}
+	}
+
+	private CityWalkSession getSession(HttpServletRequest request2) {
+		return new CityWalkSession(request2);
 	}
 
 }

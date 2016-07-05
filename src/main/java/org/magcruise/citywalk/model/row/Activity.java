@@ -19,6 +19,11 @@ public class Activity extends RowModel<Activity> {
 	private long id;
 	private String userId;
 	private long taskId;
+
+	/** taskから取れるはずだけどクライアントからも **/
+	private double lat;
+	private double lon;
+
 	private double score;
 	private Input input;
 	private Date saved = new Timestamp(new Date().getTime());

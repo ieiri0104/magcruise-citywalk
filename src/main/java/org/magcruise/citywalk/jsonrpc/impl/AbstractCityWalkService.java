@@ -8,8 +8,8 @@ public class AbstractCityWalkService extends AbstractService {
 			.getLogger();
 
 	protected CityWalkSession getSession() {
-		return new CityWalkSession(((ServletServiceContext) getServiceContext())
-				.getRequest().getSession());
+		return new CityWalkSession(
+				((ServletServiceContext) getServiceContext()).getRequest());
 	}
 
 }

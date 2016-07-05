@@ -10,6 +10,7 @@
 <body>
 	<div class="container">
 		<div th:replace="/templates/header.html::top-menu"></div>
+		<p th:text=|${ctx.id}@${ctx.groupId}|></p>
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>チェックポイント一覧</h1>

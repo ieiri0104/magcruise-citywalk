@@ -34,16 +34,28 @@ public class CityWalkService extends AbstractCityWalkService
 		CityWalkSession session = getSession();
 		users.merge(new User(userId, groupId));
 		if (session.isLogined()) {
-			log.debug(session.getId());
-			log.debug("already logined as {}", session.getAttribute("userId"));
-			EventManager.putEvent(userId,
+			log.debug("already logined as {}", session.getUserId());
+
+			if (!session.getUserId().equals(userId)) {
+				log.debug("userId is changed from {} to {}",
+						session.getUserId(), userId);
+				session.setUserId(userId);
+			}
+			if (!session.getGroupId().equals(groupId)) {
+				log.debug("groupId is changed from {} to {}",
+						session.getGroupId(), groupId);
+				session.setGroupId(groupId);
+			}
+
+			EventManager.offerEvent(userId,
 					userId + "@" + groupId + " is logined.");
 			return true;
 		} else {
 			log.debug("create new session for {}", userId);
 			session.setMaxInactiveInterval(10 * 60 * 60);
-			session.setAttribute("userId", userId);
-			EventManager.putEvent(userId,
+			session.setUserId(userId);
+			session.setGroupId(groupId);
+			EventManager.offerEvent(userId,
 					userId + "@" + groupId + " is logined.");
 			return true;
 		}
@@ -53,7 +65,7 @@ public class CityWalkService extends AbstractCityWalkService
 	public void addActivity(Activity activity) {
 		log.debug(activity);
 		log.debug(activity.getInput());
-		EventManager.putEvent(activity.getUserId(), activity);
+		EventManager.offerEvent(activity.getUserId(), activity);
 		activities.insert(activity);
 	}
 
