@@ -6,7 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <object th:include="/templates/header.html::meta-fragment"
 	th:remove="tag"></object>
-<script src="../js/citywalk.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/checkpoints.css" />
+<script type="text/javascript" src="../js/citywalk.js"></script>
+<script type="text/javascript" src="../js/checkpoints.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ALZeCrfwfB_xcWY_yUCt8QbspcjE6FQ&callback=initMap"></script>
 <title>チェックポイント一覧</title>
 </head>
 <body>
@@ -16,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>チェックポイント一覧</h1>
-				<img class="img-rounded" src="../img/checkpoints.jpg" width="66%">
+				<div id="map"></div>
 			</div>
 		</div>
 		<div class="row">
