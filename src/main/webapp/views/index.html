@@ -5,6 +5,11 @@
 <object th:include="/templates/header.html::meta-fragment"
 	th:remove="tag"></object>
 <script src="../js/citywalk.js"></script>
+<script type="text/javascript">
+	$(function() {
+		fetchCityWalkData();
+	});
+</script>
 <title>MAGCruiseCityWalk</title>
 </head>
 <body>
