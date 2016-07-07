@@ -111,6 +111,7 @@ public class CityWalkService extends AbstractCityWalkService
 							"citywalk-" + System.nanoTime() + ".jpg"));
 		} catch (Exception e) {
 			log.error(e, e);
+			throw new RuntimeException(e);
 		}
 
 	}
