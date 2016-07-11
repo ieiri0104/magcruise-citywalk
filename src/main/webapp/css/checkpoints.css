@@ -1,2 +1,38 @@
 #map {
   height: 300px; }
+
+.near {
+  background: #FA833C; }
+
+.far {
+  background: #38A997; }
+
+.checkpoint {
+  line-height: 70px;
+  text-align: center;
+  background: white;
+  border: 1px solid #DDDDDD;
+  font-family: HiraginoSans-W4;
+  font-size: 24px;
+  color: #0074BF; }
+  .checkpoint a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+  .checkpoint .checkpoint-img {
+    display: block;
+    margin-left: 8px;
+    width: 70px;
+    height: 70px; }
+  .checkpoint .distance {
+    color: white;
+    margin: 8px 0px 8px 8px;
+    line-height: 58px;
+    height: 54px;
+    width: 54px;
+    font-size: 12px;
+    border-radius: 54px;
+    -webkit-border-radius: 54px;
+    -m-border-radius: 54px;
+    -o-border-radius: 54px;
+    -ms-border-radius: 54px; }

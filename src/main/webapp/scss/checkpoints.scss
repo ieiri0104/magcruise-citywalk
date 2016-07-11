@@ -1,3 +1,47 @@
+@import "settings";
+@import "mixins";
+
 #map {
 	height: 300px;
+}
+
+.near {
+	background: $orangeColor;
+}
+
+.far {
+	background: $greenColor;
+}
+
+$checkpoint_height: 70px;
+$margin: 8px;
+.checkpoint {
+	line-height: $checkpoint_height;
+	text-align: center;
+	background: white;
+	border: 1px solid #DDDDDD;
+	font-family: HiraginoSans-W4;
+	font-size: 24px;
+	color: $primaryColor;
+	a {
+		display: block;
+    	width: 100%;
+    	height: 100%;
+	}
+	.checkpoint-img {
+		display: block;
+		margin-left: $margin;
+		width: $checkpoint_height;
+		height: $checkpoint_height;
+	}
+	.distance {
+		color: white;
+		$length: $checkpoint_height - $margin*2;
+		margin: $margin 0px $margin $margin;
+		line-height: $length + 4px;
+		height: $length;
+		width: $length;
+		font-size: 12px;
+		@include round($checkpoint_height - $margin*2);
+	}
 }
