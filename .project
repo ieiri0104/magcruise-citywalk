@@ -3,7 +3,7 @@
 	<name>MAGCruiseCityWalkServer</name>
 	<comment></comment>
 	<projects>
-		<project>LangridClient</project>
+		<project>nkjmlab-utils</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

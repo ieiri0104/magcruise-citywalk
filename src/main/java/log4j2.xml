@@ -2,7 +2,6 @@
 <!DOCTYPE configuration>
 <configuration status="OFF">
     <Properties>
-        <property name="log_dir">${web:rootDir}/tmp</property>
         <property name="pattern_loc">
             %d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%t] %c.%M(%F:%L) %m%n
         </property>
@@ -24,16 +23,6 @@
                 <ThresholdFilter level="WARN" onMatch="ACCEPT" />
             </Filters>
         </Console>
-        <RollingFile name="rolling" fileName="${log_dir}/app.log"
-            filePattern="${log_dir}/app-%d{yyyy-MM-dd}-%i.zip">
-            <PatternLayout pattern="${pattern_loc}" />
-            <Policies>
-                <OnStartupTriggeringPolicy />
-                <SizeBasedTriggeringPolicy size="20 MB" />
-                <TimeBasedTriggeringPolicy />
-            </Policies>
-            <DefaultRolloverStrategy max="10" />
-        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="DEBUG">
