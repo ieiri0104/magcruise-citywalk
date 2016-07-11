@@ -90,15 +90,17 @@ a:hover {
 }
 
 .btn {
-	border-radius: 8px;
-	box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.4);
+	@include round(5px);
+	font-size: 20px;
 	border: none;
+	padding: 10px 0px;
 }
 
 .btn-primary {
-	background-color: #333333;
+	background: #FA833C;
+	color: white;
 	&:hover {
-		background-color: #333333;
+		background-color: #FA833C;
 	}
 }
 
@@ -172,5 +174,13 @@ a {
 	color: $descriptionColor;
 	letter-spacing: 0.07px;
 	line-height: 17px;
+}
+
+.form-control {
+	font-size: 20px;
+	padding: 20px 0px 20px 20px;
+	background: white;
+	border: 1px solid #CACACA;
+	@include round(8px);
 }
 
