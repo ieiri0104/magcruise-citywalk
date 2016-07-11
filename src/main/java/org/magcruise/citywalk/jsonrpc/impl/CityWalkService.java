@@ -1,13 +1,7 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.CityWalkContentReader;
@@ -20,6 +14,8 @@ import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
+import org.nkjmlab.util.Base64.Base64ImageUtils;
+import org.nkjmlab.util.io.FileUtils;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
@@ -101,14 +97,8 @@ public class CityWalkService extends AbstractCityWalkService
 	public void uploadImage(String base64EncodedImage) {
 		try {
 			log.debug(base64EncodedImage);
-			byte[] decoded = Base64.getDecoder().decode(
-					base64EncodedImage.replaceFirst("data:.*?base64,", ""));
-			BufferedImage image = ImageIO
-					.read(new ByteArrayInputStream(decoded));
-			log.debug(image);
-			ImageIO.write(image, "jpg",
-					new File(System.getProperty("java.io.tmpdir"),
-							"citywalk-" + System.nanoTime() + ".jpg"));
+			Base64ImageUtils.decodeAndWrite(base64EncodedImage, "jpg", FileUtils
+					.createTempFile("citywalk-" + System.nanoTime() + ".jpg"));
 		} catch (Exception e) {
 			log.error(e, e);
 			throw new RuntimeException(e);
