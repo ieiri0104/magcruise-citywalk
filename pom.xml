@@ -40,22 +40,22 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
-			<version>2.22.2</version>
+			<version>2.23.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-mvc</artifactId>
-			<version>2.22.2</version>
+			<version>2.23.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext.cdi</groupId>
 			<artifactId>jersey-cdi1x</artifactId>
-			<version>2.22.2</version>
+			<version>2.23.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet-core</artifactId>
-			<version>2.3.4.Final</version>
+			<version>2.3.5.Final</version>
 		</dependency>
 		<!-- http://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
 		<dependency>
@@ -99,10 +99,6 @@
 		<dependency>
 			<groupId>net.servicegrid</groupId>
 			<artifactId>jp.go.nict.langrid.servicecontainer</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.servicegrid</groupId>
-			<artifactId>jp.go.nict.langrid.client.soap</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.servicegrid</groupId>
