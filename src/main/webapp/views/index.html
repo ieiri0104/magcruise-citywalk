@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<object th:include="/templates/header.html::meta-fragment"
+<object th:include="../templates/header.html::meta-fragment"
 	th:remove="tag"></object>
 <script src="../js/citywalk.js"></script>
 <script type="text/javascript">
@@ -12,17 +12,30 @@
 		fetchCityWalkData();
 	});
 </script>
+<link rel="stylesheet" href="../css/top.css" />
 <title>MAGCruiseCityWalk</title>
 </head>
 <body>
 	<div class="container">
+		<div class="description">
+			このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。
+		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>CampusWalk</h1>
-				<ul>
-					<li><a href="login.html">Waseda 早稲田大学</a>：新入生向け早稲田理工学内ツアー．
-						制限時間は60分！ キャンパスを探索して沢山のポイントを集めよう！</li>
-				</ul>
+				<a href="login.html">
+					<div class="city">
+						<div class="center">
+							Waseda 早稲田大学
+						</div>
+					</div>
+				</a>
+				<a href="login.html">
+					<div class="city">
+						<div class="center">
+							Toho 東邦大学
+						</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
