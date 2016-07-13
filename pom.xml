@@ -97,11 +97,11 @@
 			<artifactId>jsonic</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.servicegrid</groupId>
+			<groupId>org.langrid</groupId>
 			<artifactId>jp.go.nict.langrid.servicecontainer</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.servicegrid</groupId>
+			<groupId>org.langrid</groupId>
 			<artifactId>jp.go.nict.langrid.service.language_1_2</artifactId>
 		</dependency>
 		<dependency>
