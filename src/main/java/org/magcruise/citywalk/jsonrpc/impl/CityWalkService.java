@@ -98,7 +98,7 @@ public class CityWalkService extends AbstractCityWalkService
 		try {
 			log.debug(base64EncodedImage);
 			Base64ImageUtils.decodeAndWrite(base64EncodedImage, "jpg", FileUtils
-					.createTempFile("citywalk-" + System.nanoTime() + ".jpg"));
+					.getTempFile("citywalk-" + System.nanoTime() + ".jpg"));
 		} catch (Exception e) {
 			log.error(e, e);
 			throw new RuntimeException(e);
