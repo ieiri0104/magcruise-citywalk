@@ -1,6 +1,5 @@
 package org.magcruise.citywalk.jaxrs.server;
 
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.mvc.MvcFeature;
 
@@ -15,7 +14,6 @@ public class ApplicationConfig extends ResourceConfig {
 		packages(this.getClass().getPackage().getName());
 		register(ThymeleafTemplateProcessor.class);
 		register(MvcFeature.class);
-		register(LoggingFilter.class);
 	}
 
 }
