@@ -14,7 +14,7 @@ import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
-import org.nkjmlab.util.Base64.Base64ImageUtils;
+import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
 
 public class CityWalkService extends AbstractCityWalkService
