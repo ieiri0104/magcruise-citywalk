@@ -10,6 +10,7 @@
 		<artifactId>magcruise-parent</artifactId>
 		<version>0.0.1</version>
 	</parent>
+
 	<repositories>
 		<repository>
 			<id>nkjmlab-public</id>
@@ -24,19 +25,28 @@
 	</scm>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.nkjmlab</groupId>
+			<artifactId>nkjmlab-utils</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- jaxrx START -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
@@ -76,25 +86,10 @@
 			<artifactId>log4j-core</artifactId>
 		</dependency>
 		<!-- jaxrx END -->
-
-
-		<dependency>
-			<groupId>org.nkjmlab</groupId>
-			<artifactId>nkjmlab-utils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-api</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.arnx</groupId>
-			<artifactId>jsonic</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.langrid</groupId>
