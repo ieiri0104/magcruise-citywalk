@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>org.magcruise</groupId>
 		<artifactId>magcruise-parent</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
 	<repositories>
@@ -113,7 +113,10 @@
 			<groupId>net.sf</groupId>
 			<artifactId>persist</artifactId>
 		</dependency>
-
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>
