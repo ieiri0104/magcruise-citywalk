@@ -23,6 +23,9 @@
 		<url>https://github.com/nkjmlab/MAGCruiseCityWalkServer</url>
 		<tag>HEAD</tag>
 	</scm>
+	<properties>
+		<jersey-version>2.23.1</jersey-version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -46,19 +49,24 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>${jersey-version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
-			<version>2.23.1</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-mvc</artifactId>
-			<version>2.23.1</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext.cdi</groupId>
 			<artifactId>jersey-cdi1x</artifactId>
-			<version>2.23.1</version>
+			<version>${jersey-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
@@ -83,8 +91,29 @@
 		</dependency>
 		<dependency>
 			<groupId>org.langrid</groupId>
-			<artifactId>jp.go.nict.langrid.service.language_1_2</artifactId>
+			<artifactId>jp.go.nict.langrid.client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.langrid</groupId>
+			<artifactId>jp.go.nict.langrid.commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.arnx</groupId>
+			<artifactId>jsonic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf</groupId>
+			<artifactId>persist</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
