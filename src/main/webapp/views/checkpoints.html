@@ -2,39 +2,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<object th:include="/templates/header.html::meta-fragment"
-	th:remove="tag"></object>
-<script src="../js/citywalk.js"></script>
+<object th:include="/templates/header.html::meta-fragment" th:remove="tag"></object>
+<script type="text/javascript" src="../js/checkpoints.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyGENOzS6lKjopS39UlIzljj5lj7Pl1ss&callback=initMap"></script>
+<link rel="stylesheet" href="../css/checkpoints.css" />
 <title>チェックポイント一覧</title>
 </head>
 <body>
 	<div class="container">
 		<div th:replace="/templates/header.html::top-menu"></div>
-		<p th:text=|${ctx.id}@${ctx.groupId}|></p>
+		<!-- <p th:text=|${ctx.id}@${ctx.groupId}|></p> -->
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>チェックポイント一覧</h1>
-				<img class="img-rounded" src="../img/checkpoints.jpg" width="66%">
+				<div id="map"></div>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-sm-12">
-				<br>
-				<ul class="list-group">
-					<li class="list-group-item"><a class="btn btn-block"
-						href="navi-cafeteria.html">食堂 </a></li>
-					<li class="list-group-item"><a class="btn btn-block"
-						href="navi-pc-room.html">PCルーム</a></li>
-					<li class="list-group-item"><a class="btn btn-block"
-						href="navi-aed-1.html">AED-1</a></li>
-					<li class="list-group-item"><span
-						class="label label-success pull-right">済</span><a
-						class="btn btn-block disabled" href="navi-aed-2.html">AED-2</a></li>
-					<li class="list-group-item"><span
-						class="label label-success pull-right">済</span><a
-						class="btn btn-block disabled" href="navi-aed-3.html">AED-3</a></li>
-
-				</ul>
+				<div class="checkpoint">
+					<span class="pull-left distance near">513m</span>
+					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
+					<a href="navi-cafeteria.html">食堂</a>
+				</div>
+				<div class="checkpoint">
+					<span class="pull-left distance near">542m</span>
+					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
+					<a href="navi-pc-room.html">PCルーム</a>
+				</div>
+				<div class="checkpoint">
+					<span class="pull-left distance far">1.3km</span>
+					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
+					<a href="navi-aed-1.html">AED-1</a>
+				</div>
 			</div>
 		</div>
 	</div>
