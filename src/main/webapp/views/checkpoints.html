@@ -4,7 +4,7 @@
 <head>
 <object th:include="/templates/header.html::meta-fragment" th:remove="tag"></object>
 <script type="text/javascript" src="../js/checkpoints.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyGENOzS6lKjopS39UlIzljj5lj7Pl1ss&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyGENOzS6lKjopS39UlIzljj5lj7Pl1ss&libraries=geometry&callback=initMap"></script>
 <link rel="stylesheet" href="../css/checkpoints.css" />
 <title>チェックポイント一覧</title>
 </head>
@@ -14,28 +14,15 @@
 		<!-- <p th:text=|${ctx.id}@${ctx.groupId}|></p> -->
 		<div class="row">
 			<div class="col-sm-12">
-				<div id="map"></div>
+				<div id="map-box">
+					<div id="map"></div>
+					<img src="../img/btn_current_position.png" id="current-position">
+					<img src="../img/btn_nav_start.png" id="nav-start">
+				</div>
 			</div>
 		</div>
-		<br>
 		<div class="row">
-			<div class="col-sm-12">
-				<div class="checkpoint">
-					<span class="pull-left distance near">513m</span>
-					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
-					<a href="navi-cafeteria.html">食堂</a>
-				</div>
-				<div class="checkpoint">
-					<span class="pull-left distance near">542m</span>
-					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
-					<a href="navi-pc-room.html">PCルーム</a>
-				</div>
-				<div class="checkpoint">
-					<span class="pull-left distance far">1.3km</span>
-					<img src="../img/placeholder.svg" class="pull-left checkpoint-img">
-					<a href="navi-aed-1.html">AED-1</a>
-				</div>
-			</div>
+			<div id="checkpoints" class="col-sm-12"></div>
 		</div>
 	</div>
 </body>

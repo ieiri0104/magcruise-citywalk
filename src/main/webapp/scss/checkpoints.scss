@@ -1,8 +1,30 @@
 @import "settings";
 @import "mixins";
 
-#map {
-	height: 200px;
+#map-box {
+	height: 240px;
+	#map {
+		height: auto;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 0;
+	}
+	$length: 50px;
+	#current-position {
+		position: absolute;
+		width: $length;
+		height: $length;
+		left:  $baseMargin;
+		bottom:  $baseMargin;
+	}
+	#nav-start {
+		position: absolute;
+		height: $length;
+		right:  $baseMargin * 5;
+		bottom:  $baseMargin;
+	}
 }
 
 .near {
@@ -16,16 +38,27 @@
 $checkpoint_height: 70px;
 $margin: 8px;
 .checkpoint {
-	line-height: $checkpoint_height;
-	text-align: center;
+	cursor: pointer;
 	background: white;
 	border: 1px solid #DDDDDD;
-	font-size: 24px;
-	color: $primaryColor;
+	height: $checkpoint_height;
+	max-height: $checkpoint_height;
 	a {
 		display: block;
     	width: 100%;
     	height: 100%;
+	}
+	.distance {
+		color: white;
+		$length: $checkpoint_height - $margin*2;
+		margin: $margin 0px $margin $margin;
+		line-height: $length;
+		text-align: center;
+		height: $length;
+		width: $length;
+		font-size: 12px;
+		font-weight: bold;
+		@include round($checkpoint_height - $margin*2);
 	}
 	.checkpoint-img {
 		display: block;
@@ -33,14 +66,16 @@ $margin: 8px;
 		width: $checkpoint_height;
 		height: $checkpoint_height;
 	}
-	.distance {
-		color: white;
-		$length: $checkpoint_height - $margin*2;
-		margin: $margin 0px $margin $margin;
-		line-height: $length + 4px;
-		height: $length;
-		width: $length;
-		font-size: 12px;
-		@include round($checkpoint_height - $margin*2);
+	.name {
+		padding-left: $baseMargin;
+		font-size: 16px;
+		color: $primaryColor;
+		display: table-cell;
+		vertical-align: middle;
+		height: $checkpoint_height;
 	}
+}
+
+.selected {
+	background: #FCF8E3;
 }
