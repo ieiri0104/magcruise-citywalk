@@ -10,6 +10,21 @@ function setNavTitle() {
 	$("#nav-title").text(document.title);
 }
 
+function getParamDic() {
+	var paramDic = {};
+	var url = location.href;
+	params  = url.split("?");
+	if (params.length < 1) {
+		return paramDic;
+	}
+	paramms = params[1].split("&");
+	for (var i = 0; i < paramms.length; i++) {
+		var tmp = paramms[i].split("=");
+		paramDic[tmp[0]] = tmp[1];
+	}
+	return paramDic;
+}
+
 /* City Walk Data */
 function fetchCityWalkData() {
 	$.ajax({
@@ -35,6 +50,17 @@ function loadCityWalkData() {
 
 function getCheckpoints() {
 	return loadCityWalkData()["checkpoints"];
+}
+
+function getCheckpoint(id) {
+	var array = getCheckpoints().filter(function(c) {
+		return c.id == id;
+	});
+	console.log(array);
+	if (array.length == 1) {
+		return array[0];
+	}
+	return null;
 }
 
 function getTasks() {

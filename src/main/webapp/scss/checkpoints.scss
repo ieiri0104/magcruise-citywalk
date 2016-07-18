@@ -35,14 +35,14 @@
 	background: $greenColor;
 }
 
-$checkpoint_height: 70px;
+$checkpointHeight: 70px;
 $margin: 8px;
 .checkpoint {
 	cursor: pointer;
 	background: white;
 	border: 1px solid #DDDDDD;
-	height: $checkpoint_height;
-	max-height: $checkpoint_height;
+	height: $checkpointHeight;
+	max-height: $checkpointHeight;
 	a {
 		display: block;
     	width: 100%;
@@ -50,7 +50,7 @@ $margin: 8px;
 	}
 	.distance {
 		color: white;
-		$length: $checkpoint_height - $margin*2;
+		$length: $checkpointHeight - $margin*2;
 		margin: $margin 0px $margin $margin;
 		line-height: $length;
 		text-align: center;
@@ -58,13 +58,13 @@ $margin: 8px;
 		width: $length;
 		font-size: 12px;
 		font-weight: bold;
-		@include round($checkpoint_height - $margin*2);
+		@include round($checkpointHeight - $margin*2);
 	}
 	.checkpoint-img {
 		display: block;
 		margin-left: $margin;
-		width: $checkpoint_height;
-		height: $checkpoint_height;
+		width: $checkpointHeight;
+		height: $checkpointHeight;
 	}
 	.name {
 		padding-left: $baseMargin;
@@ -72,7 +72,7 @@ $margin: 8px;
 		color: $primaryColor;
 		display: table-cell;
 		vertical-align: middle;
-		height: $checkpoint_height;
+		height: $checkpointHeight;
 	}
 }
 

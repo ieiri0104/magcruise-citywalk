@@ -1,0 +1,27 @@
+@import "settings";
+@import "mixins";
+
+
+#distance {
+	margin: $baseMargin;
+	color: $greenColor;
+	letter-spacing: 0.3px;
+	font-size: 36px;
+}
+
+#btn-checkin {
+	margin: $baseMargin;
+	padding-left: $baseMargin;
+	padding-right: $baseMargin;
+}
+
+#compass {
+	margin-bottom: $baseMargin;
+	$length: 200px;
+	width: $length;
+	height: $length;
+}
+
+#map {
+	height: 200px;
+}

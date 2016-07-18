@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<object th:include="/templates/header.html :: meta-fragment" th:remove="tag"></object>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyGENOzS6lKjopS39UlIzljj5lj7Pl1ss&libraries=geometry&callback=initMap"></script>
+<script type="text/javascript" src="../js/nav.js"></script>
+<link rel="stylesheet" href="../css/nav.css" />
+<title></title>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="/templates/header.html::top-menu"></div>
+		<div class="row">
+			<div class="col-sm-12">
+		        <span class="pull-left" id="distance">432m</span>
+		        <a class="btn btn-primary pull-right" id="btn-checkin" href="checkin-aed.html" role="button">チェックイン</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+        		<img src="../img/arrow.png" id="compass" class="center">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="map"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>AED1でのアクティビティ</h3>
+				<ul>
+					<li>2016-06-16 15:12:01 ayakiさんがタスクに成功しました．</li>
+					<li>2016-06-16 15:10:01 ayakiさんがチェックインしました．</li>
+					<li>2016-06-16 15:00:01 nkjmさんがチェックインしました．</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

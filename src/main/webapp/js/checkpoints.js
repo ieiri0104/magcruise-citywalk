@@ -3,6 +3,7 @@ var markers = []; // マーカーs
 var infoWindows = []; // バルーンs
 var checkpoints = getCheckpoints(); // チェックポイントデータをLocalStorageより取得
 var cPos; // 現在地
+var selectedCheckpoint;
 
 $(function() {
 	unselectCheckpoint();
@@ -12,6 +13,13 @@ $(function() {
 		}
 		map.setZoom(17);
 		map.setCenter(cPos);
+	});
+	$("#nav-start").click(function() {
+		if(!selectedCheckpoint) {
+			alert("チェックポイントが選択されていません。");
+			return;
+		}
+		location.href = "./navi.html?id=" + selectedCheckpoint.id;
 	});
 });
 
@@ -27,6 +35,11 @@ function getCurrentPosition() {
 		},
 		function(error) {
 			alert('位置情報の取得に失敗しました');
+		},
+		{
+			enableHighAccuracy: true,
+			timeout: 1000 * 60,
+			maximumAge: 1000 * 60,
 		}
 	);
 }
@@ -73,6 +86,7 @@ function closeAllInfoWindows() {
 
 /* チェックポイント選択処理 */
 function selectCheckpoint(index) {
+	selectedCheckpoint = checkpoints[index];
 	closeAllInfoWindows();
 	var marker = markers[index];
 	infoWindows[index].open(marker.getMap(), marker);
