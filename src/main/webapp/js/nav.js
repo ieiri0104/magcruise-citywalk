@@ -10,8 +10,10 @@ var defaultOrientation;
 
 $(function() {
 	console.log(id);
+	// チェックインURLの更新
+	$("#btn-checkin").attr({href: this.attr("href") + "?id=" + checkpoint.id})
+	// コンパス画像の要素
 	compassElem = $("#compass");
-	
 	// 端末の向きを取得
 	defaultOrientation = (screen.width > screen.height) ? "landscape" : "portrait";
 	// 電子コンパスイベントの取得

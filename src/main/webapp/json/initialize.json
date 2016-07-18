@@ -30,7 +30,7 @@
       }
     },
     {
-      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4"],
+      "checkpoint_ids": ["aed-1"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
         "checkin": true,
@@ -39,29 +39,12 @@
       }
     },
     {
-      "checkpoint_ids": ["cafeteria"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
-        "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
-        "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answerIndex": 3
-      }
-    },
-    {
-      "checkpoint_ids": ["aed-1","aed-2"],
+      "checkpoint_ids": ["aed-2"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
         "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
         "answerIndex": 1
-      }
-    },
-    {
-      "checkpoint_ids": ["cafeteria"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.DescriptionTask",
-        "label": "伏見稲荷について",
-        "text": "<h3>伏見稲荷について</h3><p></p>"
       }
     }
   ]
