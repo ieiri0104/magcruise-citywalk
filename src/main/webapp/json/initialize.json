@@ -4,49 +4,52 @@
       "id":"cafeteria",
       "lat": 38.4400,
       "lon": 139.11090,
-      "checkpoint_group_ids": ["waseda"]
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "PhotoTask",
+      "checkin_answer_lat": "38.4395|38.4405",
+      "checkin_answer_lon": "139.11085|139.11095",
+      "checkin_answer_qr":"",
+      "task" : {
+        "task_type": "SelectionTask",
+        "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
+        "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
+        "answer_index": 3,
+        "answer_text": ""
+      }
     },
     {
-      "id": "aed-1",
+      "id": "aed",
       "lat": 38.4400,
       "lon": 138.11090,
-      "checkpoint_group_ids": ["waseda"]
-    },
-    {
-      "id": "aed-2",
-      "lat": 38.4400,
-      "lon": 134.11090,
-      "checkpoint_group_ids": ["waseda"]
-    }
-  ],  
-  "tasks": [
-    {
-      "checkpoint_ids": ["cafeteria"],  
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.PhotoTask",
-        "checkin": true,
-        "label": "表示されている写真と同じ写真を撮って下さい．",
-        "answer": "task/ieiri_photo_00.jpg"
-      }
-    },
-    {
-      "checkpoint_ids": ["aed-1"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
-        "checkin": true,
-        "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_02.jpg"
-      }
-    },
-    {
-      "checkpoint_ids": ["aed-2"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "QRCodeTask",
+      "checkin_answer_lat": "",
+      "checkin_answer_lon": "",
+      "checkin_answer_qr":"decodedqr",
+      "task" : {
+        "task_type": "SelectionTask",
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
         "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
-        "answerIndex": 1
+        "answer_index": 1,
+        "answer_text": ""
+      }
+    },
+    {
+      "id": "text-test",
+      "lat": 38.4400,
+      "lon": 134.11090,
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "",
+      "checkin_answer_lat": "",
+      "checkin_answer_lon": "",
+      "checkin_answer_qr":"",
+      "task" : {
+        "task_type": "DescriptionTask",
+        "label": "京都と入力してください。",
+        "selections": [],
+        "answer_index": -1,
+        "answer_text": "京都"
       }
     }
   ]
 }
-

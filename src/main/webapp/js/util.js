@@ -63,10 +63,6 @@ function getCheckpoint(id) {
 	return null;
 }
 
-function getTasks() {
-	return loadCityWalkData()["tasks"];
-}
-
 /* Local Storage */
 // localStorageに値を設定
 function setItem(key, val) {

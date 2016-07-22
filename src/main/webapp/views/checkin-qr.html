@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+<object th:include="/templates/header.html :: meta-fragment" th:remove="tag"></object>
+<script type="text/javascript" src="../js/qr/megapix-image.js"></script>
+<script type="text/javascript" src="../js/qr/grid.js"></script>
+<script type="text/javascript" src="../js/qr/version.js"></script>
+<script type="text/javascript" src="../js/qr/detector.js"></script>
+<script type="text/javascript" src="../js/qr/formatinf.js"></script>
+<script type="text/javascript" src="../js/qr/errorlevel.js"></script>
+<script type="text/javascript" src="../js/qr/bitmat.js"></script>
+<script type="text/javascript" src="../js/qr/datablock.js"></script>
+<script type="text/javascript" src="../js/qr/bmparser.js"></script>
+<script type="text/javascript" src="../js/qr/datamask.js"></script>
+<script type="text/javascript" src="../js/qr/rsdecoder.js"></script>
+<script type="text/javascript" src="../js/qr/gf256poly.js"></script>
+<script type="text/javascript" src="../js/qr/gf256.js"></script>
+<script type="text/javascript" src="../js/qr/decoder.js"></script>
+<script type="text/javascript" src="../js/qr/qrcode.js"></script>
+<script type="text/javascript" src="../js/qr/findpat.js"></script>
+<script type="text/javascript" src="../js/qr/alignpat.js"></script>
+<script type="text/javascript" src="../js/qr/databr.js"></script>
+<script type="text/javascript" src="../js/checkin-qr.js"></script>
+<link rel="stylesheet" href="../css/checkin-qr.css" />
+<title>チェックイン</title>
+</head>
+<body>
+	<input id="file-input" name="file-input" type="file" accept="image/*" onchange="handleFiles(this.files)" />
+	<div th:replace="/templates/header.html :: top-menu"></div>
+	<div class="container">
+		<div class="row">
+			<div class="description">QRコードを撮影し、写真をアップロードしてください。</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="img-wrapper">
+					<img class="img-rounded" src="../img/nopicture.svg" id="img-preview" onClick="$('#file-input').click()">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="margin-container">
+					<div id="btn-file-input" class="btn btn-primary" onClick="$('#file-input').click()">写真を選ぶ</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="margin-container">
+					<button id="btn-checkin" class="btn btn-primary" disabled>チェックインする</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -8,10 +8,34 @@ var watchID;
 var compassElem;
 var defaultOrientation;
 
+var CheckinType = {
+	Photo : "PhotoTask",
+	QR    : "QRCodeTask",
+};
+
 $(function() {
 	console.log(id);
-	// チェックインURLの更新
-	$("#btn-checkin").attr({href: this.attr("href") + "?id=" + checkpoint.id})
+	var nextBtnText = "",
+		nextBtnHref = "";
+
+	// チェックインorタスク
+	switch (checkpoint.checkin_type) {
+	case CheckinType.Photo:
+		nextBtnText = "チェックイン";
+		nextBtnHref = "checkin-photo.html?id=" + checkpoint.id;
+		break;
+	case CheckinType.QR:
+		nextBtnText = "チェックイン";
+		nextBtnHref = "checkin-qr.html?id=" + checkpoint.id;
+		break;
+	default:
+		nextBtnText = "タスク";
+		nextBtnHref = "task.html?id=" + checkpoint.id;
+		break;
+	}
+	$("#btn-next").text(nextBtnText);
+	$("#btn-next").attr("href", nextBtnHref);
+	
 	// コンパス画像の要素
 	compassElem = $("#compass");
 	// 端末の向きを取得
