@@ -25,6 +25,46 @@ function getParamDic() {
 	return paramDic;
 }
 
+var CheckinType = {
+	Photo : "PhotoTask",
+	QR    : "QRCodeTask",
+};
+
+function getCheckinURL(checkpoint) {
+	var suffix = "";
+	switch (checkpoint.checkin_type) {
+	case CheckinType.Photo:
+		suffix = "photo";
+		break;
+	case CheckinType.QR:
+		suffix = "qr";
+		break;
+	default:
+		break;
+	}
+	return "checkin-" + suffix + ".html?id=" + checkpoint.id;
+}
+
+var TaskType = {
+	Selection   : "SelectionTask",
+	Description : "DescriptionTask",
+};
+
+function getTaskURL(checkpoint) {
+	var suffix = "";
+	switch (checkpoint.task.task_type) {
+	case TaskType.Selection:
+		suffix = "selection";
+		break;
+	case TaskType.Description:
+		suffix = "description";
+		break;
+	default:
+		break;
+	}
+	return "task-" + suffix + ".html?id=" + checkpoint.id;
+}
+
 /* City Walk Data */
 function fetchCityWalkData() {
 	$.ajax({

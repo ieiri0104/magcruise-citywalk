@@ -2,8 +2,8 @@ var id = getParamDic()["id"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
-	$("#btn-checkin").click(function() {
-		location.href = "task.html?id=" + checkpoint.id;
+	$("#btn-next").click(function() {
+		location.href = getTaskURL(checkpoint);
 	});
 });
 
@@ -23,13 +23,13 @@ function handleFiles(files) {
 }
 
 qrcode.callback = function(res) {
-	$("#btn-checkin").prop("disabled", true);
+	$("#btn-next").prop("disabled", true);
 	if (res == 'error decoding QR Code') {
     	alert('QRコードの解析に失敗');
 	} else {
 		console.log('Success to decode qr-code : ' + res);
 		if (res == checkpoint.checkin_answer_qr) {
-			$("#btn-checkin").prop("disabled", false);
+			$("#btn-next").prop("disabled", false);
 		} else {
 			alert("誤ったQRコードを読み込んでいます。別のQRコードを探して下さい。");
 		}

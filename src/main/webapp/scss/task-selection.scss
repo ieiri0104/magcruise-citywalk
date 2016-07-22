@@ -1,0 +1,11 @@
+@import "settings";
+@import "mixins";
+
+.selection {
+	margin: $largeMargin;
+	font-size: $fs4;
+	
+	.input-radio {
+		margin-right: $baseMargin; 
+	}
+}

@@ -8,29 +8,20 @@ var watchID;
 var compassElem;
 var defaultOrientation;
 
-var CheckinType = {
-	Photo : "PhotoTask",
-	QR    : "QRCodeTask",
-};
-
 $(function() {
-	console.log(id);
 	var nextBtnText = "",
 		nextBtnHref = "";
 
 	// チェックインorタスク
 	switch (checkpoint.checkin_type) {
 	case CheckinType.Photo:
-		nextBtnText = "チェックイン";
-		nextBtnHref = "checkin-photo.html?id=" + checkpoint.id;
-		break;
 	case CheckinType.QR:
 		nextBtnText = "チェックイン";
-		nextBtnHref = "checkin-qr.html?id=" + checkpoint.id;
+		nextBtnHref = getCheckinURL(checkpoint);
 		break;
 	default:
 		nextBtnText = "タスク";
-		nextBtnHref = "task.html?id=" + checkpoint.id;
+		nextBtnHref = getTaskURL(checkpoint);
 		break;
 	}
 	$("#btn-next").text(nextBtnText);

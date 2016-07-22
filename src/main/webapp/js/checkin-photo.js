@@ -2,6 +2,9 @@ var id = getParamDic()["id"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
+	$("#btn-next").click(function() {
+		location.href = getTaskURL(checkpoint); // util.js
+	});
 });
 
 function handleFiles(files) {
@@ -16,5 +19,5 @@ function handleFiles(files) {
 	};
 	fileReader.readAsDataURL(file);
 	
-	$("#btn-checkin").prop("disabled", false);
+	$("#btn-next").prop("disabled", false);
 }
