@@ -13,7 +13,7 @@
         "task_type": "SelectionTask",
         "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
         "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answer_index": 3,
+        "answer_indexes": [3],
         "answer_text": ""
       }
     },
@@ -29,8 +29,8 @@
       "task" : {
         "task_type": "SelectionTask",
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
-        "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
-        "answer_index": 1,
+        "selections": ["正解","不正解","正解","不正解"],
+        "answer_indexes": [0,2],
         "answer_text": ""
       }
     },
@@ -47,7 +47,7 @@
         "task_type": "DescriptionTask",
         "label": "京都と入力してください。",
         "selections": [],
-        "answer_index": -1,
+        "answer_indexes": [],
         "answer_text": "京都"
       }
     }
