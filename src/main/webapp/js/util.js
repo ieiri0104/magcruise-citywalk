@@ -96,7 +96,6 @@ function getCheckpoint(id) {
 	var array = getCheckpoints().filter(function(c) {
 		return c.id == id;
 	});
-	console.log(array);
 	if (array.length == 1) {
 		return array[0];
 	}
