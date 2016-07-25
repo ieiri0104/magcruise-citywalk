@@ -6,8 +6,6 @@
       "lon": 139.11090,
       "checkpoint_group_ids": ["waseda"],
       "checkin_type": "PhotoTask",
-      "checkin_answer_lat": "38.4395|38.4405",
-      "checkin_answer_lon": "139.11085|139.11095",
       "checkin_answer_qr":"",
       "task" : {
         "task_type": "SelectionTask",
@@ -23,8 +21,6 @@
       "lon": 138.11090,
       "checkpoint_group_ids": ["waseda"],
       "checkin_type": "QRCodeTask",
-      "checkin_answer_lat": "",
-      "checkin_answer_lon": "",
       "checkin_answer_qr":"decodedqr",
       "task" : {
         "task_type": "SelectionTask",
@@ -40,8 +36,6 @@
       "lon": 134.11090,
       "checkpoint_group_ids": ["waseda"],
       "checkin_type": "",
-      "checkin_answer_lat": "",
-      "checkin_answer_lon": "",
       "checkin_answer_qr":"",
       "task" : {
         "task_type": "DescriptionTask",
