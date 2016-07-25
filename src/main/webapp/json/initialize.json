@@ -12,7 +12,7 @@
         "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
         "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
         "answer_indexes": [3],
-        "answer_text": ""
+        "answer_texts": []
       }
     },
     {
@@ -27,7 +27,7 @@
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
         "selections": ["正解","不正解","正解","不正解"],
         "answer_indexes": [0,2],
-        "answer_text": ""
+        "answer_texts": []
       }
     },
     {
@@ -39,10 +39,10 @@
       "checkin_answer_qr":"",
       "task" : {
         "task_type": "DescriptionTask",
-        "label": "京都と入力してください。",
+        "label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
         "selections": [],
         "answer_indexes": [],
-        "answer_text": "京都"
+        "answer_texts": ["宝", "黄桜", "月桂冠", "キンシ正宗"]
       }
     }
   ]
