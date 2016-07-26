@@ -2,20 +2,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<object th:include="/templates/header.html::meta-fragment"
-	th:remove="tag"></object>
-<script src="../js/citywalk.js"></script>
+<object th:include="/templates/header.html::meta-fragment" th:remove="tag"></object>
+<script type="text/javascript">
+	$(function() {
+		fetchCityWalkData();
+	});
+</script>
+<link rel="stylesheet" href="../css/top.css" />
 <title>MAGCruiseCityWalk</title>
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row" th:fragment="top-menu">
 			<div class="col-sm-12">
-				<h1>CampusWalk</h1>
-				<ul>
-					<li><a href="login.html">Waseda 早稲田大学</a>：新入生向け早稲田理工学内ツアー．
-						制限時間は60分！ キャンパスを探索して沢山のポイントを集めよう！</li>
-				</ul>
+				<div id="mag-nav">
+					<span id="nav-title"></span>
+				</div>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12 description">
+				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。
+			</div>
+			<div class="col-sm-12">
+				<div class="city">
+					<a href="login.html">Waseda 早稲田大学</a>
+				</div>
+				<div class="city">
+					<a href="login.html">Toho 東邦大学</a>
+				</div>
 			</div>
 		</div>
 	</div>

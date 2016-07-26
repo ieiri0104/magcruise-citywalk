@@ -4,66 +4,46 @@
       "id":"cafeteria",
       "lat": 38.4400,
       "lon": 139.11090,
-      "checkpoint_group_ids": ["waseda"]
-    },
-    {
-      "id": "aed-1",
-      "lat": 38.4400,
-      "lon": 138.11090,
-      "checkpoint_group_ids": ["waseda"]
-    },
-    {
-      "id": "aed-2",
-      "lat": 38.4400,
-      "lon": 134.11090,
-      "checkpoint_group_ids": ["waseda"]
-    }
-  ],  
-  "tasks": [
-    {
-      "checkpoint_ids": ["cafeteria"],  
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.PhotoTask",
-        "checkin": true,
-        "label": "表示されている写真と同じ写真を撮って下さい．",
-        "answer": "task/ieiri_photo_00.jpg"
-      }
-    },
-    {
-      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
-        "checkin": true,
-        "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_02.jpg"
-      }
-    },
-    {
-      "checkpoint_ids": ["cafeteria"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "PhotoTask",
+      "checkin_answer_qr":"",
+      "task" : {
+        "task_type": "SelectionTask",
         "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
         "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answerIndex": 3
+        "answer_indexes": [3],
+        "answer_texts": []
       }
     },
     {
-      "checkpoint_ids": ["aed-1","aed-2"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
+      "id": "aed",
+      "lat": 38.4400,
+      "lon": 138.11090,
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "QRCodeTask",
+      "checkin_answer_qr":"decodedqr",
+      "task" : {
+        "task_type": "SelectionTask",
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
-        "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
-        "answerIndex": 1
+        "selections": ["正解","不正解","正解","不正解"],
+        "answer_indexes": [0,2],
+        "answer_texts": []
       }
     },
     {
-      "checkpoint_ids": ["cafeteria"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.DescriptionTask",
-        "label": "伏見稲荷について",
-        "text": "<h3>伏見稲荷について</h3><p></p>"
+      "id": "text-test",
+      "lat": 38.4400,
+      "lon": 134.11090,
+      "checkpoint_group_ids": ["waseda"],
+      "checkin_type": "",
+      "checkin_answer_qr":"",
+      "task" : {
+        "task_type": "DescriptionTask",
+        "label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
+        "selections": [],
+        "answer_indexes": [],
+        "answer_texts": ["宝", "黄桜", "月桂冠", "キンシ正宗"]
       }
     }
   ]
 }
-
