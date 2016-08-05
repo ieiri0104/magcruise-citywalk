@@ -69,7 +69,7 @@ function getTaskURL(checkpoint) {
 function fetchCityWalkData() {
 	$.ajax({
 		type: 'GET',
-		url: '../json/initialize.json',
+		url: '../json/initial_data.json',
 		dataType: 'json',
 		success: function(data) {
 			saveCityWalkData(data);
@@ -77,7 +77,7 @@ function fetchCityWalkData() {
 		error: function() {
 			alert("初期化データが正しく取得できませんでした。ブラウザーの更新ボタンを押して下さい。")
 		}
-	});	
+	});
 }
 
 function saveCityWalkData(data) {

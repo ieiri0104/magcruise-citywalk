@@ -35,8 +35,7 @@ public class Activity extends RowModel<Activity> {
 		this(new Timestamp(new Date().getTime()), userId, taskId, score, input);
 	}
 
-	public Activity(Date saved, String userId, long taskId, double score,
-			Input input) {
+	public Activity(Date saved, String userId, long taskId, double score, Input input) {
 		this.saved = saved;
 		this.userId = userId;
 		this.taskId = taskId;

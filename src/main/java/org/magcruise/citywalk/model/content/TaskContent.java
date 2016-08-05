@@ -4,23 +4,23 @@ import org.magcruise.citywalk.model.JsonConstructiveObject;
 
 public class TaskContent extends JsonConstructiveObject<TaskContent> {
 
-	protected boolean checkIn = false;
+	protected boolean checkin = false;
 	protected String label;
 
 	public TaskContent() {
 	}
 
-	public TaskContent(String label, boolean checkIn) {
+	public TaskContent(String label, boolean checkin) {
 		this.label = label;
-		this.checkIn = checkIn;
+		this.checkin = checkin;
 	}
 
-	public boolean isCheckIn() {
-		return checkIn;
+	public boolean isCheckin() {
+		return checkin;
 	}
 
-	public void setCheckIn(boolean checkIn) {
-		this.checkIn = checkIn;
+	public void setCheckin(boolean checkin) {
+		this.checkin = checkin;
 	}
 
 	public String getLabel() {

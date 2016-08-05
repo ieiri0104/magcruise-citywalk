@@ -24,7 +24,7 @@ public class CityWalkContentReader {
 	public static void main(String[] args)
 			throws JSONException, FileNotFoundException, IOException {
 		Map<String, Object> data = JSON
-				.decode(new FileReader(new File("data/initialize.json")));
+				.decode(new FileReader(new File("data/initial_data.json")));
 		new CityWalkContentReader().merge(data);
 	}
 

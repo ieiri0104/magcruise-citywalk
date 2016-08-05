@@ -85,11 +85,11 @@ public class EventManager {
 		workers.put(session.getId(), f);
 	}
 
-	private void registerLatestActivityId(String userId, Activity[] acts) {
+	protected void registerLatestActivityId(String userId, Activity[] acts) {
 		latestActivityId.put(userId, acts[acts.length - 1].getId());
 	}
 
-	private long getLatestActivityId(String userId) {
+	protected long getLatestActivityId(String userId) {
 		latestActivityId.putIfAbsent(userId, -1L);
 		return latestActivityId.get(userId);
 	}

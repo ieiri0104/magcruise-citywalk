@@ -1,10 +1,11 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.CityWalkContentReader;
+import org.magcruise.citywalk.model.json.InitialDataJson;
+import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
@@ -16,6 +17,7 @@ import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
+import org.nkjmlab.util.json.JsonUtils;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
@@ -58,11 +60,12 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public void addActivity(Activity activity) {
+	public RewardJson addActivity(Activity activity) {
 		log.debug(activity);
 		log.debug(activity.getInput());
 		EventManager.offerEvent(activity.getUserId(), activity);
 		activities.insert(activity);
+		return new RewardJson();
 	}
 
 	@Override
@@ -107,13 +110,12 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public Map<String, Object> getInitialData(String checkpointGroupId) {
-		Map<String, Object> result = new HashMap<>();
-		result.put("checkpoints",
-				checkpoints.getCheckpoints(checkpointGroupId));
-		result.put("tasks",
-				tasks.getTasksForCheckpointGroup(checkpointGroupId));
-		return result;
+	public InitialDataJson getInitialData(String checkpointGroupId) {
+		InitialDataJson data = JsonUtils.decode(
+				new File(getServiceContext().getRealPath("/json/initial_data.json")),
+				InitialDataJson.class);
+
+		return data;
 	}
 
 	@Override

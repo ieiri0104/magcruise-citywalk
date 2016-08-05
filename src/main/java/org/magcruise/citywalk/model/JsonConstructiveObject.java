@@ -51,8 +51,7 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	public String encodeToJson() {
