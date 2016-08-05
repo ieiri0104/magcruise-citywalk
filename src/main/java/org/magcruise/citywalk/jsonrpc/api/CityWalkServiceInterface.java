@@ -6,7 +6,7 @@ import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
 public interface CityWalkServiceInterface
 		extends UserServiceInterface, CheckpointServiceInterface,
-		ActivityServiceInterface, TaskServiceInterface {
+		ActivityServiceInterface {
 
 	InitialDataJson getInitialData(
 			@Parameter(sample = "waseda") String checkpointGroupId);

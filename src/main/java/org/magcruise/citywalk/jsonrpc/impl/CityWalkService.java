@@ -1,9 +1,13 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.CityWalkContentReader;
+import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.CheckpointJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
@@ -12,7 +16,6 @@ import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
-import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
@@ -60,40 +63,37 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public RewardJson addActivity(Activity activity) {
-		log.debug(activity);
-		log.debug(activity.getInput());
-		EventManager.offerEvent(activity.getUserId(), activity);
-		activities.insert(activity);
+	public RewardJson addActivity(ActivityJson activityJson) {
+		EventManager.offerEvent(activityJson.getUserId(), activityJson);
+		activities.insert(new Activity(activityJson));
 		return new RewardJson();
 	}
 
 	@Override
-	public Activity[] getActivities(String userId) {
-		return activities.getActivities(userId);
+	public ActivityJson[] getActivities(String userId) {
+		return Arrays.stream(activities.getActivities(userId)).map(a -> new ActivityJson(a))
+				.collect(Collectors.toList()).toArray(new ActivityJson[0]);
 	}
 
 	@Override
-	public Checkpoint getCheckpoint(String checkPointId) {
-		return checkpoints.readByPrimaryKey(checkPointId);
+	public CheckpointJson getCheckpoint(String checkPointId) {
+		return new CheckpointJson(checkpoints.readByPrimaryKey(checkPointId));
+
 	}
 
 	@Override
-	public Checkpoint[] getCheckpoints(String checkPointGroupId) {
-		Checkpoint[] result = checkpoints.getCheckpoints(checkPointGroupId);
-		return result;
+	public CheckpointJson[] getCheckpoints(String checkPointGroupId) {
+		Checkpoint[] results = checkpoints.getCheckpoints(checkPointGroupId);
+		return Arrays.stream(results).map(c -> new CheckpointJson(c)).collect(Collectors.toList())
+				.toArray(new CheckpointJson[0]);
 	}
 
 	@Override
-	public Activity[] getNewActivitiesOrderById(String userId,
+	public ActivityJson[] getNewActivitiesOrderById(String userId,
 			long latestActivityId) {
-		return activities.getNewActivitiesOrderById(userId, latestActivityId)
-				.toArray(new Activity[0]);
-	}
-
-	@Override
-	public Task[] getTasks(String checkpointId) {
-		return tasks.getTasks(checkpointId);
+		return activities.getNewActivitiesOrderById(userId, latestActivityId).stream()
+				.map(a -> new ActivityJson(a)).collect(Collectors.toList())
+				.toArray(new ActivityJson[0]);
 	}
 
 	@Override

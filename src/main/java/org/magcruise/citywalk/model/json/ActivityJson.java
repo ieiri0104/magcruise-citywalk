@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.row.Activity;
 
 public class ActivityJson {
 
@@ -24,6 +25,19 @@ public class ActivityJson {
 	private Date saved = new Timestamp(new Date().getTime());
 
 	public ActivityJson() {
+	}
+
+	public ActivityJson(Activity activity) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		this.userId = activity.getUserId();
+		this.taskId = activity.getTaskId();
+	}
+
+	public ActivityJson(String userId, long taskId, Map<String, String> inputs) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		this.userId = userId;
+		this.taskId = taskId;
+		this.inputs = inputs;
 	}
 
 	public Date getSaved() {

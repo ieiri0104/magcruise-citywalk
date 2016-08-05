@@ -1,15 +1,15 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
-import org.magcruise.citywalk.model.row.Checkpoint;
+import org.magcruise.citywalk.model.json.CheckpointJson;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
 public interface CheckpointServiceInterface {
 
-	Checkpoint getCheckpoint(
+	CheckpointJson getCheckpoint(
 			@Parameter(sample = "cafeteria") String checkPointId);
 
-	Checkpoint[] getCheckpoints(
+	CheckpointJson[] getCheckpoints(
 			@Parameter(sample = "waseda") String checkPointGroupId);
 
 }

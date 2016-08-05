@@ -5,17 +5,29 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.row.Checkpoint;
 
 public class CheckpointJson {
 
 	private String id;
 	private double lat;
 	private double lon;
-	private List<String> checkpointIds = new ArrayList<>();
+	private List<String> checkpointGroupIds = new ArrayList<>();
 	private boolean checkinType = false;
 	private String checkinAnswerQr;
 
 	private TaskJson task;
+
+	public CheckpointJson() {
+	}
+
+	public CheckpointJson(Checkpoint checkpoint) {
+		this.id = checkpoint.getId();
+		this.lat = checkpoint.getLat();
+		this.lon = checkpoint.getLon();
+		this.checkpointGroupIds.addAll(checkpoint.getCheckpointGroupIds());
+		// TODO
+	}
 
 	public String getId() {
 		return id;
@@ -41,12 +53,12 @@ public class CheckpointJson {
 		this.lon = lon;
 	}
 
-	public List<String> getCheckpointIds() {
-		return checkpointIds;
+	public List<String> getCheckpointGroupIds() {
+		return checkpointGroupIds;
 	}
 
-	public void setCheckpointIds(List<String> checkpointIds) {
-		this.checkpointIds = checkpointIds;
+	public void setCheckpointGroupIds(List<String> checkpointIds) {
+		this.checkpointGroupIds = checkpointIds;
 	}
 
 	public boolean isCheckinType() {

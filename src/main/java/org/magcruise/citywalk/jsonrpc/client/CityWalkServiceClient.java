@@ -4,11 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
+import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.CheckpointJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
-import org.magcruise.citywalk.model.row.Activity;
-import org.magcruise.citywalk.model.row.Checkpoint;
-import org.magcruise.citywalk.model.row.Task;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 
@@ -42,27 +41,27 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public Checkpoint getCheckpoint(String checkPointId) {
+	public CheckpointJson getCheckpoint(String checkPointId) {
 		return citywalkService.getCheckpoint(checkPointId);
 	}
 
 	@Override
-	public Checkpoint[] getCheckpoints(String checkPointGroupId) {
+	public CheckpointJson[] getCheckpoints(String checkPointGroupId) {
 		return citywalkService.getCheckpoints(checkPointGroupId);
 	}
 
 	@Override
-	public RewardJson addActivity(Activity activity) {
+	public RewardJson addActivity(ActivityJson activity) {
 		return citywalkService.addActivity(activity);
 	}
 
 	@Override
-	public Activity[] getActivities(String userId) {
+	public ActivityJson[] getActivities(String userId) {
 		return citywalkService.getActivities(userId);
 	}
 
 	@Override
-	public Activity[] getNewActivitiesOrderById(String userId,
+	public ActivityJson[] getNewActivitiesOrderById(String userId,
 			long latestActivityId) {
 		return citywalkService.getNewActivitiesOrderById(userId,
 				latestActivityId);
@@ -76,11 +75,6 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 			log.error(e, e);
 			return null;
 		}
-	}
-
-	@Override
-	public Task[] getTasks(String checkpointId) {
-		return citywalkService.getTasks(checkpointId);
 	}
 
 	@Override

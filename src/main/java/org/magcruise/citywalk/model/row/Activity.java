@@ -2,11 +2,14 @@ package org.magcruise.citywalk.model.row;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.content.Input;
+import org.magcruise.citywalk.model.content.SelectionInput;
+import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 
 import net.sf.persist.annotations.Column;
@@ -20,7 +23,6 @@ public class Activity extends RowModel<Activity> {
 	private String userId;
 	private long taskId;
 
-	/** taskから取れるはずだけどクライアントからも **/
 	private double lat;
 	private double lon;
 
@@ -29,6 +31,17 @@ public class Activity extends RowModel<Activity> {
 	private Date saved = new Timestamp(new Date().getTime());
 
 	public Activity() {
+	}
+
+	public Activity(ActivityJson activityJson) {
+		this(new Timestamp(new Date().getTime()), activityJson.getUserId(),
+				activityJson.getTaskId(), activityJson.getScore(),
+				convertToInput(activityJson.getInputs()));
+	}
+
+	private static Input convertToInput(Map<String, String> inputs) {
+		// TODO stub
+		return new SelectionInput();
 	}
 
 	public Activity(String userId, long taskId, double score, Input input) {
