@@ -2,10 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<object th:include="/templates/header.html::meta-fragment" th:remove="tag"></object>
+<object th:include="/templates/header.html::meta-fragment"
+	th:remove="tag"></object>
+<script src="../js/citywalk.js"></script>
 <script type="text/javascript">
 	$(function() {
-		fetchCityWalkData();
+		var u = parseUri(document.URL);
+		var urlPrefix = u.protocol + "://" + u.authority + "/"
+				+ u.directory.split("/")[1] + "/";
+		var url = urlPrefix + "CityWalkService";
+		var data = new JsonRpcClient(new JsonRpcRequest(url, "getInitialData",
+				[ "waseda" ], function(data) {
+					saveCityWalkData(data.result);
+				})).rpc();
 	});
 </script>
 <link rel="stylesheet" href="../css/top.css" />
@@ -20,11 +29,10 @@
 				</div>
 			</div>
 		</div>
-	
+
 		<div class="row">
 			<div class="col-sm-12 description">
-				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。
-			</div>
+				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。</div>
 			<div class="col-sm-12">
 				<div class="city">
 					<a href="login.html">Waseda 早稲田大学</a>
