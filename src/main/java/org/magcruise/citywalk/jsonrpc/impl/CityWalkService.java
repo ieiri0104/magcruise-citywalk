@@ -38,26 +38,22 @@ public class CityWalkService extends AbstractCityWalkService
 			log.debug("already logined as {}", session.getUserId());
 
 			if (!session.getUserId().equals(userId)) {
-				log.debug("userId is changed from {} to {}",
-						session.getUserId(), userId);
+				log.debug("userId is changed from {} to {}", session.getUserId(), userId);
 				session.setUserId(userId);
 			}
 			if (!session.getGroupId().equals(groupId)) {
-				log.debug("groupId is changed from {} to {}",
-						session.getGroupId(), groupId);
+				log.debug("groupId is changed from {} to {}", session.getGroupId(), groupId);
 				session.setGroupId(groupId);
 			}
 
-			EventManager.offerEvent(userId,
-					userId + "@" + groupId + " is logined.");
+			EventManager.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		} else {
 			log.debug("create new session for {}", userId);
 			session.setMaxInactiveInterval(10 * 60 * 60);
 			session.setUserId(userId);
 			session.setGroupId(groupId);
-			EventManager.offerEvent(userId,
-					userId + "@" + groupId + " is logined.");
+			EventManager.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		}
 	}
@@ -100,8 +96,8 @@ public class CityWalkService extends AbstractCityWalkService
 	public void uploadImage(String base64EncodedImage) {
 		try {
 			log.debug(base64EncodedImage);
-			Base64ImageUtils.decodeAndWrite(base64EncodedImage, "jpg", FileUtils
-					.getTempFile("citywalk-" + System.nanoTime() + ".jpg"));
+			Base64ImageUtils.decodeAndWrite(base64EncodedImage, "jpg",
+					FileUtils.getTempFile("citywalk-" + System.nanoTime() + ".jpg"));
 		} catch (Exception e) {
 			log.error(e, e);
 			throw new RuntimeException(e);

@@ -4,7 +4,6 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<artifactId>magcruise-citywalk-server</artifactId>
-	<name>${project.artifactId}</name>
 	<parent>
 		<groupId>org.magcruise</groupId>
 		<artifactId>magcruise-parent</artifactId>
@@ -15,6 +14,11 @@
 		<repository>
 			<id>nkjmlab-public</id>
 			<url>http://maven.nkjmlab.org/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>nkjmlab-public-mirror</id>
+			<name>nkjmlab Public Repository Mirror</name>
+			<url>http://mirror.maven.nkjmlab.org/nexus/content/groups/public</url>
 		</repository>
 	</repositories>
 

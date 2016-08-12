@@ -8,7 +8,7 @@ import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 public interface ActivityServiceInterface {
 
 	RewardJson addActivity(
-			@Parameter(sample = "{\"instanceClass\": \"org.magcruise.citywalk.model.row.Activity\","
+			@Parameter(sample = "{\"instanceClass\": \"org.magcruise.citywalk.model.json.ActivityJson\","
 					+ " \"userId\": \"ayaki\", " + "\"taskId\": \"task2\", "
 					+ "\"score\": 9.0, " + "\"input\": "
 					+ "{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionInput\",\"value\":\"1\"}}") ActivityJson activityJson);
