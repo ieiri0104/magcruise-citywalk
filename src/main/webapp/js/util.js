@@ -25,6 +25,13 @@ function getParamDic() {
 	return paramDic;
 }
 
+function getBaseUrl() {
+	var u = parseUri(document.URL);
+	var urlPrefix = u.protocol + "://" + u.authority + "/"
+			+ u.directory.split("/")[1] + "/";
+	return urlPrefix + "CityWalkService";
+}
+
 var CheckinType = {
 	Photo : "PhotoTask",
 	QR    : "QRCodeTask",
