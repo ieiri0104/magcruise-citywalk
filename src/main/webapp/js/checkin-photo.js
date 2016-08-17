@@ -2,8 +2,14 @@ var id = getParamDic()["id"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
+	$("#loading").hide();
 	$("#btn-next").click(function() {
-		location.href = getTaskURL(checkpoint); // util.js
+		$("#loading").fadeIn();
+		var imgData = $("#img-preview").attr('src');
+		new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "uploadImage", [ imgData ], function(data) {
+			$("#loading").fadeOut();
+			location.href = getTaskURL(checkpoint); // util.js
+		})).rpc();
 	});
 });
 
