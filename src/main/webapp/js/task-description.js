@@ -22,7 +22,7 @@ $(function() {
 	
 	$(buttonSel).click(function() {
 		var value = $(answerSel).val();
-		if (task.answer_texts.indexOf(value) >= 0) {
+		if (task.answerTexts.indexOf(value) >= 0) {
 			alert("正解です。タスク完了！");
 		} else {
 			alert("不正解です。もう一度調査しなおして下さい。");

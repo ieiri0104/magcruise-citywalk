@@ -5,7 +5,7 @@ $(function() {
 	var task = checkpoint.task;
 	$("#label").text(task.label);
 	
-	var selectionType = (task.answer_indexes.length == 1) ? "radio" : "checkbox"   
+	var selectionType = (task.answerIndexes.length == 1) ? "radio" : "checkbox"
 	task.selections.forEach(function(selection, i) {
 		var selectionElem =
 			'<div class="selection">' + 
@@ -29,7 +29,7 @@ $(function() {
 		var indexes = $('.selection:checked').map(function() {
 			return parseInt($(this).val());
 		}).get();
-		if (isSameElements(task.answer_indexes, indexes)) {
+		if (isSameElements(task.answerIndexes, indexes)) {
 			alert("正解です。タスク完了！");
 		} else {
 			alert("不正解です。もう一度調査しなおして下さい。");

@@ -13,7 +13,7 @@ public class TaskJson {
 	private String label;
 	private List<String> selections = new ArrayList<>();
 	private List<Integer> answerIndexes = new ArrayList<>();
-	private List<String> answerText = new ArrayList<>();
+	private List<String> answerTexts = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -55,12 +55,12 @@ public class TaskJson {
 		this.answerIndexes = answerIndexes;
 	}
 
-	public List<String> getAnswerText() {
-		return answerText;
+	public List<String> getAnswerTexts() {
+		return answerTexts;
 	}
 
-	public void setAnswerText(List<String> answerText) {
-		this.answerText = answerText;
+	public void setAnswerTexts(List<String> answerTexts) {
+		this.answerTexts = answerTexts;
 	}
 
 	@Override

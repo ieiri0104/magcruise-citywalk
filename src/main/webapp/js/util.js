@@ -39,7 +39,7 @@ var CheckinType = {
 
 function getCheckinURL(checkpoint) {
 	var suffix = "";
-	switch (checkpoint.checkin_type) {
+	switch (checkpoint.checkinType) {
 	case CheckinType.Photo:
 		suffix = "photo";
 		break;
@@ -59,7 +59,7 @@ var TaskType = {
 
 function getTaskURL(checkpoint) {
 	var suffix = "";
-	switch (checkpoint.task.task_type) {
+	switch (checkpoint.task.taskType) {
 	case TaskType.Selection:
 		suffix = "selection";
 		break;

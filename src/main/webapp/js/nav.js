@@ -13,7 +13,7 @@ $(function() {
 		nextBtnHref = "";
 
 	// チェックインorタスク
-	switch (checkpoint.checkin_type) {
+	switch (checkpoint.checkinType) {
 	case CheckinType.Photo:
 	case CheckinType.QR:
 		nextBtnText = "チェックイン";

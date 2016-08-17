@@ -13,7 +13,7 @@ public class CheckpointJson {
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
-	private boolean checkinType = false;
+	private String checkinType;
 	private String checkinAnswerQr;
 
 	private TaskJson task;
@@ -61,11 +61,11 @@ public class CheckpointJson {
 		this.checkpointGroupIds = checkpointIds;
 	}
 
-	public boolean isCheckinType() {
+	public String getCheckinType() {
 		return checkinType;
 	}
 
-	public void setCheckinType(boolean checkinType) {
+	public void setCheckinType(String checkinType) {
 		this.checkinType = checkinType;
 	}
 
