@@ -1,4 +1,6 @@
-var id = getParamDic()["id"];
+var id 	= getParamDic()["id"];
+var lat = getParamDic()["lat"];
+var lon = getParamDic()["lon"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
@@ -21,11 +23,26 @@ $(function() {
 	$(answerSel).keyup(checkChange(this));
 	
 	$(buttonSel).click(function() {
-		var value = $(answerSel).val();
-		if (task.answerTexts.indexOf(value) >= 0) {
-			alert("正解です。タスク完了！");
-		} else {
-			alert("不正解です。もう一度調査しなおして下さい。");
-		}
+		var text = $(answerSel).val();
+		addActivity(task, text);
 	});
 });
+
+function addActivity(task, text) {
+	var isCorrect = (task.answerTexts.indexOf(text) >= 0);
+	var arg = {
+		lat		: lat,
+		lon		: lon,
+		userId	: getUserId(),
+		taskId	: task.id,
+		score	: (isCorrect) ? task.score : 0,
+		inputs	: {
+			instanceClass	: task.instanceClass,
+			value			: text
+		}
+	};
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity",
+		[ arg ], function(data) {
+			location.href = "./checkpoints.html";
+		})).rpc();
+}

@@ -25,7 +25,9 @@ $(function() {
 		break;
 	}
 	$("#btn-next").text(nextBtnText);
-	$("#btn-next").attr("href", nextBtnHref);
+	$("#btn-next").click(function() {
+		location.href = nextBtnHref + "&lat=" + cPos.lat() + "&lon=" + cPos.lng();
+	});
 	
 	// コンパス画像の要素
 	compassElem = $("#compass");

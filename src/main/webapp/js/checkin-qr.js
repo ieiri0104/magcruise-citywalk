@@ -1,9 +1,11 @@
-var id = getParamDic()["id"];
+var id  = getParamDic()["id"];
+var lat = getParamDic()["lat"];
+var lon = getParamDic()["lon"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
 	$("#btn-next").click(function() {
-		location.href = getTaskURL(checkpoint);
+		location.href = getTaskURL(checkpoint) + "&lat=" + lat + "&lon=" + lon;
 	});
 });
 

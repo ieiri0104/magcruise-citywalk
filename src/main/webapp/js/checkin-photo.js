@@ -1,4 +1,6 @@
-var id = getParamDic()["id"];
+var id  = getParamDic()["id"];
+var lat = getParamDic()["lat"];
+var lon = getParamDic()["lon"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
@@ -8,7 +10,7 @@ $(function() {
 		var imgData = $("#img-preview").attr('src');
 		new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "uploadImage", [ imgData ], function(data) {
 			$("#loading").fadeOut();
-			location.href = getTaskURL(checkpoint); // util.js
+			location.href = getTaskURL(checkpoint) + "&lat=" + lat + "&lon=" + lon;
 		})).rpc();
 	});
 });

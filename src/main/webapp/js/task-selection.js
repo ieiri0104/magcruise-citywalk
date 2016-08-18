@@ -1,4 +1,6 @@
-var id = getParamDic()["id"];
+var id  = getParamDic()["id"];
+var lat = getParamDic()["lat"];
+var lon = getParamDic()["lon"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
@@ -29,13 +31,28 @@ $(function() {
 		var indexes = $('.selection:checked').map(function() {
 			return parseInt($(this).val());
 		}).get();
-		if (isSameElements(task.answerIndexes, indexes)) {
-			alert("正解です。タスク完了！");
-		} else {
-			alert("不正解です。もう一度調査しなおして下さい。");
-		}
+		addActivity(task, indexes);
 	});
 });
+
+function addActivity(task, indexes) {
+	var isCorrect = isSameElements(task.answerIndexes, indexes);
+	var arg = {
+		lat		: lat,
+		lon		: lon,
+		userId	: getUserId(),
+		taskId	: task.id,
+		score	: (isCorrect) ? task.score : 0,
+		inputs	: {
+			instanceClass	: task.instanceClass,
+			value			: indexes.sort().toString()
+		}
+	};
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity",
+		[ arg ], function() {
+			location.href = "./checkpoints.html";
+		})).rpc();
+}
 
 function isSameElements(array1, array2) {
 	return array1.sort().toString() === array2.sort().toString();

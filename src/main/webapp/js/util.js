@@ -1,5 +1,6 @@
 /* Consntants */
-var LS_CITY_WALK_DATA_KEY = "city_walk_data_key";
+var KEY_CITY_WALK_DATA = "city_walk_data";
+var KEY_USER_ID        = "user_id";
 /**************/
 
 $(function() {
@@ -88,11 +89,11 @@ function fetchCityWalkData() {
 }
 
 function saveCityWalkData(data) {
-	setItem(LS_CITY_WALK_DATA_KEY, JSON.stringify(data));
+	setItem(KEY_CITY_WALK_DATA, JSON.stringify(data));
 }
 
 function loadCityWalkData() {
-	return JSON.parse(getItem(LS_CITY_WALK_DATA_KEY));
+	return JSON.parse(getItem(KEY_CITY_WALK_DATA));
 }
 
 function getCheckpoints() {
@@ -125,6 +126,14 @@ function removeItem(key) {
 // localStorageに保存されているすべての値を削除する
 function clear() {
 	window.localStorage.clear();
+}
+
+/* Session Storage */
+function setUserId(val) {
+	window.sessionStorage.setItem(KEY_USER_ID, val);
+}
+function getUserId() {
+	return window.sessionStorage.getItem(KEY_USER_ID);
 }
 
 /* Geo */

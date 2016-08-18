@@ -10,6 +10,8 @@ $(function() {
 		var groupId = $('#group-id').val();
 		new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "login", [
 				userId, groupId ], function() {
+			// userIdをセッション情報に保存
+			setUserId(userId);
 			location.href = "checkpoints.html";
 		})).rpc();
 	});
