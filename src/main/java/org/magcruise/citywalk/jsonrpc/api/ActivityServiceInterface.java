@@ -19,7 +19,9 @@ public interface ActivityServiceInterface {
 			@Parameter(sample = "ayaki") String userId,
 			@Parameter(sample = "1") long latestActivityId);
 
-	void uploadImage(@Parameter(sample = "data:image/jpeg;base64,"
+	String uploadImage(
+			@Parameter(sample = "ayaki") String userId,
+			@Parameter(sample = "data:image/jpeg;base64,"
 			+ "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJ"
 			+ "ChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/"
 			+ "2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo"

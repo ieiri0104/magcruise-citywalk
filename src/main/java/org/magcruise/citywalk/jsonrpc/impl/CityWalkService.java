@@ -93,11 +93,13 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public void uploadImage(String base64EncodedImage) {
+	public String uploadImage(String userId, String base64EncodedImage) {
 		try {
 			log.debug(base64EncodedImage);
+			String imageId = "citywalk-" + userId + "-" + System.nanoTime();
 			Base64ImageUtils.decodeAndWrite(base64EncodedImage, "jpg",
-					FileUtils.getTempFile("citywalk-" + System.nanoTime() + ".jpg"));
+					FileUtils.getTempFile(imageId + ".jpg"));
+			return imageId;
 		} catch (Exception e) {
 			log.error(e, e);
 			throw new RuntimeException(e);

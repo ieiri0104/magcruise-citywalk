@@ -8,9 +8,9 @@ $(function() {
 	$("#btn-next").click(function() {
 		$("#loading").fadeIn();
 		var imgData = $("#img-preview").attr('src');
-		new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "uploadImage", [ imgData ], function(data) {
+		new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "uploadImage", [ getUserId(), imgData ], function(data) {
 			$("#loading").fadeOut();
-			location.href = getTaskURL(checkpoint) + "&lat=" + lat + "&lon=" + lon;
+			location.href = getTaskURL(checkpoint) + "&lat=" + lat + "&lon=" + lon + "&image_id=" + data.result;
 		})).rpc();
 	});
 });
