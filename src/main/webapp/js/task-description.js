@@ -47,7 +47,7 @@ function addActivity(task, text) {
 	};
 	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity", [ arg ], function(data) {
 		if (data.result && data.result.badges.length > 0) {
-			$('#modalDesc').text(data.result.badges.toString().replace(",", " / "));
+			$('#modalDesc').html(data.result.badges.toString().replace(",", "</br>"));
 			$('#modal')[0].click();
 		} else {
 			moveToNextPage();
