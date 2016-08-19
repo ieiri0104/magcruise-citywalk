@@ -14,10 +14,8 @@ public class CheckpointJson {
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
-	private String checkinType;
-	private String instanceClass;
-	private String checkinAnswerQr;
 
+	private CheckinJson checkin;
 	private TaskJson task;
 
 	public CheckpointJson() {
@@ -72,29 +70,6 @@ public class CheckpointJson {
 		this.checkpointGroupIds = checkpointIds;
 	}
 
-	public String getCheckinType() {
-		return checkinType;
-	}
-
-	public void setCheckinType(String checkinType) {
-		this.checkinType = checkinType;
-	}
-
-	public String getInstanceClass() {
-		return instanceClass;
-	}
-
-	public void setInstanceClass(String instanceClass) {
-		this.instanceClass = instanceClass;
-	}
-
-	public String getCheckinAnswerQr() {
-		return checkinAnswerQr;
-	}
-
-	public void setCheckinAnswerQr(String checkinAnswerQr) {
-		this.checkinAnswerQr = checkinAnswerQr;
-	}
 
 	public TaskJson getTask() {
 		return task;
@@ -107,6 +82,14 @@ public class CheckpointJson {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public CheckinJson getCheckin() {
+		return checkin;
+	}
+
+	public void setCheckin(CheckinJson checkin) {
+		this.checkin = checkin;
 	}
 
 }

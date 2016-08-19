@@ -12,10 +12,17 @@ public class ActivityJson {
 
 	private long id;
 	private String userId;
-	private long taskId;
+
+	private String checkpointId;
+	/** checkinでないときsize=0の文字列 **/
+	private String checkinType = "";
 
 	private double lat;
 	private double lon;
+
+	/** taskでないときsize=0の文字列 **/
+	private String taskType = "";
+	private long taskId;
 
 	private double score;
 
@@ -28,13 +35,16 @@ public class ActivityJson {
 	}
 
 	public ActivityJson(Activity activity) {
-		// TODO 自動生成されたコンストラクター・スタブ
+		this.id = activity.getId();
 		this.userId = activity.getUserId();
+		this.checkpointId = activity.getCheckpointId();
+		this.lat = activity.getLat();
+		this.lon = activity.getLon();
+
 		this.taskId = activity.getTaskId();
 	}
 
 	public ActivityJson(String userId, long taskId, Map<String, String> inputs) {
-		// TODO 自動生成されたコンストラクター・スタブ
 		this.userId = userId;
 		this.taskId = taskId;
 		this.inputs = inputs;
@@ -107,6 +117,30 @@ public class ActivityJson {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public String getCheckinType() {
+		return checkinType;
+	}
+
+	public void setCheckinType(String checkinType) {
+		this.checkinType = checkinType;
+	}
+
+	public String getTaskType() {
+		return taskType;
+	}
+
+	public void setTaskType(String taskType) {
+		this.taskType = taskType;
+	}
+
+	public String getCheckpointId() {
+		return checkpointId;
+	}
+
+	public void setCheckpointId(String checkPointId) {
+		this.checkpointId = checkPointId;
 	}
 
 }

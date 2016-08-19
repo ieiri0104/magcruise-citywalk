@@ -27,7 +27,6 @@ public class CityWalkSession {
 		if (getUserId().length() == 0) {
 			return false;
 		} else {
-			log.debug(session.getId());
 			return true;
 		}
 	}

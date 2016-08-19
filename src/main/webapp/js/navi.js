@@ -13,7 +13,7 @@ $(function() {
 		nextBtnHref = "";
 
 	// チェックインorタスク
-	switch (checkpoint.checkinType) {
+	switch (checkpoint.checkin.checkinType) {
 	case CheckinType.Photo:
 	case CheckinType.QR:
 		nextBtnText = "チェックイン";
@@ -28,7 +28,7 @@ $(function() {
 	$("#btn-next").click(function() {
 		location.href = nextBtnHref + "&lat=" + cPos.lat() + "&lon=" + cPos.lng();
 	});
-	
+
 	// コンパス画像の要素
 	compassElem = $("#compass");
 	// 端末の向きを取得
@@ -48,7 +48,7 @@ function initMap() {
 	    position: center,
 	    map: map,
 	});
-	
+
 	// 目的地の設定&位置情報の連続取得
 	ePos = new google.maps.LatLng(checkpoint.lat, checkpoint.lon);
 	watchCurrentPosition();
@@ -129,7 +129,7 @@ function getBrowserOrientation() {
 	return orientation;
 }
 
-function onHeadingChange(event) {	
+function onHeadingChange(event) {
 	var cHeading = event.alpha;
 	if (typeof event.webkitCompassHeading !== "undefined") {
 		cHeading = event.webkitCompassHeading; //iOS non-standard
@@ -138,7 +138,7 @@ function onHeadingChange(event) {
 	if (typeof cHeading == "undefined" || cHeading == null) { // && typeof orientation !== "undefined") {
 		alert('方向を検出できません');
 	}
-	
+
 	// we have a browser that reports device cHeading and orientation
 	// what adjustment we have to add to rotation to allow for current device orientation
 	var adjustment = 0;

@@ -15,11 +15,11 @@ public class ActivitiesTable extends RelationalModel<Activity> {
 
 	@Override
 	protected String getRelationalSchema() {
-		return TABLE_NAME + "(" + ID + " bigint primary key auto_increment, "
+		return TABLE_NAME + "(" + ID + " BIGINT PRIMARY KEY AUTO_INCREMENT, "
 				+ CREATED + " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + SAVED
-				+ " TIMESTAMP, " + INSTANCE_CLASS + " varchar, " + USER_ID
-				+ " varchar, " + "task_id varchar, " + "score double,"
-				+ "input varchar" + ")";
+				+ " TIMESTAMP, " + INSTANCE_CLASS + " VARCHAR, " + USER_ID
+				+ " varchar, " + "task_id VARCHAR, " + "score DOUBLE," + "lat DOUBLE,"
+				+ "lon DOUBLE," + "input VARCHAR" + ")";
 	}
 
 	public Activity[] getActivities(String userId) {

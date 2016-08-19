@@ -41,7 +41,6 @@ function addActivity(task, text) {
 		taskId	: task.id,
 		score	: (isCorrect) ? task.score : 0,
 		inputs	: {
-			instanceClass	: task.instanceClass,
 			value			: text
 		}
 	};

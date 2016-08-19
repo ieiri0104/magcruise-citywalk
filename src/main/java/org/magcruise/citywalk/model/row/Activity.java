@@ -125,4 +125,25 @@ public class Activity extends RowModel<Activity> {
 		this.input = input;
 	}
 
+	public String getCheckpointId() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public double getLat() {
+		return lat;
+	}
+
+	public double getLon() {
+		return lon;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public void setLon(double lon) {
+		this.lon = lon;
+	}
+
 }
