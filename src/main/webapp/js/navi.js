@@ -1,6 +1,6 @@
 var id = getParamDic()["id"];
 var checkpoint = getCheckpoint(id);
-document.title = checkpoint.id; // タイトルの変更
+document.title = checkpoint.name; // タイトルの変更
 var cPos; // 現在地
 var ePos; // チェックポイント
 var map;
