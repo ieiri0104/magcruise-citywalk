@@ -13,15 +13,16 @@ public abstract class RelationalModel<T extends RowModel<?>> {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
-	public static final String ID = "ID";
-	public static final String CREATED = "CREATED";
-	public static final String INSTANCE_CLASS = "INSTANCE_CLASS";
-	public static final String CHECKPOINT_GROUP_IDS = "CHECKPOINT_GROUP_IDS";
-	public static final String CHECKPOINT_IDS = "CHECKPOINT_IDS";
-	public static final String USER_ID = "USER_ID";
-	public static final String CONTENT = "CONTENT";
-	public static final String GROUP_ID = "GROUP_id";
-	public static final String SAVED = "SAVED";
+	public static final String ID = "id";
+	public static final String NAME = "name";
+	public static final String CREATED = "created";
+	public static final String INSTANCE_CLASS = "instance_class";
+	public static final String CHECKPOINT_GROUP_IDS = "checkpoint_group_ids";
+	public static final String CHECKPOINT_IDS = "checkpoint_ids";
+	public static final String USER_ID = "user_id";
+	public static final String CONTENT = "content";
+	public static final String GROUP_ID = "group_id";
+	public static final String SAVED = "saved";
 
 	public RelationalModel() {
 	}

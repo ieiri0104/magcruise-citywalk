@@ -16,6 +16,7 @@ import net.sf.persist.annotations.Table;
 public class Checkpoint extends RowModel<Checkpoint> {
 
 	private String id;
+	private String name;
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
@@ -23,9 +24,10 @@ public class Checkpoint extends RowModel<Checkpoint> {
 	public Checkpoint() {
 	}
 
-	public Checkpoint(String id, double lat, double lon,
+	public Checkpoint(String id, String name, double lat, double lon,
 			List<String> checkPointGroupIds) {
 		this.id = id;
+		this.name = name;
 		this.lat = lat;
 		this.lon = lon;
 		this.checkpointGroupIds.addAll(checkPointGroupIds);
@@ -57,8 +59,7 @@ public class Checkpoint extends RowModel<Checkpoint> {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	@Column(name = RelationalModel.CHECKPOINT_GROUP_IDS)
@@ -78,6 +79,14 @@ public class Checkpoint extends RowModel<Checkpoint> {
 
 	public void setCheckpointGroupIds(List<String> checkpointGroupIds) {
 		this.checkpointGroupIds = checkpointGroupIds;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

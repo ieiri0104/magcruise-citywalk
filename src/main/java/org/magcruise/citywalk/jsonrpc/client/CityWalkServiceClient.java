@@ -78,8 +78,8 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public void uploadImage(String base64EncodedImage) {
-		citywalkService.uploadImage(base64EncodedImage);
+	public String uploadImage(String userId,String base64EncodedImage) {
+		return citywalkService.uploadImage(userId, base64EncodedImage);
 	}
 
 	@Override

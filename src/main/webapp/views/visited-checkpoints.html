@@ -1,18 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<object th:include="/templates/header.html::meta-fragment"
-	th:remove="tag"></object>
+<object th:include="/templates/header.html::meta-fragment" th:remove="tag"></object>
 <script src="../js/citywalk.js"></script>
+<script type="text/javascript" src="../js/visited-checkpoints.js"></script>
+<!-- <link rel="stylesheet" href="../css/task-selection.css" /> -->
 <title>訪問済みチェックポイント一覧</title>
 </head>
 <body>
 	<div class="container">
 		<div th:replace="/templates/header.html::top-menu"></div>
 		<div class="row">
-			<div class="col-sm-12">
-				<h1>訪問済みチェックポイント一覧</h1>
+			<div class="margin-container">
+				<div id="checkpoints" class="col-sm-12"></div>
 			</div>
 		</div>
 	</div>

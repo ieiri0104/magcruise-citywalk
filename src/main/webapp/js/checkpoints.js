@@ -57,7 +57,7 @@ function showCheckpoints(cPos) {
 					getFormattedDistance(distance) + 
 				'</span>' +
 				'<img src="' + imgSrc + '" class="pull-left checkpoint-img">' +
-				'<span class="name">' + checkpoint.id + '</span>' +
+				'<span class="name">' + checkpoint.name + '</span>' +
 			'</div>');
 		checkpointElem.click(function() {
 			selectCheckpoint(i);

@@ -1,6 +1,6 @@
 var id = getParamDic()["id"];
 var checkpoint = getCheckpoint(id);
-document.title = checkpoint.id; // タイトルの変更
+document.title = checkpoint.name; // タイトルの変更
 var cPos; // 現在地
 var ePos; // チェックポイント
 var map;
@@ -13,7 +13,7 @@ $(function() {
 		nextBtnHref = "";
 
 	// チェックインorタスク
-	switch (checkpoint.checkin_type) {
+	switch (checkpoint.checkinType) {
 	case CheckinType.Photo:
 	case CheckinType.QR:
 		nextBtnText = "チェックイン";
@@ -25,7 +25,9 @@ $(function() {
 		break;
 	}
 	$("#btn-next").text(nextBtnText);
-	$("#btn-next").attr("href", nextBtnHref);
+	$("#btn-next").click(function() {
+		location.href = nextBtnHref + "&lat=" + cPos.lat() + "&lon=" + cPos.lng();
+	});
 	
 	// コンパス画像の要素
 	compassElem = $("#compass");

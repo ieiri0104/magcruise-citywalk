@@ -10,10 +10,12 @@ public class TaskJson {
 
 	private long id;
 	private String taskType;
+	private String instanceClass;
 	private String label;
 	private List<String> selections = new ArrayList<>();
 	private List<Integer> answerIndexes = new ArrayList<>();
-	private List<String> answerText = new ArrayList<>();
+	private List<String> answerTexts = new ArrayList<>();
+	private double score;
 
 	public long getId() {
 		return id;
@@ -29,6 +31,14 @@ public class TaskJson {
 
 	public void setTaskType(String taskType) {
 		this.taskType = taskType;
+	}
+	
+	public String getInstanceClass() {
+		return instanceClass;
+	}
+
+	public void setInstanceClass(String instanceClass) {
+		this.instanceClass = instanceClass;
 	}
 
 	public String getLabel() {
@@ -55,14 +65,22 @@ public class TaskJson {
 		this.answerIndexes = answerIndexes;
 	}
 
-	public List<String> getAnswerText() {
-		return answerText;
+	public List<String> getAnswerTexts() {
+		return answerTexts;
 	}
 
-	public void setAnswerText(List<String> answerText) {
-		this.answerText = answerText;
+	public void setAnswerTexts(List<String> answerTexts) {
+		this.answerTexts = answerTexts;
 	}
-
+	
+	public double getScore() {
+		return score;
+	}
+	
+	public void setScore(double score) {
+		this.score = score;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

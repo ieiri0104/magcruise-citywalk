@@ -1,9 +1,11 @@
-var id = getParamDic()["id"];
+var id  = getParamDic()["id"];
+var lat = getParamDic()["lat"];
+var lon = getParamDic()["lon"];
 var checkpoint = getCheckpoint(id);
 
 $(function() {
 	$("#btn-next").click(function() {
-		location.href = getTaskURL(checkpoint);
+		location.href = getTaskURL(checkpoint) + "&lat=" + lat + "&lon=" + lon;
 	});
 });
 
@@ -28,7 +30,7 @@ qrcode.callback = function(res) {
     	alert('QRコードの解析に失敗');
 	} else {
 		console.log('Success to decode qr-code : ' + res);
-		if (res == checkpoint.checkin_answer_qr) {
+		if (res == checkpoint.checkinAnswerQr) {
 			$("#btn-next").prop("disabled", false);
 		} else {
 			alert("誤ったQRコードを読み込んでいます。別のQRコードを探して下さい。");

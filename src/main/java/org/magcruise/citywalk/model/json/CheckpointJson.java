@@ -10,10 +10,12 @@ import org.magcruise.citywalk.model.row.Checkpoint;
 public class CheckpointJson {
 
 	private String id;
+	private String name;
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
-	private boolean checkinType = false;
+	private String checkinType;
+	private String instanceClass;
 	private String checkinAnswerQr;
 
 	private TaskJson task;
@@ -23,6 +25,7 @@ public class CheckpointJson {
 
 	public CheckpointJson(Checkpoint checkpoint) {
 		this.id = checkpoint.getId();
+		this.name = checkpoint.getName();
 		this.lat = checkpoint.getLat();
 		this.lon = checkpoint.getLon();
 		this.checkpointGroupIds.addAll(checkpoint.getCheckpointGroupIds());
@@ -35,6 +38,14 @@ public class CheckpointJson {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getLat() {
@@ -61,12 +72,20 @@ public class CheckpointJson {
 		this.checkpointGroupIds = checkpointIds;
 	}
 
-	public boolean isCheckinType() {
+	public String getCheckinType() {
 		return checkinType;
 	}
 
-	public void setCheckinType(boolean checkinType) {
+	public void setCheckinType(String checkinType) {
 		this.checkinType = checkinType;
+	}
+
+	public String getInstanceClass() {
+		return instanceClass;
+	}
+
+	public void setInstanceClass(String instanceClass) {
+		this.instanceClass = instanceClass;
 	}
 
 	public String getCheckinAnswerQr() {

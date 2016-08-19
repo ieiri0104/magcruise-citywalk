@@ -4,14 +4,9 @@
 <head>
 <object th:include="/templates/header.html::meta-fragment"
 	th:remove="tag"></object>
-<script src="../js/citywalk.js"></script>
 <script type="text/javascript">
 	$(function() {
-		var u = parseUri(document.URL);
-		var urlPrefix = u.protocol + "://" + u.authority + "/"
-				+ u.directory.split("/")[1] + "/";
-		var url = urlPrefix + "CityWalkService";
-		var data = new JsonRpcClient(new JsonRpcRequest(url, "getInitialData",
+		var data = new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "getInitialData",
 				[ "waseda" ], function(data) {
 					saveCityWalkData(data.result);
 				})).rpc();
