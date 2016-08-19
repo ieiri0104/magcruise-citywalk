@@ -1,5 +1,5 @@
 $(function() {
-	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "getActivities", [ getUserId() ], function(data) {
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "getActivityLogs", [ getUserId() ], function(data) {
 		showCheckpoints(data.result)
 	})).rpc();
 });

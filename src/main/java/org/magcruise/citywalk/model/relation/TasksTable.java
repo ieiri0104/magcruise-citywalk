@@ -36,4 +36,12 @@ public class TasksTable extends RelationalModel<Task> {
 		return tasks;
 	}
 
+	public boolean isCheckin(long taskId) {
+		return getTask(taskId).getContentObject().isCheckin();
+	}
+
+	private Task getTask(long taskId) {
+		return getClient().readByPrimaryKey(Task.class, taskId);
+	}
+
 }

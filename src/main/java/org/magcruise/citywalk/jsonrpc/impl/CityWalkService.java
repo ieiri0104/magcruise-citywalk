@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.CityWalkContentReader;
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
@@ -57,24 +58,26 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	@Override
-	public RewardJson addActivity(ActivityJson activityJson) {
-		EventManager.offerEvent(activityJson.getUserId(), activityJson);
-		activities.insert(new Activity(activityJson));
+	public RewardJson addActivity(ActivityJson json) {
+		EventManager.offerEvent(json.getUserId(), json);
+		activities.insert(new Activity(json));
 		return new RewardJson();
 	}
 
 	@Override
-	public ActivityJson[] getActivities(String userId) {
-		return Arrays.stream(activities.getActivities(userId)).map(a -> new ActivityJson(a))
-				.collect(Collectors.toList()).toArray(new ActivityJson[0]);
+	public ActivityLogJson[] getActivityLogs(String userId) {
+		return Arrays.stream(activities.getActivities(userId))
+				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
+				.collect(Collectors.toList()).toArray(new ActivityLogJson[0]);
 	}
 
 	@Override
-	public ActivityJson[] getNewActivitiesOrderById(String userId,
+	public ActivityLogJson[] getNewActivityLogsOrderById(String userId,
 			long latestActivityId) {
 		return activities.getNewActivitiesOrderById(userId, latestActivityId).stream()
-				.map(a -> new ActivityJson(a)).collect(Collectors.toList())
-				.toArray(new ActivityJson[0]);
+				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
+				.collect(Collectors.toList())
+				.toArray(new ActivityLogJson[0]);
 	}
 
 	@Override
@@ -97,7 +100,6 @@ public class CityWalkService extends AbstractCityWalkService
 		InitialDataJson data = JsonUtils.decode(
 				new File(getServiceContext().getRealPath("/json/initial_data.json")),
 				InitialDataJson.class);
-
 		return data;
 	}
 

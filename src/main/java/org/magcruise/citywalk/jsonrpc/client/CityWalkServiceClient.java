@@ -4,9 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
+import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.ActivityLogJson;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 
@@ -31,7 +32,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 
 	public static void main(String[] args) {
 		CityWalkServiceClient client = new CityWalkServiceClient();
-		log.debug(client.getActivities("ayaki"));
+		log.debug(client.getActivityLogs("ayaki"));
 	}
 
 	@Override
@@ -45,14 +46,14 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public ActivityJson[] getActivities(String userId) {
-		return citywalkService.getActivities(userId);
+	public ActivityLogJson[] getActivityLogs(String userId) {
+		return citywalkService.getActivityLogs(userId);
 	}
 
 	@Override
-	public ActivityJson[] getNewActivitiesOrderById(String userId,
+	public ActivityLogJson[] getNewActivityLogsOrderById(String userId,
 			long latestActivityId) {
-		return citywalkService.getNewActivitiesOrderById(userId,
+		return citywalkService.getNewActivityLogsOrderById(userId,
 				latestActivityId);
 	}
 

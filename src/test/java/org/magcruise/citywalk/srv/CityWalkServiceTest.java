@@ -1,12 +1,13 @@
 package org.magcruise.citywalk.srv;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
+import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.ActivityLogJson;
+import org.magcruise.citywalk.model.row.Activity;
 
 public class CityWalkServiceTest {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
@@ -16,12 +17,13 @@ public class CityWalkServiceTest {
 
 	@Test
 	public void test() {
-		Map<String, String> input = new HashMap<>();
-		input.put("selection", "10");
-		client.addActivity(new ActivityJson("ayaki", 1, input));
-		ActivityJson[] as = client.getActivities("ayaki");
+		client.addActivity(
+				new ActivityJson(
+						new Activity("ayaki", "cafeteria", 35.0, 138.2, 1, 2.5,
+								new SelectionInput("10"))));
+		ActivityLogJson[] as = client.getActivityLogs("ayaki");
 		log.debug(Arrays.asList(as));
-		log.debug(Arrays.asList(client.getNewActivitiesOrderById("ayaki", 3)));
+		log.debug(Arrays.asList(client.getNewActivityLogsOrderById("ayaki", 3)));
 		log.debug(client.login("ayaki", "waseda_user"));
 	}
 

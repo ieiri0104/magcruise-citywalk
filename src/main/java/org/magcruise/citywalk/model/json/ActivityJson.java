@@ -17,9 +17,8 @@ public class ActivityJson {
 	private double lat;
 	private double lon;
 
-	/** taskでないときsize=0の文字列 **/
-	private String taskType = "";
 	private long taskId;
+	private String taskType = "";
 
 	private double score;
 
@@ -39,12 +38,6 @@ public class ActivityJson {
 		this.lon = activity.getLon();
 		this.taskId = activity.getTaskId();
 
-	}
-
-	public ActivityJson(String userId, long taskId, Map<String, String> inputs) {
-		this.userId = userId;
-		this.taskId = taskId;
-		this.inputs = inputs;
 	}
 
 	public Date getSaved() {

@@ -1,6 +1,7 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
@@ -8,14 +9,13 @@ import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 public interface ActivityServiceInterface {
 
 	RewardJson addActivity(
-			@Parameter(sample = "{\"instanceClass\": \"org.magcruise.citywalk.model.json.ActivityJson\","
-					+ " \"userId\": \"ayaki\", " + "\"taskId\": \"task2\", "
-					+ "\"score\": 9.0, " + "\"input\": "
-					+ "{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionInput\",\"value\":\"1\"}}") ActivityJson activityJson);
+			@Parameter(sample = "{\"userId\": \"ayaki\", " + "\"checkpointId\": \"1\", "
+					+ "\"taskId\": \"1\", " + "\"score\": 9.0, " + "\"inputs\": "
+					+ "{\"value\":\"1\"}}") ActivityJson json);
 
-	ActivityJson[] getActivities(@Parameter(sample = "ayaki") String userId);
+	ActivityLogJson[] getActivityLogs(@Parameter(sample = "ayaki") String userId);
 
-	ActivityJson[] getNewActivitiesOrderById(
+	ActivityLogJson[] getNewActivityLogsOrderById(
 			@Parameter(sample = "ayaki") String userId,
 			@Parameter(sample = "1") long latestActivityId);
 
