@@ -30,7 +30,7 @@ qrcode.callback = function(res) {
     	alert('QRコードの解析に失敗');
 	} else {
 		console.log('Success to decode qr-code : ' + res);
-		if (res == checkpoint.checkin.checkinAnswerQr) {
+		if (res == checkpoint.checkin.answerQr) {
 			$("#btn-next").prop("disabled", false);
 		} else {
 			alert("誤ったQRコードを読み込んでいます。別のQRコードを探して下さい。");

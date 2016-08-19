@@ -21,7 +21,6 @@ public class CityWalkServiceTest {
 		client.addActivity(new ActivityJson("ayaki", 1, input));
 		ActivityJson[] as = client.getActivities("ayaki");
 		log.debug(Arrays.asList(as));
-		log.debug(Arrays.asList(client.getCheckpoint("cafeteria")));
 		log.debug(Arrays.asList(client.getNewActivitiesOrderById("ayaki", 3)));
 		log.debug(client.login("ayaki", "waseda_user"));
 	}

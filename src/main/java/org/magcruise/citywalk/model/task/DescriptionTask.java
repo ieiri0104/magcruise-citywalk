@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.content;
+package org.magcruise.citywalk.model.task;
 
 public class DescriptionTask extends TaskContent {
 

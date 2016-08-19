@@ -4,9 +4,7 @@ import org.magcruise.citywalk.model.json.InitialDataJson;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 
-public interface CityWalkServiceInterface
-		extends UserServiceInterface, CheckpointServiceInterface,
-		ActivityServiceInterface {
+public interface CityWalkServiceInterface extends UserServiceInterface, ActivityServiceInterface {
 
 	InitialDataJson getInitialData(
 			@Parameter(sample = "waseda") String checkpointGroupId);

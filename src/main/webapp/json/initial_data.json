@@ -1,64 +1,83 @@
 {
-  "checkpoints": [
-    {
-      "id":"cafeteria",
-      "name":"食堂",
-      "lat": 35.7062,
-      "lon": 139.707808,
-      "checkpoint_group_ids": ["waseda"],
-      "checkin" :{
-	      "checkin_type": "QRCodeTask",
-    	  "checkin_answer_qr":"decodedqr"
-	   },
-      "task" : {
-      	"id": 0,
-      	"score": 5.0,
-       	"task_type": "SelectionTask",
-        "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
-        "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answer_indexes": [3],
-        "answer_texts": []
-      }
-    },
-    {
-      "id": "aed",
-      "name":"AED",
-      "lat": 35.70609,
-      "lon": 139.705095,
-      "checkpoint_group_ids": ["waseda"],
-      "checkin" :{
-	      "checkin_type": "PhotoTask",
-	      "checkin_answer_qr":""
-	  },
-      "task" : {
-      	"id": 1,
-      	"score": 7.0,
-        "task_type": "SelectionTask",
-        "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
-        "selections": ["正解","不正解","正解","不正解"],
-        "answer_indexes": [0,2],
-        "answer_texts": []
-      }
-    },
-    {
-      "id": "pc-room",
-      "name":"PCルーム",
-      "lat": 35.705538,
-      "lon": 139.7047416,
-      "checkpoint_group_ids": ["waseda"],
-      "checkin" :{
-	      "checkin_type": "",
-	      "checkin_answer_qr":""
-      },
-      "task" : {
-      	"id": 2,
-      	"score": 9.0,
-        "task_type": "DescriptionTask",
-        "label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
-        "selections": [],
-        "answer_indexes": [],
-        "answer_texts": ["宝", "黄桜", "月桂冠", "キンシ正宗"]
-      }
-    }
-  ]
+	"checkpoints": [
+		{
+			"id": "cafeteria",
+			"name": "食堂",
+			"lat": 35.7062,
+			"lon": 139.707808,
+			"checkin": {
+				"id": 0,
+				"task_type": "QRCodeTask",
+				"answer_qr": "decodedqr"
+			},
+			"task": {
+				"id": 1,
+				"score": 5.0,
+				"task_type": "SelectionTask",
+				"label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
+				"selections": [
+					"豚玉丼",
+					"チキンおろしだれ",
+					"カツカレー",
+					"ポーク焼肉"
+				],
+				"answer_indexes": [
+					3
+				],
+				"answer_texts": []
+			}
+		},
+		{
+			"id": "aed",
+			"name": "AED",
+			"lat": 35.70609,
+			"lon": 139.705095,
+			"checkin": {
+				"id": 2,
+				"task_type": "PhotoTask",
+				"answer_qr": ""
+			},
+			"task": {
+				"id": 3,
+				"score": 7.0,
+				"task_type": "SelectionTask",
+				"label": "次のうち、AEDの使い方として、間違っているのはどれ？",
+				"selections": [
+					"正解",
+					"不正解",
+					"正解",
+					"不正解"
+				],
+				"answer_indexes": [
+					0,
+					2
+				],
+				"answer_texts": []
+			}
+		},
+		{
+			"id": "pc-room",
+			"name": "PCルーム",
+			"lat": 35.705538,
+			"lon": 139.7047416,
+			"checkin": {
+				"id": 4,
+				"task_type": "QRCodeTask",
+				"answer_qr": "decodedqr"
+			},
+			"task": {
+				"id": 5,
+				"task_type": "DescriptionTask",
+				"label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
+				"selections": [],
+				"answer_indexes": [],
+				"answer_texts": [
+					"宝",
+					"黄桜",
+					"月桂冠",
+					"キンシ正宗"
+				]
+			}
+		}
+	]
 }

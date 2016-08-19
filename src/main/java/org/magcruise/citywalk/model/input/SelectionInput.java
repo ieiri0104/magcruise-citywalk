@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.content;
+package org.magcruise.citywalk.model.input;
 
 public class SelectionInput extends Input {
 

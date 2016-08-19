@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.CityWalkContentReader;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.CheckpointJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
@@ -15,7 +14,6 @@ import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.magcruise.citywalk.model.row.Activity;
-import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
@@ -69,19 +67,6 @@ public class CityWalkService extends AbstractCityWalkService
 	public ActivityJson[] getActivities(String userId) {
 		return Arrays.stream(activities.getActivities(userId)).map(a -> new ActivityJson(a))
 				.collect(Collectors.toList()).toArray(new ActivityJson[0]);
-	}
-
-	@Override
-	public CheckpointJson getCheckpoint(String checkPointId) {
-		return new CheckpointJson(checkpoints.readByPrimaryKey(checkPointId));
-
-	}
-
-	@Override
-	public CheckpointJson[] getCheckpoints(String checkPointGroupId) {
-		Checkpoint[] results = checkpoints.getCheckpoints(checkPointGroupId);
-		return Arrays.stream(results).map(c -> new CheckpointJson(c)).collect(Collectors.toList())
-				.toArray(new CheckpointJson[0]);
 	}
 
 	@Override

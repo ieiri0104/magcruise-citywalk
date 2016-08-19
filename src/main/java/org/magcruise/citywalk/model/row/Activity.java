@@ -7,8 +7,11 @@ import java.util.Map;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.JsonConstructiveObject;
-import org.magcruise.citywalk.model.content.Input;
-import org.magcruise.citywalk.model.content.SelectionInput;
+import org.magcruise.citywalk.model.input.DescriptionInput;
+import org.magcruise.citywalk.model.input.Input;
+import org.magcruise.citywalk.model.input.PhotoInput;
+import org.magcruise.citywalk.model.input.QRCodeInput;
+import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 
@@ -29,28 +32,37 @@ public class Activity extends RowModel<Activity> {
 	private double score;
 	private Input input;
 	private Date saved = new Timestamp(new Date().getTime());
+	private String checkpointId;
 
 	public Activity() {
 	}
 
-	public Activity(ActivityJson activityJson) {
-		this(new Timestamp(new Date().getTime()), activityJson.getUserId(),
-				activityJson.getTaskId(), activityJson.getScore(),
-				convertToInput(activityJson.getInputs()));
+	public Activity(ActivityJson json) {
+		this(json.getUserId(), json.getCheckpointId(), json.getLat(), json.getLon(),
+				json.getTaskId(), json.getScore(),
+				convertToInput(json.getTaskType(), json.getInputs()));
 	}
 
-	private static Input convertToInput(Map<String, String> inputs) {
-		// TODO stub
-		return new SelectionInput();
+	private static Input convertToInput(String taskType, Map<String, String> inputs) {
+		switch (taskType) {
+		case "PhotoTask":
+			return new PhotoInput();
+		case "QRCodeTask":
+			return new QRCodeInput();
+		case "SelectionTask":
+			return new SelectionInput();
+		case "DescriptionTask":
+			return new DescriptionInput();
+		}
+		throw new IllegalArgumentException(taskType);
 	}
 
-	public Activity(String userId, long taskId, double score, Input input) {
-		this(new Timestamp(new Date().getTime()), userId, taskId, score, input);
-	}
-
-	public Activity(Date saved, String userId, long taskId, double score, Input input) {
-		this.saved = saved;
+	public Activity(String userId, String checkpointId, double lat, double lon, long taskId,
+			double score, Input input) {
 		this.userId = userId;
+		this.setCheckpointId(checkpointId);
+		this.lat = lat;
+		this.lon = lon;
 		this.taskId = taskId;
 		this.score = score;
 		setInputObject(input);
@@ -126,8 +138,7 @@ public class Activity extends RowModel<Activity> {
 	}
 
 	public String getCheckpointId() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return checkpointId;
 	}
 
 	public double getLat() {
@@ -144,6 +155,10 @@ public class Activity extends RowModel<Activity> {
 
 	public void setLon(double lon) {
 		this.lon = lon;
+	}
+
+	public void setCheckpointId(String checkpointId) {
+		this.checkpointId = checkpointId;
 	}
 
 }

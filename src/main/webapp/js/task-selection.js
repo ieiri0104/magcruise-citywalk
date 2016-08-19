@@ -6,16 +6,16 @@ var checkpoint = getCheckpoint(id);
 $(function() {
 	var task = checkpoint.task;
 	$('#label').text(task.label);
-	
+
 	var selectionType = (task.answerIndexes.length == 1) ? "radio" : "checkbox"
 	task.selections.forEach(function(selection, i) {
 		var selectionElem =
-			'<div class="selection">' + 
+			'<div class="selection">' +
 				'<label><input type="' + selectionType + '" name="selection" class="selection" value=' + i + '>' + selection + '</label>'
 			'</div>';
 		$('.form-group').append(selectionElem);
 	});
-	
+
 	$('.selection').click(function() {
 		var enableBtnNext = false;
 		// 一つでもチェックがあれば、回答するボタンを押せるように
@@ -25,7 +25,7 @@ $(function() {
 		});
 		$('#btn-next').prop('disabled', !enableBtnNext);
 	});
-	
+
 	$('#btn-next').click(function() {
 		// 回答を取得
 		var indexes = $('.selection:checked').map(function() {
@@ -33,7 +33,7 @@ $(function() {
 		}).get();
 		addActivity(task, indexes);
 	});
-	
+
 	$(document).on('confirmation', '.remodal', function () {
 		moveToNextPage();
 	});
@@ -42,10 +42,12 @@ $(function() {
 function addActivity(task, indexes) {
 	var isCorrect = isSameElements(task.answerIndexes, indexes);
 	var arg = {
+		checkpointId:checkpoint.id,
 		lat		: lat,
 		lon		: lon,
 		userId	: getUserId(),
 		taskId	: task.id,
+		taskType: task.taskType,
 		score	: (isCorrect) ? task.score : 0,
 		inputs	: {
 			value			: indexes.sort().toString()

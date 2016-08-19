@@ -14,9 +14,6 @@ public class ActivityJson {
 	private String userId;
 
 	private String checkpointId;
-	/** checkinでないときsize=0の文字列 **/
-	private String checkinType = "";
-
 	private double lat;
 	private double lon;
 
@@ -40,8 +37,8 @@ public class ActivityJson {
 		this.checkpointId = activity.getCheckpointId();
 		this.lat = activity.getLat();
 		this.lon = activity.getLon();
-
 		this.taskId = activity.getTaskId();
+
 	}
 
 	public ActivityJson(String userId, long taskId, Map<String, String> inputs) {
@@ -114,19 +111,6 @@ public class ActivityJson {
 		this.inputs = inputs;
 	}
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-	public String getCheckinType() {
-		return checkinType;
-	}
-
-	public void setCheckinType(String checkinType) {
-		this.checkinType = checkinType;
-	}
-
 	public String getTaskType() {
 		return taskType;
 	}
@@ -141,6 +125,11 @@ public class ActivityJson {
 
 	public void setCheckpointId(String checkPointId) {
 		this.checkpointId = checkPointId;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

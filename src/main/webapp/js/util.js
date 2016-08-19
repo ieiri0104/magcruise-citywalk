@@ -40,7 +40,7 @@ var CheckinType = {
 
 function getCheckinURL(checkpoint) {
 	var suffix = "";
-	switch (checkpoint.checkin.checkinType) {
+	switch (checkpoint.checkin.taskType) {
 	case CheckinType.Photo:
 		suffix = "photo";
 		break;

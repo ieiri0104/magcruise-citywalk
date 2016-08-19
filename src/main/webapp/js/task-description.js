@@ -21,12 +21,12 @@ $(function() {
 	    }
 	}
 	$(answerSel).keyup(checkChange(this));
-	
+
 	$(buttonSel).click(function() {
 		var text = $(answerSel).val();
 		addActivity(task, text);
 	});
-	
+
 	$(document).on('confirmation', '.remodal', function () {
 		moveToNextPage();
 	});
@@ -35,10 +35,12 @@ $(function() {
 function addActivity(task, text) {
 	var isCorrect = (task.answerTexts.indexOf(text) >= 0);
 	var arg = {
+		checkpointId:checkpoint.id,
 		lat		: lat,
 		lon		: lon,
 		userId	: getUserId(),
 		taskId	: task.id,
+		taskType: task.taskType,
 		score	: (isCorrect) ? task.score : 0,
 		inputs	: {
 			value			: text

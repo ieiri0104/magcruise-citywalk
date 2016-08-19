@@ -14,6 +14,7 @@ public class TaskJson {
 	private List<String> selections = new ArrayList<>();
 	private List<Integer> answerIndexes = new ArrayList<>();
 	private List<String> answerTexts = new ArrayList<>();
+	private String answerQr;
 	private double score;
 
 	public long getId() {
@@ -70,6 +71,14 @@ public class TaskJson {
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+
+	public String getAnswerQr() {
+		return answerQr;
+	}
+
+	public void setAnswerQr(String answerQr) {
+		this.answerQr = answerQr;
 	}
 
 	@Override

@@ -5,8 +5,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
-import org.magcruise.citywalk.model.content.SelectionInput;
-import org.magcruise.citywalk.model.content.SelectionTask;
+import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
@@ -15,6 +14,7 @@ import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.model.task.SelectionTask;
 import org.nkjmlab.util.db.H2Server;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
@@ -62,7 +62,8 @@ public class TableModelTest {
 		ActivitiesTable activities = new ActivitiesTable();
 		activities.remakeTable();
 		activities.insert(
-				new Activity("ayaki", tid, 1.0, new SelectionInput("豚玉丼")));
+				new Activity("ayaki", "cafeteria", 38.4400, 134.11090, tid, 1.0,
+						new SelectionInput("豚玉丼")));
 
 		UserAccountsTable users = new UserAccountsTable();
 		users.remakeTable();

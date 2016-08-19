@@ -5,7 +5,6 @@ import java.net.URL;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.CheckpointJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 
@@ -41,16 +40,6 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public CheckpointJson getCheckpoint(String checkPointId) {
-		return citywalkService.getCheckpoint(checkPointId);
-	}
-
-	@Override
-	public CheckpointJson[] getCheckpoints(String checkPointGroupId) {
-		return citywalkService.getCheckpoints(checkPointGroupId);
-	}
-
-	@Override
 	public RewardJson addActivity(ActivityJson activity) {
 		return citywalkService.addActivity(activity);
 	}
@@ -78,7 +67,7 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	}
 
 	@Override
-	public String uploadImage(String userId,String base64EncodedImage) {
+	public String uploadImage(String userId, String base64EncodedImage) {
 		return citywalkService.uploadImage(userId, base64EncodedImage);
 	}
 
