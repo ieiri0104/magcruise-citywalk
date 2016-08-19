@@ -5,17 +5,47 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.magcruise.citywalk.model.row.Task;
+import org.magcruise.citywalk.model.task.DescriptionTask;
+import org.magcruise.citywalk.model.task.PhotoTask;
+import org.magcruise.citywalk.model.task.QrCodeTask;
+import org.magcruise.citywalk.model.task.SelectionTask;
+import org.magcruise.citywalk.model.task.TaskContent;
 
 public class TaskJson {
 
 	private long id;
 	private String taskType;
+	private double point;
 	private String label;
 	private List<String> selections = new ArrayList<>();
 	private List<Integer> answerIndexes = new ArrayList<>();
 	private List<String> answerTexts = new ArrayList<>();
 	private String answerQr;
-	private double score;
+
+	public TaskJson() {
+	}
+
+	public TaskJson(Task task) {
+		this.id = task.getId();
+		TaskContent content = task.getContentObject();
+		this.taskType = content.getClass().getSimpleName();
+		this.label = content.getLabel();
+		this.point = content.getPoint();
+
+		if (content.getInstanceClass().equals(SelectionTask.class.getName())) {
+			SelectionTask t = (SelectionTask) content;
+			selections.addAll(t.getSelections());
+			answerIndexes.addAll(t.getAnswerIndexes());
+		} else if (content.getInstanceClass().equals(DescriptionTask.class.getName())) {
+			DescriptionTask t = (DescriptionTask) content;
+			answerTexts.addAll(t.getAnswerTexts());
+		} else if (content.getInstanceClass().equals(PhotoTask.class.getName())) {
+		} else if (content.getInstanceClass().equals(QrCodeTask.class.getName())) {
+			QrCodeTask t = (QrCodeTask) content;
+			answerQr = t.getAnswerQr();
+		}
+	}
 
 	public long getId() {
 		return id;
@@ -65,12 +95,12 @@ public class TaskJson {
 		this.answerTexts = answerTexts;
 	}
 
-	public double getScore() {
-		return score;
+	public double getPoint() {
+		return point;
 	}
 
-	public void setScore(double score) {
-		this.score = score;
+	public void setPoint(double score) {
+		this.point = score;
 	}
 
 	public String getAnswerQr() {

@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.model.relation;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.magcruise.citywalk.model.row.Task;
 
 public class TasksTable extends RelationalModel<Task> {
@@ -19,20 +22,21 @@ public class TasksTable extends RelationalModel<Task> {
 				+ CONTENT + " text)";
 	}
 
-	public Task[] getTasks(String checkpointId) {
-		return getClient().readList(Task.class,
-				"SELECT * FROM " + TABLE_NAME + " WHERE " + CHECKPOINT_IDS
-						+ " LIKE ?",
-				"%" + checkpointId + "%").toArray(new Task[0]);
+	public List<Task> getTasks(String checkpointId) {
+		return getClient()
+				.readList(Task.class,
+						"SELECT * FROM " + TABLE_NAME)
+				.stream().filter(c -> c.getCheckpointIds().contains(checkpointId))
+				.collect(Collectors.toList());
 	}
 
-	public Task[] getTasksForCheckpointGroup(String checkpointGroupId) {
-		Task[] tasks = getClient().readList(Task.class,
+	public List<Task> getTasksForCheckpointGroup(String checkpointGroupId) {
+		List<Task> tasks = getClient().readList(Task.class,
 				"SELECT " + TABLE_NAME + ".* FROM " + TABLE_NAME + " JOIN "
 						+ CheckpointsTable.TABLE_NAME + " ON " + TABLE_NAME
 						+ "." + CHECKPOINT_IDS + " LIKE CONCAT('%',"
-						+ CheckpointsTable.TABLE_NAME + "." + ID + ", '%')")
-				.toArray(new Task[0]);
+						+ CheckpointsTable.TABLE_NAME + "." + ID + ", '%')");
+
 		return tasks;
 	}
 

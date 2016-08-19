@@ -50,8 +50,8 @@
       "checkpoint_group_ids": ["waseda"]
     },
     {
-      "id": "aed-6",
-      "name":"aed-6",
+      "id": "sake",
+      "name":"sake",
       "lat": 35.7059,
       "lon": 139.7080833,
       "checkpoint_group_ids": ["waseda"]
@@ -63,8 +63,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.PhotoTask",
         "checkin": true,
+        "point": 2.0,
         "label": "表示されている写真と同じ写真を撮って下さい．",
-        "answer": "task/ieiri_photo_00.jpg"
+        "answer": "decodedqr"
       }
     },
     {
@@ -72,8 +73,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_00.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
@@ -81,8 +83,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_01.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
@@ -90,8 +93,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_02.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
@@ -99,8 +103,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_03.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
@@ -108,8 +113,9 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_04.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
@@ -117,44 +123,63 @@
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_05.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
-      "checkpoint_ids": ["aed-6"],
+      "checkpoint_ids": ["sake"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
+        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answer": "task/ieiri_qr_code_06.jpg"
+        "answerQr": "decodedqr"
       }
     },
     {
       "checkpoint_ids": ["cafeteria"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SelectionTask",
+        "point": 2.0,
         "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
         "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answerIndex": 1
+        "answerIndexes": [1]
       }
     },
     {
       "checkpoint_ids": ["pc-room"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SortTask",
+        "point": 2.0,
         "label": "次の4つの部屋を、座席の多い順に並び替えよ！",
         "selections": ["A","C","E","G"],
-        "answerIndex": 2134
+        "answerIndexes": [2,1,3,4]
       }
     },
     {
-      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4","aed-5","aed-6"],
+      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4","aed-5"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SelectionTask",
+        "point": 2.0,
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
         "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
-        "answerIndex": 4
+        "answerIndexes": [4]
+      }
+    },
+    {
+      "checkpoint_ids": ["sake"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.task.DescriptionTask",
+        "point": 2.0,
+        "label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
+        "answerTexts": [
+          "宝",
+          "黄桜",
+          "月桂冠",
+          "キンシ正宗"
+        ]
       }
     }
   ]

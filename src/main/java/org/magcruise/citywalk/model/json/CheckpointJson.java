@@ -16,6 +16,16 @@ public class CheckpointJson {
 	public CheckpointJson() {
 	}
 
+	public CheckpointJson(String id, String name, double lat, double lon, CheckinJson checkin,
+			TaskJson task) {
+		this.id = id;
+		this.name = name;
+		this.lat = lat;
+		this.lon = lon;
+		this.checkin = checkin;
+		this.task = task;
+	}
+
 	public String getId() {
 		return id;
 	}

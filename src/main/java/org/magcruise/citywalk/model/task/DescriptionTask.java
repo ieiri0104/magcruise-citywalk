@@ -1,15 +1,18 @@
 package org.magcruise.citywalk.model.task;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DescriptionTask extends TaskContent {
 
-	private String text;
+	private List<String> answerTexts = new ArrayList<>();
 
-	public String getText() {
-		return text;
+	public List<String> getAnswerTexts() {
+		return answerTexts;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setAnswerTexts(List<String> answerTexts) {
+		this.answerTexts = answerTexts;
 	}
 
 }

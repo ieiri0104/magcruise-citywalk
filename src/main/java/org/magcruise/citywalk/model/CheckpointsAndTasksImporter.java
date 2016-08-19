@@ -1,8 +1,5 @@
 package org.magcruise.citywalk.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +10,7 @@ import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.task.TaskContent;
+import org.nkjmlab.util.io.FileUtils;
 
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
@@ -21,20 +19,25 @@ public class CheckpointsAndTasksImporter {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
-	public static void main(String[] args)
-			throws JSONException, FileNotFoundException, IOException {
-		Map<String, Object> data = JSON
-				.decode(new FileReader(
-						new File("src/main/webapp/json/checkpoints_and_tasks.json")));
+	public static void main(String[] args) {
+		log.info(importAndMerge("src/main/webapp/json/checkpoints_and_tasks.json"));
 
-		new TasksTable().createTableIfNotExists();
-		new CheckpointsTable().createTableIfNotExists();
-
-		log.info(data);
-		new CheckpointsAndTasksImporter().merge(data);
 	}
 
-	public boolean merge(Map<String, Object> data) {
+	public static Map<String, Object> importAndMerge(String file) {
+		try {
+			new TasksTable().createTableIfNotExists();
+			new CheckpointsTable().createTableIfNotExists();
+			Map<String, Object> data = JSON.decode(FileUtils.getFileReader(file));
+			merge(data);
+			return data;
+		} catch (JSONException | IOException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public static boolean merge(Map<String, Object> data) {
 		try {
 			new CheckpointsTable().mergeBatch(readCheckpoints(data).toArray(new Checkpoint[0]));
 			new TasksTable().mergeBatch(readTasks(data).toArray(new Task[0]));
@@ -45,13 +48,13 @@ public class CheckpointsAndTasksImporter {
 
 	}
 
-	public boolean validate(String json) {
+	public static boolean validate(String json) {
 		Map<String, Object> data = JSON.decode(json);
 		return validate(data);
 
 	}
 
-	public boolean validate(Map<String, Object> data) {
+	public static boolean validate(Map<String, Object> data) {
 		try {
 			readCheckpoints(data);
 			readTasks(data);
@@ -62,7 +65,7 @@ public class CheckpointsAndTasksImporter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Checkpoint> readCheckpoints(Map<String, Object> data) {
+	private static List<Checkpoint> readCheckpoints(Map<String, Object> data) {
 		List<Map<String, Object>> checkpointsData = (List<Map<String, Object>>) data
 				.get("checkpoints");
 		List<Checkpoint> checkpoints = checkpointsData.stream()
@@ -79,7 +82,7 @@ public class CheckpointsAndTasksImporter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Task> readTasks(Map<String, Object> data) {
+	private static List<Task> readTasks(Map<String, Object> data) {
 		List<Map<String, Object>> tasksData = (List<Map<String, Object>>) data
 				.get("tasks");
 		List<Task> tasks = tasksData.stream().map(task -> {

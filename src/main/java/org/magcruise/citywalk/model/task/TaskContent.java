@@ -6,12 +6,14 @@ public class TaskContent extends JsonConstructiveObject<TaskContent> {
 
 	protected boolean checkin = false;
 	protected String label;
+	protected double point;
 
 	public TaskContent() {
 	}
 
-	public TaskContent(String label, boolean checkin) {
+	public TaskContent(boolean checkin, double point, String label) {
 		this.label = label;
+		this.point = point;
 		this.checkin = checkin;
 	}
 
@@ -29,6 +31,14 @@ public class TaskContent extends JsonConstructiveObject<TaskContent> {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public double getPoint() {
+		return point;
+	}
+
+	public void setPoint(double point) {
+		this.point = point;
 	}
 
 }

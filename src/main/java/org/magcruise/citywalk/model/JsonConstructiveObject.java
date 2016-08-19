@@ -42,8 +42,7 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 	@SuppressWarnings("unchecked")
 	public void setInstanceClass(String instanceClass) {
 		try {
-			this.instanceClass = (Class<T>) Class
-					.forName(instanceClass.replaceAll("class ", ""));
+			this.instanceClass = (Class<T>) Class.forName(instanceClass.replaceAll("class ", ""));
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
@@ -72,8 +71,7 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 					.getInstanceClassObject();
 			return result;
 		} catch (JSONException e) {
-			log.error(e, e);
-			return null;
+			throw new RuntimeException(e);
 		}
 	}
 

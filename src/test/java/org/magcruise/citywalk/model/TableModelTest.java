@@ -46,18 +46,18 @@ public class TableModelTest {
 		tasks.remakeTable();
 		tasks.insert(new Task(Arrays.asList("cafeteria"),
 				new SelectionTask("次のうち、理工の学食が発祥の地であるメニューはどれ？",
-						Arrays.asList("豚玉丼", "チキンおろしだれ", "カツカレー", "ポーク焼肉"), 3,
-						false)));
+						Arrays.asList("豚玉丼", "チキンおろしだれ", "カツカレー", "ポーク焼肉"), Arrays.asList(3),
+						2.0, false)));
 		long tid = Long.valueOf(tasks.getLastInsertId(Task.class).toString());
 		tasks.insert(new Task(
 				Arrays.asList("aed-1", "aed-2", "aed-3", "aed-4", "aed-5", "aed-6"),
 				new SelectionTask("次のうち、AEDの使い方として、間違っているのはどれ？",
 						Arrays.asList("パッドは右胸と左わき腹に貼る", "心電図解析中は体に触らない",
 								"放電ボタンを押す時は、体から離れる", "呼吸が戻ったらパッドを速やかにはずす"),
-						3, false)));
+						Arrays.asList(3), 2.0, false)));
 		tasks.insert(new Task(Arrays.asList("pc_room"),
 				new SelectionTask("次の4つの部屋を、座席の多い順に並び替えて下さい．",
-						Arrays.asList("A", "C", "E", "G"), 1, false)));
+						Arrays.asList("A", "C", "E", "G"), Arrays.asList(1), 2.0, false)));
 		log.debug(tasks.selectAll());
 		ActivitiesTable activities = new ActivitiesTable();
 		activities.remakeTable();

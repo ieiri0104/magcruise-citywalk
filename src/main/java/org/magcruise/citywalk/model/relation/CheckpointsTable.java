@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.model.relation;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.magcruise.citywalk.model.row.Checkpoint;
 
 public class CheckpointsTable extends RelationalModel<Checkpoint> {
@@ -22,13 +25,12 @@ public class CheckpointsTable extends RelationalModel<Checkpoint> {
 				+ " VARCHAR)";
 	}
 
-	public Checkpoint[] getCheckpoints(String checkpointGroupId) {
+	public List<Checkpoint> getCheckpoints(String checkpointGroupId) {
 		return getClient()
 				.readList(Checkpoint.class,
-						"SELECT * FROM " + TABLE_NAME + " WHERE " + CHECKPOINT_GROUP_IDS
-								+ " LIKE ?",
-						"%" + checkpointGroupId + "%")
-				.toArray(new Checkpoint[0]);
+						"SELECT * FROM " + TABLE_NAME)
+				.stream().filter(c -> c.getCheckpointGroupIds().contains(checkpointGroupId))
+				.collect(Collectors.toList());
 	}
 
 }

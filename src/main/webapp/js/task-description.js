@@ -41,7 +41,7 @@ function addActivity(task, text) {
 		userId	: getUserId(),
 		taskId	: task.id,
 		taskType: task.taskType,
-		score	: (isCorrect) ? task.score : 0,
+		score	: (isCorrect) ? task.point : 0,
 		inputs	: {
 			value			: text
 		}

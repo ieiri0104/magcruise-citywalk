@@ -2,14 +2,14 @@ package org.magcruise.citywalk.model.task;
 
 public class QrCodeTask extends TaskContent {
 
-	private String answer;
+	private String answerQr;
 
-	public String getAnswer() {
-		return answer;
+	public String getAnswerQr() {
+		return answerQr;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setAnswerQr(String answerQr) {
+		this.answerQr = answerQr;
 	}
 
 }
