@@ -50,8 +50,7 @@ public class TableModelTest {
 						false)));
 		long tid = Long.valueOf(tasks.getLastInsertId(Task.class).toString());
 		tasks.insert(new Task(
-				Arrays.asList("aed-1", "aed-2", "aed-3", "aed-4", "aed-5",
-						"aed-6"),
+				Arrays.asList("aed-1", "aed-2", "aed-3", "aed-4", "aed-5", "aed-6"),
 				new SelectionTask("次のうち、AEDの使い方として、間違っているのはどれ？",
 						Arrays.asList("パッドは右胸と左わき腹に貼る", "心電図解析中は体に触らない",
 								"放電ボタンを押す時は、体から離れる", "呼吸が戻ったらパッドを速やかにはずす"),

@@ -1,7 +1,5 @@
 package org.magcruise.citywalk.jsonrpc.servlet;
 
-import java.io.File;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -15,6 +13,7 @@ import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;
 import org.nkjmlab.util.db.H2ConfigFactory;
 import org.nkjmlab.util.db.H2Server;
+import org.nkjmlab.util.io.FileUtils;
 
 @WebListener
 public class ApplicationInitializer implements ServletContextListener {
@@ -26,13 +25,10 @@ public class ApplicationInitializer implements ServletContextListener {
 	static {
 		H2Server.start();
 		if (client == null) {
-			File dbFile = new File(System.getProperty("java.io.tmpdir"),
-					"citywalk");
-			log.info("Dbfile: {}",dbFile);
-			client = DbClientFactory.createH2ClientWithConnectionPool(
-					H2ConfigFactory.create(dbFile));
+			client = DbClientFactory
+					.createH2ClientWithConnectionPool(
+							H2ConfigFactory.create(FileUtils.getTempFile("citywalk")));
 		}
-
 	}
 
 	public static DbClient getDbClient() {

@@ -65,7 +65,7 @@ public class CityWalkContentReader {
 					String id = checkpoint.get("id").toString();
 					String name = checkpoint.get("name").toString();
 					double lat = ((Number) checkpoint.get("lat")).doubleValue();
-					double lon = ((Number) checkpoint.get("lat")).doubleValue();
+					double lon = ((Number) checkpoint.get("lon")).doubleValue();
 					List<String> checkpointGroupIds = (List<String>) checkpoint
 							.get("checkpoint_group_ids");
 					return new Checkpoint(id, name, lat, lon, checkpointGroupIds);
