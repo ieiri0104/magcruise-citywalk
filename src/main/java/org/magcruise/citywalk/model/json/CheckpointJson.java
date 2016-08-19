@@ -10,6 +10,7 @@ import org.magcruise.citywalk.model.row.Checkpoint;
 public class CheckpointJson {
 
 	private String id;
+	private String name;
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
@@ -24,6 +25,7 @@ public class CheckpointJson {
 
 	public CheckpointJson(Checkpoint checkpoint) {
 		this.id = checkpoint.getId();
+		this.name = checkpoint.getName();
 		this.lat = checkpoint.getLat();
 		this.lon = checkpoint.getLon();
 		this.checkpointGroupIds.addAll(checkpoint.getCheckpointGroupIds());
@@ -36,6 +38,14 @@ public class CheckpointJson {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getLat() {
@@ -69,7 +79,7 @@ public class CheckpointJson {
 	public void setCheckinType(String checkinType) {
 		this.checkinType = checkinType;
 	}
-	
+
 	public String getInstanceClass() {
 		return instanceClass;
 	}

@@ -58,8 +58,8 @@ public class JsonConstructiveObject<T extends JsonConstructiveObject<?>> {
 		return JSON.encode(this);
 	}
 
-	public static <S extends JsonConstructiveObject<?>> S decodeFromJson(
-			Class<S> clazz, String json) {
+	public static <S extends JsonConstructiveObject<?>> S decodeFromJson(Class<S> clazz,
+			String json) {
 		return JSON.decode(json, getContentClass(clazz, json));
 
 	}

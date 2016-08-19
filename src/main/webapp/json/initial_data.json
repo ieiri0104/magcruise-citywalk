@@ -2,6 +2,7 @@
   "checkpoints": [
     {
       "id":"cafeteria",
+      "name":"食堂",
       "lat": 35.7062,
       "lon": 139.707808,
       "checkpoint_group_ids": ["waseda"],
@@ -21,6 +22,7 @@
     },
     {
       "id": "aed",
+      "name":"AED",
       "lat": 35.70609,
       "lon": 139.705095,
       "checkpoint_group_ids": ["waseda"],
@@ -39,7 +41,8 @@
       }
     },
     {
-      "id": "text-test",
+      "id": "pc-room",
+      "name":"PCルーム",
       "lat": 35.705538,
       "lon": 139.7047416,
       "checkpoint_group_ids": ["waseda"],

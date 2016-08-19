@@ -17,16 +17,16 @@ public class CheckpointsTable extends RelationalModel<Checkpoint> {
 	@Override
 	protected String getRelationalSchema() {
 		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY, " + CREATED
-				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
-				+ " VARCHAR, " + LAT + " DOUBLE, " + LON + " DOUBLE, "
-				+ CHECKPOINT_GROUP_IDS + " VARCHAR)";
+				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + NAME + " VARCHAR," + INSTANCE_CLASS
+				+ " VARCHAR, " + LAT + " DOUBLE, " + LON + " DOUBLE, " + CHECKPOINT_GROUP_IDS
+				+ " VARCHAR)";
 	}
 
 	public Checkpoint[] getCheckpoints(String checkpointGroupId) {
 		return getClient()
 				.readList(Checkpoint.class,
-						"SELECT * FROM " + TABLE_NAME + " WHERE "
-								+ CHECKPOINT_GROUP_IDS + " LIKE ?",
+						"SELECT * FROM " + TABLE_NAME + " WHERE " + CHECKPOINT_GROUP_IDS
+								+ " LIKE ?",
 						"%" + checkpointGroupId + "%")
 				.toArray(new Checkpoint[0]);
 	}

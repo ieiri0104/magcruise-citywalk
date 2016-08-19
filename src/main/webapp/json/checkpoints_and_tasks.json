@@ -1,0 +1,162 @@
+{
+  "checkpoints": [
+    {
+      "id":"cafeteria",
+      "name":"食堂",
+      "lat": 35.7062,
+      "lon": 139.707808,
+      "checkpoint_group_ids": ["waseda"]
+    }, 
+    {
+      "id":"pc-room",
+      "name":"PCルーム",
+      "lat": 35.705538,
+      "lon": 139.7047416,
+      "checkpoint_group_ids": ["waseda"]
+    },
+    {
+      "id":"aed-1",
+      "name":"aed-1",
+      "lat": 35.70609,
+      "lon": 139.705095,
+      "checkpoint_group_ids": ["waseda"]
+    },   
+    {
+      "id": "aed-2",
+      "name":"aed-2",
+      "lat": 35.70602,
+      "lon": 139.70717,
+      "checkpoint_group_ids": ["waseda"]
+    },
+    {
+      "id": "aed-3",
+      "name":"aed-3",
+      "lat": 35.7053833,
+      "lon": 139.706755,
+      "checkpoint_group_ids": ["waseda"]
+    },
+    {
+      "id": "aed-4",
+      "name":"aed-4",
+      "lat": 35.70573,
+      "lon": 139.7070466,
+      "checkpoint_group_ids": ["waseda"]
+    },
+    {
+      "id": "aed-5",
+      "name":"aed-5",
+      "lat": 35.70624,
+      "lon": 139.7072,
+      "checkpoint_group_ids": ["waseda"]
+    },
+    {
+      "id": "aed-6",
+      "name":"aed-6",
+      "lat": 35.7059,
+      "lon": 139.7080833,
+      "checkpoint_group_ids": ["waseda"]
+    }
+  ],  
+  "tasks": [
+    {
+      "checkpoint_ids": ["cafeteria"],  
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.PhotoTask",
+        "checkin": true,
+        "label": "表示されている写真と同じ写真を撮って下さい．",
+        "answer": "task/ieiri_photo_00.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["pc-room"],  
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_00.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-1"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_01.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-2"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_02.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-3"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_03.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-4"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_04.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-5"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_05.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-6"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "checkin": true,
+        "label": "QRコードを撮って下さい．",
+        "answer": "task/ieiri_qr_code_06.jpg"
+      }
+    },
+    {
+      "checkpoint_ids": ["cafeteria"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
+        "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
+        "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
+        "answerIndex": 1
+      }
+    },
+    {
+      "checkpoint_ids": ["pc-room"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.SortTask",
+        "label": "次の4つの部屋を、座席の多い順に並び替えよ！",
+        "selections": ["A","C","E","G"],
+        "answerIndex": 2134
+      }
+    },
+    {
+      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4","aed-5","aed-6"],
+      "content":{
+        "instanceClass": "org.magcruise.citywalk.model.content.SelectionTask",
+        "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
+        "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
+        "answerIndex": 4
+      }
+    }
+  ]
+}
+

@@ -63,11 +63,12 @@ public class CityWalkContentReader {
 		List<Checkpoint> checkpoints = checkpointsData.stream()
 				.map(checkpoint -> {
 					String id = checkpoint.get("id").toString();
+					String name = checkpoint.get("name").toString();
 					double lat = ((Number) checkpoint.get("lat")).doubleValue();
 					double lon = ((Number) checkpoint.get("lat")).doubleValue();
 					List<String> checkpointGroupIds = (List<String>) checkpoint
 							.get("checkpoint_group_ids");
-					return new Checkpoint(id, lat, lon, checkpointGroupIds);
+					return new Checkpoint(id, name, lat, lon, checkpointGroupIds);
 				}).collect(Collectors.toList());
 		return checkpoints;
 	}
