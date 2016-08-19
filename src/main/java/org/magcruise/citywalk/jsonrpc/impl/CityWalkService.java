@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.CityWalkContentReader;
+import org.magcruise.citywalk.model.CheckpointsAndTasksImporter;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
@@ -105,7 +105,7 @@ public class CityWalkService extends AbstractCityWalkService
 
 	@Override
 	public boolean validateCheckpointsAndTasksJson(String json) {
-		return new CityWalkContentReader().validate(json);
+		return new CheckpointsAndTasksImporter().validate(json);
 	}
 
 }

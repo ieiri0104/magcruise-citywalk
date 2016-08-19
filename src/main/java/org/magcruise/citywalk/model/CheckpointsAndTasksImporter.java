@@ -17,21 +17,26 @@ import org.magcruise.citywalk.model.task.TaskContent;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONException;
 
-public class CityWalkContentReader {
+public class CheckpointsAndTasksImporter {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
 			.getLogger();
 
 	public static void main(String[] args)
 			throws JSONException, FileNotFoundException, IOException {
 		Map<String, Object> data = JSON
-				.decode(new FileReader(new File("data/initial_data.json")));
-		new CityWalkContentReader().merge(data);
+				.decode(new FileReader(
+						new File("src/main/webapp/json/checkpoints_and_tasks.json")));
+
+		new TasksTable().createTableIfNotExists();
+		new CheckpointsTable().createTableIfNotExists();
+
+		log.info(data);
+		new CheckpointsAndTasksImporter().merge(data);
 	}
 
 	public boolean merge(Map<String, Object> data) {
 		try {
-			new CheckpointsTable().mergeBatch(
-					readCheckpoints(data).toArray(new Checkpoint[0]));
+			new CheckpointsTable().mergeBatch(readCheckpoints(data).toArray(new Checkpoint[0]));
 			new TasksTable().mergeBatch(readTasks(data).toArray(new Task[0]));
 			return true;
 		} catch (RuntimeException e) {
@@ -85,8 +90,8 @@ public class CityWalkContentReader {
 
 			try {
 				TaskContent content = JsonConstructiveObject.decodeFromJson(
-						(Class<? extends TaskContent>) Class.forName(
-								(String) contentData.get("instanceClass")),
+						(Class<? extends TaskContent>) Class
+								.forName((String) contentData.get("instanceClass")),
 						JSON.encode(contentData));
 				return new Task(checkpointIds, content);
 			} catch (ClassNotFoundException e) {
