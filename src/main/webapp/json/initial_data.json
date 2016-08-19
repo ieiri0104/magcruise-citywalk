@@ -7,7 +7,7 @@
 			"lon": 139.707808,
 			"checkin": {
 				"id": 0,
-				"task_type": "QRCodeTask",
+				"task_type": "QrCodeTask",
 				"answer_qr": "decodedqr"
 			},
 			"task": {
@@ -62,7 +62,7 @@
 			"lon": 139.7047416,
 			"checkin": {
 				"id": 4,
-				"task_type": "QRCodeTask",
+				"task_type": "QrCodeTask",
 				"answer_qr": "decodedqr"
 			},
 			"task": {

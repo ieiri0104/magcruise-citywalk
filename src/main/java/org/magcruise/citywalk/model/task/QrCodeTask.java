@@ -1,6 +1,6 @@
 package org.magcruise.citywalk.model.task;
 
-public class QRCodeTask extends TaskContent {
+public class QrCodeTask extends TaskContent {
 
 	private String answer;
 

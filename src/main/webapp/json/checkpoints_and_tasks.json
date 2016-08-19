@@ -6,7 +6,7 @@
       "lat": 35.7062,
       "lon": 139.707808,
       "checkpoint_group_ids": ["waseda"]
-    }, 
+    },
     {
       "id":"pc-room",
       "name":"PCルーム",
@@ -20,7 +20,7 @@
       "lat": 35.70609,
       "lon": 139.705095,
       "checkpoint_group_ids": ["waseda"]
-    },   
+    },
     {
       "id": "aed-2",
       "name":"aed-2",
@@ -56,10 +56,10 @@
       "lon": 139.7080833,
       "checkpoint_group_ids": ["waseda"]
     }
-  ],  
+  ],
   "tasks": [
     {
-      "checkpoint_ids": ["cafeteria"],  
+      "checkpoint_ids": ["cafeteria"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.content.PhotoTask",
         "checkin": true,
@@ -68,9 +68,9 @@
       }
     },
     {
-      "checkpoint_ids": ["pc-room"],  
+      "checkpoint_ids": ["pc-room"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_00.jpg"
@@ -79,7 +79,7 @@
     {
       "checkpoint_ids": ["aed-1"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_01.jpg"
@@ -88,7 +88,7 @@
     {
       "checkpoint_ids": ["aed-2"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_02.jpg"
@@ -97,7 +97,7 @@
     {
       "checkpoint_ids": ["aed-3"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_03.jpg"
@@ -106,7 +106,7 @@
     {
       "checkpoint_ids": ["aed-4"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_04.jpg"
@@ -115,7 +115,7 @@
     {
       "checkpoint_ids": ["aed-5"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_05.jpg"
@@ -124,7 +124,7 @@
     {
       "checkpoint_ids": ["aed-6"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.content.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.content.QrCodeTask",
         "checkin": true,
         "label": "QRコードを撮って下さい．",
         "answer": "task/ieiri_qr_code_06.jpg"

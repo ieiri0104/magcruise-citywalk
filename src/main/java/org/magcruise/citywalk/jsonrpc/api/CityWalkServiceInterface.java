@@ -16,7 +16,7 @@ public interface CityWalkServiceInterface extends UserServiceInterface, Activity
 					+ "\"content\":{\"instanceClass\":\"org.magcruise.citywalk.model.content.PhotoTask\",\"checkin\":true,"
 					+ "\"label\":\"表示されている写真と同じ写真を撮って下さい．\",\"answer\":\"task/ieiri_photo_00.jpg\"}},"
 					+ "{\"checkpoint_ids\":[\"aed-1\",\"aed-2\",\"aed-3\",\"aed-4\"],"
-					+ "\"content\":{\"instanceClass\":\"org.magcruise.citywalk.model.content.QRCodeTask\",\"checkin\":true,"
+					+ "\"content\":{\"instanceClass\":\"org.magcruise.citywalk.model.content.QrCodeTask\",\"checkin\":true,"
 					+ "\"label\":\"QRコードを撮って下さい．\",\"answer\":\"task/ieiri_qr_code_02.jpg\"}},"
 					+ "{\"checkpoint_ids\":[\"cafeteria\"],\"content\":{\"instanceClass\":\"org.magcruise.citywalk.model.content.SelectionTask\","
 					+ "\"label\":\"次のうち、理工の学食が発祥の地であるメニューはどれ？\","

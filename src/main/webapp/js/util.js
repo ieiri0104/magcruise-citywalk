@@ -33,18 +33,14 @@ function getBaseUrl() {
 	return urlPrefix + "CityWalkService";
 }
 
-var CheckinType = {
-	Photo : "PhotoTask",
-	QR    : "QRCodeTask",
-};
 
 function getCheckinURL(checkpoint) {
 	var suffix = "";
 	switch (checkpoint.checkin.taskType) {
-	case CheckinType.Photo:
+	case TaskType.Photo:
 		suffix = "photo";
 		break;
-	case CheckinType.QR:
+	case TaskType.QR:
 		suffix = "qr";
 		break;
 	default:
@@ -54,6 +50,8 @@ function getCheckinURL(checkpoint) {
 }
 
 var TaskType = {
+	Photo : "PhotoTask",
+	QR    : "QrCodeTask",
 	Selection   : "SelectionTask",
 	Description : "DescriptionTask",
 };
@@ -74,20 +72,6 @@ function getTaskURL(checkpoint) {
 }
 
 /* City Walk Data */
-function fetchCityWalkData() {
-	$.ajax({
-		type: 'GET',
-		url: '../json/initial_data.json',
-		dataType: 'json',
-		success: function(data) {
-			saveCityWalkData(data);
-		},
-		error: function() {
-			alert("初期化データが正しく取得できませんでした。ブラウザーの更新ボタンを押して下さい。")
-		}
-	});
-}
-
 function saveCityWalkData(data) {
 	setItem(KEY_CITY_WALK_DATA, JSON.stringify(data));
 }

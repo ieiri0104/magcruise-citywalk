@@ -14,8 +14,8 @@ $(function() {
 
 	// チェックインorタスク
 	switch (checkpoint.checkin.taskType) {
-	case CheckinType.Photo:
-	case CheckinType.QR:
+	case TaskType.Photo:
+	case TaskType.QR:
 		nextBtnText = "チェックイン";
 		nextBtnHref = getCheckinURL(checkpoint);
 		break;

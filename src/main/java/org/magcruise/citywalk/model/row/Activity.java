@@ -10,7 +10,7 @@ import org.magcruise.citywalk.model.JsonConstructiveObject;
 import org.magcruise.citywalk.model.input.DescriptionInput;
 import org.magcruise.citywalk.model.input.Input;
 import org.magcruise.citywalk.model.input.PhotoInput;
-import org.magcruise.citywalk.model.input.QRCodeInput;
+import org.magcruise.citywalk.model.input.QrCodeInput;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
@@ -47,8 +47,8 @@ public class Activity extends RowModel<Activity> {
 		switch (taskType) {
 		case "PhotoTask":
 			return new PhotoInput();
-		case "QRCodeTask":
-			return new QRCodeInput();
+		case "QrCodeTask":
+			return new QrCodeInput();
 		case "SelectionTask":
 			return new SelectionInput();
 		case "DescriptionTask":
