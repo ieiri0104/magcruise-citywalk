@@ -5,7 +5,7 @@ var checkpoint = getCheckpoint(id);
 
 $(function() {
 	var task = checkpoint.task;
-	$("#label").text(task.label);
+	$('#label').text(task.label);
 	
 	var selectionType = (task.answerIndexes.length == 1) ? "radio" : "checkbox"
 	task.selections.forEach(function(selection, i) {
@@ -13,25 +13,29 @@ $(function() {
 			'<div class="selection">' + 
 				'<label><input type="' + selectionType + '" name="selection" class="selection" value=' + i + '>' + selection + '</label>'
 			'</div>';
-		$(".form-group").append(selectionElem);
+		$('.form-group').append(selectionElem);
 	});
 	
-	$(".selection").click(function() {
+	$('.selection').click(function() {
 		var enableBtnNext = false;
 		// 一つでもチェックがあれば、回答するボタンを押せるように
 		// [name=selection]
-		$(".selection").each(function() {
+		$('.selection').each(function() {
 			enableBtnNext = (enableBtnNext || $(this).prop('checked'));
 		});
-		$("#btn-next").prop("disabled", !enableBtnNext);
+		$('#btn-next').prop('disabled', !enableBtnNext);
 	});
 	
-	$("#btn-next").click(function() {
+	$('#btn-next').click(function() {
 		// 回答を取得
 		var indexes = $('.selection:checked').map(function() {
 			return parseInt($(this).val());
 		}).get();
 		addActivity(task, indexes);
+	});
+	
+	$(document).on('confirmation', '.remodal', function () {
+		moveToNextPage();
 	});
 });
 
@@ -48,10 +52,18 @@ function addActivity(task, indexes) {
 			value			: indexes.sort().toString()
 		}
 	};
-	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity",
-		[ arg ], function() {
-			location.href = "./checkpoints.html";
-		})).rpc();
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity", [ arg ], function(data) {
+		if (data.result && data.result.badges.length > 0) {
+			$('#modalDesc').text(data.result.badges.toString().replace(",", " / "));
+			$('#modal')[0].click();
+		} else {
+			moveToNextPage();
+		}
+	})).rpc();
+}
+
+function moveToNextPage() {
+	location.href = "./checkpoints.html";
 }
 
 function isSameElements(array1, array2) {

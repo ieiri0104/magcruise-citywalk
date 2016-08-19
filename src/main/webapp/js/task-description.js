@@ -26,6 +26,10 @@ $(function() {
 		var text = $(answerSel).val();
 		addActivity(task, text);
 	});
+	
+	$(document).on('confirmation', '.remodal', function () {
+		moveToNextPage();
+	});
 });
 
 function addActivity(task, text) {
@@ -41,8 +45,17 @@ function addActivity(task, text) {
 			value			: text
 		}
 	};
-	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity",
-		[ arg ], function(data) {
-			location.href = "./checkpoints.html";
-		})).rpc();
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addActivity", [ arg ], function(data) {
+		if (data.result && data.result.badges.length > 0) {
+			$('#modalDesc').text(data.result.badges.toString().replace(",", " / "));
+			$('#modal')[0].click();
+		} else {
+			moveToNextPage();
+		}
+	})).rpc();
 }
+
+function moveToNextPage() {
+	location.href = "./checkpoints.html";
+}
+
