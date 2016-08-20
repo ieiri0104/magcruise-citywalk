@@ -21,7 +21,7 @@ public class CheckpointsAndTasksFactory {
 			.getLogger();
 
 	public static void main(String[] args) {
-		log.info(mergeToDb("src/main/webapp/json/CheckpointsAndTasks/waseda.json"));
+		log.info(mergeToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json"));
 	}
 
 	public static Map<String, Object> mergeToDb(String file) {

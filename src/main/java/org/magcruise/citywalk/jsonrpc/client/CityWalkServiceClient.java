@@ -4,10 +4,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.json.InitialDataJson;
-import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
+import org.magcruise.citywalk.model.json.InitialDataJson;
+import org.magcruise.citywalk.model.json.RewardJson;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 
@@ -80,6 +80,11 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	@Override
 	public boolean validateCheckpointsAndTasksJson(String json) {
 		return citywalkService.validateCheckpointsAndTasksJson(json);
+	}
+
+	@Override
+	public InitialDataJson getInitialDataFromFile(String checkpointGroupId) {
+		return citywalkService.getInitialDataFromFile(checkpointGroupId);
 	}
 
 }

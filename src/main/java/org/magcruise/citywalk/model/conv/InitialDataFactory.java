@@ -16,7 +16,8 @@ public class InitialDataFactory {
 			.getLogger();
 
 	public static void main(String[] args) {
-		CheckpointsAndTasksFactory.mergeToDb("src/main/webapp/json/checkpoints_and_tasks.json");
+		CheckpointsAndTasksFactory
+				.mergeToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json");
 		log.info(create("waseda"));
 	}
 

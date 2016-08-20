@@ -1,5 +1,6 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
+import org.nkjmlab.util.json.JsonUtils;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
@@ -97,6 +99,15 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public InitialDataJson getInitialData(String checkpointGroupId) {
 		return InitialDataFactory.create(checkpointGroupId);
+	}
+
+	@Override
+	public InitialDataJson getInitialDataFromFile(String checkpointGroupId) {
+		InitialDataJson data = JsonUtils.decode(
+				new File(getServiceContext()
+						.getRealPath("json/initial-data/" + checkpointGroupId + ".json")),
+				InitialDataJson.class);
+		return data;
 	}
 
 	@Override

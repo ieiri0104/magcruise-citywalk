@@ -9,6 +9,9 @@ public interface CityWalkServiceInterface extends UserServiceInterface, Activity
 	InitialDataJson getInitialData(
 			@Parameter(sample = "waseda") String checkpointGroupId);
 
+	InitialDataJson getInitialDataFromFile(
+			@Parameter(sample = "waseda") String checkpointGroupId);
+
 	boolean validateCheckpointsAndTasksJson(
 			@Parameter(sample = "{\"checkpoints\":["
 					+ "{\"id\":\"cafeteria\",\"lat\":38.4400,\"lon\":139.11090,\"checkpoint_group_ids\":[\"waseda\"]}],"

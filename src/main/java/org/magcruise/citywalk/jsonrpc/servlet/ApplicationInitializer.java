@@ -59,7 +59,7 @@ public class ApplicationInitializer implements ServletContextListener {
 		new UserAccountsTable().createTableIfNotExists();
 		new ActivitiesTable().createTableIfNotExists();
 
-		Arrays.stream(new File(event.getServletContext().getRealPath("json/CheckpointsAndTasks/"))
+		Arrays.stream(new File(event.getServletContext().getRealPath("json/checkpoints-and-tasks/"))
 				.listFiles((FilenameFilter) (dir, name) -> {
 					return name.endsWith(".json");
 				})).forEach(f -> CheckpointsAndTasksFactory.mergeToDb(f.getPath()));
