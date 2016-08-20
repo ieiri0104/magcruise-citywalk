@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.json;
+package org.magcruise.citywalk.model.json.init;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,17 +114,17 @@ public class TaskJson {
 		this.answerQr = answerQr;
 	}
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
 	public String getImgSrc() {
 		return imgSrc;
 	}
 
 	public void setImgSrc(String imgSrc) {
 		this.imgSrc = imgSrc;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

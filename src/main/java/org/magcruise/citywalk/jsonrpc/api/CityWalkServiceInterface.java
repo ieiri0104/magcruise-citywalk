@@ -1,6 +1,6 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
-import org.magcruise.citywalk.model.json.InitialDataJson;
+import org.magcruise.citywalk.model.json.init.InitialDataJson;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
 

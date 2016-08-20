@@ -3,10 +3,10 @@ package org.magcruise.citywalk.model.conv;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.magcruise.citywalk.model.json.CheckinJson;
-import org.magcruise.citywalk.model.json.CheckpointJson;
-import org.magcruise.citywalk.model.json.InitialDataJson;
-import org.magcruise.citywalk.model.json.TaskJson;
+import org.magcruise.citywalk.model.json.init.CheckinJson;
+import org.magcruise.citywalk.model.json.init.CheckpointJson;
+import org.magcruise.citywalk.model.json.init.InitialDataJson;
+import org.magcruise.citywalk.model.json.init.TaskJson;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.row.Task;

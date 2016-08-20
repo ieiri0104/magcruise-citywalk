@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.json;
+package org.magcruise.citywalk.model.json.init;
 
 import java.util.ArrayList;
 import java.util.List;

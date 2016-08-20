@@ -1,31 +1,20 @@
-package org.magcruise.citywalk.model.json;
+package org.magcruise.citywalk.model.json.db;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class CheckpointJson {
-
 	private String id;
 	private String name;
 	private String label;
 	private double lat;
 	private double lon;
-
-	private CheckinJson checkin;
-	private TaskJson task;
+	private List<String> checkpointGroupIds = new ArrayList<>();
 
 	public CheckpointJson() {
-	}
-
-	public CheckpointJson(String id, String name, String label, double lat, double lon,
-			CheckinJson checkin, TaskJson task) {
-		this.id = id;
-		this.name = name;
-		this.label = label;
-		this.lat = lat;
-		this.lon = lon;
-		this.checkin = checkin;
-		this.task = task;
 	}
 
 	public String getId() {
@@ -44,6 +33,14 @@ public class CheckpointJson {
 		this.name = name;
 	}
 
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
 	public double getLat() {
 		return lat;
 	}
@@ -60,33 +57,17 @@ public class CheckpointJson {
 		this.lon = lon;
 	}
 
-	public TaskJson getTask() {
-		return task;
+	public List<String> getCheckpointGroupIds() {
+		return checkpointGroupIds;
 	}
 
-	public void setTask(TaskJson task) {
-		this.task = task;
+	public void setCheckpointGroupIds(List<String> checkpointGroupIds) {
+		this.checkpointGroupIds = checkpointGroupIds;
 	}
 
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-	public CheckinJson getCheckin() {
-		return checkin;
-	}
-
-	public void setCheckin(CheckinJson checkin) {
-		this.checkin = checkin;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
 	}
 
 }

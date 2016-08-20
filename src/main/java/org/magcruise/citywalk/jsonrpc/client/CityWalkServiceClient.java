@@ -6,8 +6,8 @@ import java.net.URL;
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
-import org.magcruise.citywalk.model.json.InitialDataJson;
 import org.magcruise.citywalk.model.json.RewardJson;
+import org.magcruise.citywalk.model.json.init.InitialDataJson;
 
 import jp.go.nict.langrid.client.jsonrpc.JsonRpcClientFactory;
 

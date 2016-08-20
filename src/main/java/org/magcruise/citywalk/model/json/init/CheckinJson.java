@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.json;
+package org.magcruise.citywalk.model.json.init;
 
 import org.magcruise.citywalk.model.row.Task;
 
