@@ -1,5 +1,9 @@
 package org.magcruise.citywalk.jsonrpc.servlet;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -38,14 +42,27 @@ public class ApplicationInitializer implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		new ActivitiesTable().createTableIfNotExists();
+		initializeDatabase(event);
+		log.info("initialized");
+	}
+
+	/**
+	 * Checkpoints table and tasks table are refreshed befoer initialize.
+	 * @param event
+	 */
+	private void initializeDatabase(ServletContextEvent event) {
+		new CheckpointsTable().dropTableIfExists();
+		new TasksTable().dropTableIfExists();
+
+		new CheckpointsTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
 		new UserAccountsTable().createTableIfNotExists();
-		new CheckpointsTable().createTableIfNotExists();
-		CheckpointsAndTasksFactory.mergeToDb(
-				event.getServletContext().getRealPath("json/checkpoints_and_tasks.json"));
+		new ActivitiesTable().createTableIfNotExists();
 
-		log.info("initialized");
+		Arrays.stream(new File(event.getServletContext().getRealPath("json/CheckpointsAndTasks/"))
+				.listFiles((FilenameFilter) (dir, name) -> {
+					return name.endsWith(".json");
+				})).forEach(f -> CheckpointsAndTasksFactory.mergeToDb(f.getPath()));
 	}
 
 	@Override

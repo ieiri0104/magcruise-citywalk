@@ -1,7 +1,7 @@
 /* Consntants */
 var KEY_CITY_WALK_DATA = "city_walk_data";
-var KEY_USER_ID        = "user_id";
-/**************/
+var KEY_USER_ID = "user_id";
+/** *********** */
 
 $(function() {
 	setNavTitle();
@@ -14,7 +14,7 @@ function setNavTitle() {
 function getParamDic() {
 	var paramDic = {};
 	var url = location.href;
-	params  = url.split("?");
+	params = url.split("?");
 	if (params.length < 1) {
 		return paramDic;
 	}
@@ -33,7 +33,6 @@ function getBaseUrl() {
 	return urlPrefix + "CityWalkService";
 }
 
-
 function getCheckinURL(checkpoint) {
 	var suffix = "";
 	switch (checkpoint.checkin.taskType) {
@@ -43,6 +42,15 @@ function getCheckinURL(checkpoint) {
 	case TaskType.QR:
 		suffix = "qr";
 		break;
+	case TaskType.Selection:
+		suffix = "selection";
+		break;
+	case TaskType.Sort:
+		suffix = "sort";
+		break;
+	case TaskType.Description:
+		suffix = "description";
+		break;
 	default:
 		break;
 	}
@@ -51,16 +59,26 @@ function getCheckinURL(checkpoint) {
 
 var TaskType = {
 	Photo : "PhotoTask",
-	QR    : "QrCodeTask",
-	Selection   : "SelectionTask",
+	QR : "QrCodeTask",
+	Selection : "SelectionTask",
+	Sort : "SortTask",
 	Description : "DescriptionTask",
 };
 
 function getTaskURL(checkpoint) {
 	var suffix = "";
 	switch (checkpoint.task.taskType) {
+	case TaskType.Photo:
+		suffix = "photo";
+		break;
+	case TaskType.QR:
+		suffix = "qr";
+		break;
 	case TaskType.Selection:
 		suffix = "selection";
+		break;
+	case TaskType.Sort:
+		suffix = "sort";
 		break;
 	case TaskType.Description:
 		suffix = "description";
@@ -122,6 +140,6 @@ function getUserId() {
 
 /* Geo */
 function floatFormat(number, n) {
-	var _pow = Math.pow(10 , n);
+	var _pow = Math.pow(10, n);
 	return Math.round(number * _pow) / _pow;
 }

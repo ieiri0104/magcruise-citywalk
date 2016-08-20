@@ -21,13 +21,13 @@ public class CheckpointsAndTasksFactory {
 			.getLogger();
 
 	public static void main(String[] args) {
-		log.info(mergeToDb("src/main/webapp/json/checkpoints_and_tasks.json"));
-
+		log.info(mergeToDb("src/main/webapp/json/CheckpointsAndTasks/waseda.json"));
 	}
 
 	public static Map<String, Object> mergeToDb(String file) {
 		try {
 			Map<String, Object> data = JSON.decode(FileUtils.getFileReader(file));
+			log.info("mergeToDb:{}", data);
 			mergeToDb(data);
 			return data;
 		} catch (JSONException | IOException e) {
