@@ -24,20 +24,20 @@ public class Activity extends RowModel<Activity> {
 
 	private long id;
 	private String userId;
-	private long taskId;
 
+	private String checkpointId;
 	private double lat;
 	private double lon;
 
+	private String taskId;
 	private double score;
 	private Input input;
 	private Date saved = new Timestamp(new Date().getTime());
-	private String checkpointId;
 
 	public Activity() {
 	}
 
-	public Activity(String userId, String checkpointId, double lat, double lon, long taskId,
+	public Activity(String userId, String checkpointId, double lat, double lon, String taskId,
 			double score, Input input) {
 		this.userId = userId;
 		this.setCheckpointId(checkpointId);
@@ -84,11 +84,11 @@ public class Activity extends RowModel<Activity> {
 		this.userId = userId;
 	}
 
-	public long getTaskId() {
+	public String getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(long taskId) {
+	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 

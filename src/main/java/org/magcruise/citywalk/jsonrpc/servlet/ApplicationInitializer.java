@@ -62,7 +62,7 @@ public class ApplicationInitializer implements ServletContextListener {
 		Arrays.stream(new File(event.getServletContext().getRealPath("json/checkpoints-and-tasks/"))
 				.listFiles((FilenameFilter) (dir, name) -> {
 					return name.endsWith(".json");
-				})).forEach(f -> CheckpointsAndTasksFactory.mergeToDb(f.getPath()));
+				})).forEach(f -> CheckpointsAndTasksFactory.refreshAndInsertToDb(f.getPath()));
 	}
 
 	@Override

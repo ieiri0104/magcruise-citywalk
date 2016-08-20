@@ -17,7 +17,7 @@ public class ActivityJson {
 	private double lat;
 	private double lon;
 
-	private long taskId;
+	private String taskId;
 	private String taskType = "";
 
 	private double score;
@@ -56,11 +56,11 @@ public class ActivityJson {
 		this.userId = userId;
 	}
 
-	public long getTaskId() {
+	public String getTaskId() {
 		return taskId;
 	}
 
-	public void setTaskId(long taskId) {
+	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 

@@ -13,10 +13,10 @@ public interface ActivityServiceInterface {
 					+ "\"taskId\": \"1\", " + "\"score\": 9.0, " + "\"inputs\": "
 					+ "{\"value\":\"1\"}}") ActivityJson json);
 
-	ActivityLogJson[] getActivityLogs(@Parameter(sample = "ayaki") String userId);
+	ActivityLogJson[] getActivityLogs(@Parameter(sample = "Yuya Ieiri") String userId);
 
 	ActivityLogJson[] getNewActivityLogsOrderById(
-			@Parameter(sample = "ayaki") String userId,
+			@Parameter(sample = "Yuya Ieiri") String userId,
 			@Parameter(sample = "1") long latestActivityId);
 
 	String uploadImage(

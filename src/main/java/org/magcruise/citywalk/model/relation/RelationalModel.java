@@ -70,8 +70,8 @@ public abstract class RelationalModel<T extends RowModel<?>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void mergeBatch(T... objects) {
-		getClient().mergeBatch((Object[]) objects);
+	public void insertBatch(T... objects) {
+		getClient().insertBatch((Object[]) objects);
 	}
 
 	public void delete() {

@@ -14,7 +14,7 @@ import org.magcruise.citywalk.model.task.TaskContent;
 
 public class TaskJson {
 
-	private long id;
+	private String id;
 	private String taskType;
 	private double point;
 	private String label;
@@ -47,11 +47,11 @@ public class TaskJson {
 		}
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

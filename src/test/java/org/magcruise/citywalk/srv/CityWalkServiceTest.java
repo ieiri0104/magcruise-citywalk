@@ -19,7 +19,7 @@ public class CityWalkServiceTest {
 	public void test() {
 		client.addActivity(
 				new ActivityJson(
-						new Activity("ayaki", "cafeteria", 35.0, 138.2, 1, 2.5,
+						new Activity("ayaki", "cafeteria", 35.0, 138.2, "cafeteria-selection", 2.5,
 								new SelectionInput("10"))));
 		ActivityLogJson[] as = client.getActivityLogs("ayaki");
 		log.debug(Arrays.asList(as));

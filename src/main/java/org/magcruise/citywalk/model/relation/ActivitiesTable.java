@@ -18,7 +18,7 @@ public class ActivitiesTable extends RelationalModel<Activity> {
 		return TABLE_NAME + "(" + ID + " BIGINT PRIMARY KEY AUTO_INCREMENT, "
 				+ CREATED + " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + SAVED
 				+ " TIMESTAMP, " + INSTANCE_CLASS + " VARCHAR, " + USER_ID
-				+ " VARCHAR, " + "checkpoint_id VARCHAR, "+"task_id INT, " + "score DOUBLE," + "lat DOUBLE,"
+				+ " VARCHAR, " + "checkpoint_id VARCHAR, "+"task_id VARCHAR, " + "score DOUBLE," + "lat DOUBLE,"
 				+ "lon DOUBLE," + "input VARCHAR" + ")";
 	}
 

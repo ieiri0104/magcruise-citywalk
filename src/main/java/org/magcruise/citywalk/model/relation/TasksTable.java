@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.model.row.Task;
+import org.magcruise.citywalk.model.task.TaskContent;
 
 public class TasksTable extends RelationalModel<Task> {
 
@@ -16,10 +17,10 @@ public class TasksTable extends RelationalModel<Task> {
 
 	@Override
 	protected String getRelationalSchema() {
-		return TABLE_NAME + "(" + ID + " bigint primary key auto_increment, "
+		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY , "
 				+ CREATED + " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, "
-				+ INSTANCE_CLASS + " varchar, " + CHECKPOINT_IDS + " varchar, "
-				+ CONTENT + " text)";
+				+ INSTANCE_CLASS + " VARCHAR, " + CHECKPOINT_IDS + " VARCHAR, "
+				+ CONTENT + " VARCHAR)";
 	}
 
 	public List<Task> getTasks(String checkpointId) {
@@ -40,11 +41,19 @@ public class TasksTable extends RelationalModel<Task> {
 		return tasks;
 	}
 
-	public boolean isCheckin(long taskId) {
-		return getTask(taskId).getContentObject().isCheckin();
+	public boolean isCheckin(String taskId) {
+		Task t = getTask(taskId);
+		if (t == null) {
+			log.error(taskId);
+		}
+		TaskContent c = getTask(taskId).getContentObject();
+		if (c == null) {
+			log.error(getTask(taskId));
+		}
+		return c.isCheckin();
 	}
 
-	private Task getTask(long taskId) {
+	private Task getTask(String taskId) {
 		return getClient().readByPrimaryKey(Task.class, taskId);
 	}
 

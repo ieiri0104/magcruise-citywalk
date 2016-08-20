@@ -21,14 +21,14 @@ public class CheckpointsAndTasksFactory {
 			.getLogger();
 
 	public static void main(String[] args) {
-		log.info(mergeToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json"));
+		log.info(refreshAndInsertToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json"));
 	}
 
-	public static Map<String, Object> mergeToDb(String file) {
+	public static Map<String, Object> refreshAndInsertToDb(String file) {
 		try {
 			Map<String, Object> data = JSON.decode(FileUtils.getFileReader(file));
 			log.info("mergeToDb:{}", data);
-			mergeToDb(data);
+			refreshAndInsertToDb(data);
 			return data;
 		} catch (JSONException | IOException e) {
 			throw new RuntimeException(e);
@@ -36,11 +36,13 @@ public class CheckpointsAndTasksFactory {
 
 	}
 
-	public static void mergeToDb(Map<String, Object> data) {
+	public static void refreshAndInsertToDb(Map<String, Object> data) {
+		new TasksTable().dropTableIfExists();
+		new CheckpointsTable().dropTableIfExists();
 		new TasksTable().createTableIfNotExists();
 		new CheckpointsTable().createTableIfNotExists();
-		new CheckpointsTable().mergeBatch(createCheckpoints(data).toArray(new Checkpoint[0]));
-		new TasksTable().mergeBatch(createTasks(data).toArray(new Task[0]));
+		new CheckpointsTable().insertBatch(createCheckpoints(data).toArray(new Checkpoint[0]));
+		new TasksTable().insertBatch(createTasks(data).toArray(new Task[0]));
 
 	}
 
@@ -84,18 +86,16 @@ public class CheckpointsAndTasksFactory {
 		List<Task> tasks = tasksData.stream().map(task -> {
 			Map<String, Object> contentData = ((Map<String, Object>) task
 					.get("content"));
-			List<String> checkpointIds = (List<String>) task
-					.get("checkpoint_ids");
-
+			List<String> checkpointIds = (List<String>) task.get("checkpoint_ids");
+			String id = (String) task.get("id");
 			try {
 				TaskContent content = JsonConstructiveObject.decodeFromJson(
 						(Class<? extends TaskContent>) Class
 								.forName((String) contentData.get("instanceClass")),
 						JSON.encode(contentData));
-				return new Task(checkpointIds, content);
+				return new Task(id, checkpointIds, content);
 			} catch (ClassNotFoundException e) {
-				log.error(e, e);
-				return null;
+				throw new RuntimeException(e);
 			}
 		}).collect(Collectors.toList());
 		return tasks;

@@ -17,7 +17,7 @@ public class InitialDataFactory {
 
 	public static void main(String[] args) {
 		CheckpointsAndTasksFactory
-				.mergeToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json");
+				.refreshAndInsertToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json");
 		log.info(create("waseda"));
 	}
 
