@@ -4,16 +4,19 @@
 <head>
 <object th:include="/templates/header.html::meta-fragment"
 	th:remove="tag"></object>
-<script type="text/javascript">
-	$(function() {
+<link rel="stylesheet" href="../css/top.css" />
+<title>MAGCruiseCityWalk</title>
+<script>
+$(function() {
+	$(".city a").click(function() {
 		var data = new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "getInitialData",
-				[ "waseda" ], function(data) {
+				[  $(this).attr("id") ],
+				function(data) {
 					saveCityWalkData(data.result);
 				})).rpc();
 	});
+});
 </script>
-<link rel="stylesheet" href="../css/top.css" />
-<title>MAGCruiseCityWalk</title>
 </head>
 <body>
 	<div class="container">
@@ -30,10 +33,13 @@
 				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。</div>
 			<div class="col-sm-12">
 				<div class="city">
-					<a href="login.html">Waseda 早稲田大学</a>
+					<a href="login.html" id="waseda">Waseda 早稲田大学</a>
 				</div>
 				<div class="city">
-					<a href="login.html">Toho 東邦大学</a>
+					<a href="login.html" id="wasedasai">Wasedasai 2016  早稲田祭2016</a>
+				</div>
+				<div class="city">
+					<a href="login.html" id="toho">Toho 東邦大学</a>
 				</div>
 			</div>
 		</div>
