@@ -70,11 +70,12 @@ public class CheckpointsAndTasksFactory {
 				.map(checkpoint -> {
 					String id = checkpoint.get("id").toString();
 					String name = checkpoint.get("name").toString();
+					String label = checkpoint.get("label").toString();
 					double lat = ((Number) checkpoint.get("lat")).doubleValue();
 					double lon = ((Number) checkpoint.get("lon")).doubleValue();
 					List<String> checkpointGroupIds = (List<String>) checkpoint
 							.get("checkpoint_group_ids");
-					return new Checkpoint(id, name, lat, lon, checkpointGroupIds);
+					return new Checkpoint(id, name, label, lat, lon, checkpointGroupIds);
 				}).collect(Collectors.toList());
 		return checkpoints;
 	}

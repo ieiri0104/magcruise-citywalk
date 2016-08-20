@@ -20,8 +20,9 @@ public class CheckpointsTable extends RelationalModel<Checkpoint> {
 	@Override
 	protected String getRelationalSchema() {
 		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY, " + CREATED
-				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + NAME + " VARCHAR," + INSTANCE_CLASS
-				+ " VARCHAR, " + LAT + " DOUBLE, " + LON + " DOUBLE, " + CHECKPOINT_GROUP_IDS
+				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + NAME + " VARCHAR," + LABEL
+				+ " VARCHAR," + INSTANCE_CLASS + " VARCHAR, " + LAT + " DOUBLE, " + LON
+				+ " DOUBLE, " + CHECKPOINT_GROUP_IDS
 				+ " VARCHAR)";
 	}
 

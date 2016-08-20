@@ -7,6 +7,7 @@ public class CheckpointJson {
 
 	private String id;
 	private String name;
+	private String label;
 	private double lat;
 	private double lon;
 
@@ -16,10 +17,11 @@ public class CheckpointJson {
 	public CheckpointJson() {
 	}
 
-	public CheckpointJson(String id, String name, double lat, double lon, CheckinJson checkin,
-			TaskJson task) {
+	public CheckpointJson(String id, String name, String label, double lat, double lon,
+			CheckinJson checkin, TaskJson task) {
 		this.id = id;
 		this.name = name;
+		this.label = label;
 		this.lat = lat;
 		this.lon = lon;
 		this.checkin = checkin;
@@ -77,6 +79,14 @@ public class CheckpointJson {
 
 	public void setCheckin(CheckinJson checkin) {
 		this.checkin = checkin;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }

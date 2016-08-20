@@ -36,8 +36,8 @@ public class InitialDataFactory {
 							task = new TaskJson(t);
 						}
 					}
-					return new CheckpointJson(c.getId(), c.getName(), c.getLat(), c.getLon(),
-							checkin, task);
+					return new CheckpointJson(c.getId(), c.getName(), c.getLabel(), c.getLat(),
+							c.getLon(), checkin, task);
 				}).collect(Collectors.toList());
 		return new InitialDataJson(result);
 	}

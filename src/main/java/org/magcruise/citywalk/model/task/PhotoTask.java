@@ -2,14 +2,14 @@ package org.magcruise.citywalk.model.task;
 
 public class PhotoTask extends TaskContent {
 
-	private String answer;
+	private String imgSrc;
 
-	public String getAnswer() {
-		return answer;
+	public String getImgSrc() {
+		return imgSrc;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
 	}
 
 }

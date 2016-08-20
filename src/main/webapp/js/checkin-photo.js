@@ -5,6 +5,7 @@ var checkpoint = getCheckpoint(id);
 
 $(function() {
 	$("#loading").hide();
+	$("#task-img").attr('src', checkpoint.checkin.imgSrc);
 	$("#btn-next").click(function() {
 		$("#loading").fadeIn();
 		var imgData = $("#img-preview").attr('src');
@@ -26,6 +27,6 @@ function handleFiles(files) {
 		$("#img-preview").attr('src', event.target.result);
 	};
 	fileReader.readAsDataURL(file);
-	
+
 	$("#btn-next").prop("disabled", false);
 }

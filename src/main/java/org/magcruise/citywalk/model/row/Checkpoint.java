@@ -17,6 +17,7 @@ public class Checkpoint extends RowModel<Checkpoint> {
 
 	private String id;
 	private String name;
+	private String label;
 	private double lat;
 	private double lon;
 	private List<String> checkpointGroupIds = new ArrayList<>();
@@ -24,10 +25,11 @@ public class Checkpoint extends RowModel<Checkpoint> {
 	public Checkpoint() {
 	}
 
-	public Checkpoint(String id, String name, double lat, double lon,
+	public Checkpoint(String id, String name, String label, double lat, double lon,
 			List<String> checkPointGroupIds) {
 		this.id = id;
 		this.name = name;
+		this.label = label;
 		this.lat = lat;
 		this.lon = lon;
 		this.checkpointGroupIds.addAll(checkPointGroupIds);
@@ -39,6 +41,14 @@ public class Checkpoint extends RowModel<Checkpoint> {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getLat() {
@@ -81,12 +91,12 @@ public class Checkpoint extends RowModel<Checkpoint> {
 		this.checkpointGroupIds = checkpointGroupIds;
 	}
 
-	public String getName() {
-		return name;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }
