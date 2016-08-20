@@ -2,6 +2,7 @@ package org.magcruise.citywalk.jsonrpc.impl;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
@@ -61,8 +62,23 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public RewardJson addActivity(ActivityJson json) {
 		EventManager.offerEvent(json.getUserId(), json);
-		activities.insert(new Activity(json));
-		return new RewardJson();
+		Activity a = new Activity(json);
+		activities.insert(a);
+		return createRewardJson(a);
+	}
+
+	private RewardJson createRewardJson(Activity activity) {
+		int rank = calculateRank(activity.getUserId());
+		List<String> badges = calculateBadges(activity);
+		return new RewardJson(rank, badges);
+	}
+
+	private List<String> calculateBadges(Activity activity) {
+		return Arrays.asList("早稲田マスター", "AEDマスター");
+	}
+
+	private int calculateRank(String userId) {
+		return 3;
 	}
 
 	@Override
