@@ -10,6 +10,7 @@ import org.magcruise.citywalk.model.json.TaskJson;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.row.Task;
+import org.nkjmlab.util.json.JsonUtils;
 
 public class InitialDataFactory {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
@@ -18,7 +19,8 @@ public class InitialDataFactory {
 	public static void main(String[] args) {
 		CheckpointsAndTasksFactory
 				.refreshAndInsertToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json");
-		log.info(create("waseda"));
+		JsonUtils.encode(create("waseda"),
+				"src/main/webapp/json/initial-data/waseda.json", true);
 	}
 
 	public static InitialDataJson create(String checkpointGroupId) {
