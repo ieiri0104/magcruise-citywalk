@@ -10,6 +10,13 @@ public class InitialDataJson {
 
 	private List<CheckpointJson> checkpoints = new ArrayList<>();
 
+	public InitialDataJson() {
+	}
+
+	public InitialDataJson(List<CheckpointJson> checkpoints) {
+		this.checkpoints.addAll(checkpoints);
+	}
+
 	public List<CheckpointJson> getCheckpoints() {
 		return checkpoints;
 	}

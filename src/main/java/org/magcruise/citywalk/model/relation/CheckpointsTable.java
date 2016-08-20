@@ -25,7 +25,7 @@ public class CheckpointsTable extends RelationalModel<Checkpoint> {
 				+ " VARCHAR)";
 	}
 
-	public List<Checkpoint> getCheckpoints(String checkpointGroupId) {
+	public List<Checkpoint> findByCheckpointGroupId(String checkpointGroupId) {
 		return getClient()
 				.readList(Checkpoint.class,
 						"SELECT * FROM " + TABLE_NAME)

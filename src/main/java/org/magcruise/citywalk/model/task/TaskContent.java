@@ -1,6 +1,6 @@
 package org.magcruise.citywalk.model.task;
 
-import org.magcruise.citywalk.model.JsonConstructiveObject;
+import org.magcruise.citywalk.model.common.JsonConstructiveObject;
 
 public class TaskContent extends JsonConstructiveObject<TaskContent> {
 

@@ -1,11 +1,11 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
-import org.magcruise.citywalk.model.CheckpointsAndTasksImporter;
+import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
+import org.magcruise.citywalk.model.conv.InitialDataFactory;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.InitialDataJson;
@@ -19,7 +19,6 @@ import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
-import org.nkjmlab.util.json.JsonUtils;
 
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
@@ -97,15 +96,12 @@ public class CityWalkService extends AbstractCityWalkService
 
 	@Override
 	public InitialDataJson getInitialData(String checkpointGroupId) {
-		InitialDataJson data = JsonUtils.decode(
-				new File(getServiceContext().getRealPath("/json/initial_data.json")),
-				InitialDataJson.class);
-		return data;
+		return InitialDataFactory.create(checkpointGroupId);
 	}
 
 	@Override
 	public boolean validateCheckpointsAndTasksJson(String json) {
-		return new CheckpointsAndTasksImporter().validate(json);
+		return CheckpointsAndTasksFactory.validate(json);
 	}
 
 }

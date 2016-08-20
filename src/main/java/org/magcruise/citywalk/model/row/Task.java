@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.JsonConstructiveObject;
+import org.magcruise.citywalk.model.common.JsonConstructiveObject;
 import org.magcruise.citywalk.model.relation.RelationalModel;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.task.TaskContent;

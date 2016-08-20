@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.magcruise.citywalk.model.CheckpointsAndTasksImporter;
+import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
@@ -42,7 +42,7 @@ public class ApplicationInitializer implements ServletContextListener {
 		new TasksTable().createTableIfNotExists();
 		new UserAccountsTable().createTableIfNotExists();
 		new CheckpointsTable().createTableIfNotExists();
-		CheckpointsAndTasksImporter.importAndMerge(
+		CheckpointsAndTasksFactory.mergeToDb(
 				event.getServletContext().getRealPath("json/checkpoints_and_tasks.json"));
 
 		log.info("initialized");
