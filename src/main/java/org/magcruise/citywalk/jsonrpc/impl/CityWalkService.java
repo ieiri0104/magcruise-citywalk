@@ -12,11 +12,12 @@ import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
-import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.SubmittedActivitiesTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
-import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
+import org.magcruise.citywalk.model.row.SubmittedActivity;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.websocket.EventManager;
 import org.nkjmlab.util.base64.Base64ImageUtils;
@@ -26,7 +27,8 @@ import org.nkjmlab.util.json.JsonUtils;
 public class CityWalkService extends AbstractCityWalkService
 		implements CityWalkServiceInterface {
 
-	private ActivitiesTable activities = new ActivitiesTable();
+	private VerifiedActivitiesTable verifiedActivities = new VerifiedActivitiesTable();
+	private SubmittedActivitiesTable submittedActivities = new SubmittedActivitiesTable();
 	private UserAccountsTable users = new UserAccountsTable();
 	private TasksTable tasks = new TasksTable();
 	private CheckpointsTable checkpoints = new CheckpointsTable();
@@ -62,28 +64,34 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public RewardJson addActivity(ActivityJson json) {
 		EventManager.offerEvent(json.getUserId(), json);
-		Activity a = new Activity(json);
-		activities.insert(a);
-		return createRewardJson(a);
+		SubmittedActivity a = new SubmittedActivity(json);
+		submittedActivities.insert(a);
+
+		verifyActivity(a);
+
+		return createRewardJson(a.getUserId());
 	}
 
-	private RewardJson createRewardJson(Activity activity) {
-		int rank = calculateRank(activity.getUserId());
-		List<String> badges = calculateBadges(activity);
+	private void verifyActivity(SubmittedActivity a) {
+		if (!verifiedActivities.contains(a.getUserId(), a.getCheckpointId(), a.getTaskId())) {
+			verifiedActivities.insert(a);
+		}
+
+	}
+
+	private RewardJson createRewardJson(String userId) {
+		int rank = verifiedActivities.getRank(userId);
+		List<String> badges = calculateBadges(userId);
 		return new RewardJson(rank, badges);
 	}
 
-	private List<String> calculateBadges(Activity activity) {
+	private List<String> calculateBadges(String userId) {
 		return Arrays.asList("早稲田マスター", "AEDマスター");
-	}
-
-	private int calculateRank(String userId) {
-		return 3;
 	}
 
 	@Override
 	public ActivityLogJson[] getActivityLogs(String userId) {
-		return Arrays.stream(activities.getActivities(userId))
+		return verifiedActivities.getActivities(userId).stream()
 				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
 				.collect(Collectors.toList()).toArray(new ActivityLogJson[0]);
 	}
@@ -91,7 +99,7 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public ActivityLogJson[] getNewActivityLogsOrderById(String userId,
 			long latestActivityId) {
-		return activities.getNewActivitiesOrderById(userId, latestActivityId).stream()
+		return verifiedActivities.getNewActivitiesOrderById(userId, latestActivityId).stream()
 				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
 				.collect(Collectors.toList())
 				.toArray(new ActivityLogJson[0]);

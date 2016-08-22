@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.row.VerifiedActivity;
 
 public class ActivityJson {
 
@@ -30,13 +30,13 @@ public class ActivityJson {
 	public ActivityJson() {
 	}
 
-	public ActivityJson(Activity activity) {
-		this.id = activity.getId();
-		this.userId = activity.getUserId();
-		this.checkpointId = activity.getCheckpointId();
-		this.lat = activity.getLat();
-		this.lon = activity.getLon();
-		this.taskId = activity.getTaskId();
+	public ActivityJson(VerifiedActivity verifiedActivity) {
+		this.id = verifiedActivity.getId();
+		this.userId = verifiedActivity.getUserId();
+		this.checkpointId = verifiedActivity.getCheckpointId();
+		this.lat = verifiedActivity.getLat();
+		this.lon = verifiedActivity.getLon();
+		this.taskId = verifiedActivity.getTaskId();
 
 	}
 

@@ -7,7 +7,7 @@ import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.ActivityLogJson;
-import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.row.VerifiedActivity;
 
 public class CityWalkServiceTest {
 	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
@@ -19,7 +19,7 @@ public class CityWalkServiceTest {
 	public void test() {
 		client.addActivity(
 				new ActivityJson(
-						new Activity("ayaki", "cafeteria", 35.0, 138.2, "cafeteria-selection", 2.5,
+						new VerifiedActivity("ayaki", "cafeteria", 35.0, 138.2, "cafeteria-selection", 2.5,
 								new SelectionInput("10"))));
 		ActivityLogJson[] as = client.getActivityLogs("ayaki");
 		log.debug(Arrays.asList(as));

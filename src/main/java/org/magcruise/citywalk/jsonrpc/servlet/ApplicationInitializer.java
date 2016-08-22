@@ -9,10 +9,11 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
-import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
+import org.magcruise.citywalk.model.relation.SubmittedActivitiesTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
+import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
 import org.nkjmlab.util.db.DbClient;
 import org.nkjmlab.util.db.DbClientFactory;
 import org.nkjmlab.util.db.H2ClientWithConnectionPool;
@@ -57,7 +58,8 @@ public class ApplicationInitializer implements ServletContextListener {
 		new CheckpointsTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
 		new UserAccountsTable().createTableIfNotExists();
-		new ActivitiesTable().createTableIfNotExists();
+		new VerifiedActivitiesTable().createTableIfNotExists();
+		new SubmittedActivitiesTable().createTableIfNotExists();
 
 		Arrays.stream(new File(event.getServletContext().getRealPath("json/checkpoints-and-tasks/"))
 				.listFiles((FilenameFilter) (dir, name) -> {

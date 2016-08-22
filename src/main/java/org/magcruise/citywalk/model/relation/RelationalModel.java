@@ -21,6 +21,8 @@ public abstract class RelationalModel<T extends RowModel<?>> {
 	public static final String CHECKPOINT_GROUP_IDS = "checkpoint_group_ids";
 	public static final String CHECKPOINT_IDS = "checkpoint_ids";
 	public static final String USER_ID = "user_id";
+	public static final String CHECKPOINT_ID = "checkpoint_id";
+	public static final String TASK_ID = "task_id";
 	public static final String CONTENT = "content";
 	public static final String GROUP_ID = "group_id";
 	public static final String SAVED = "saved";

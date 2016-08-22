@@ -20,7 +20,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.row.VerifiedActivity;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
@@ -85,7 +85,7 @@ public class EventManager {
 		workers.put(session.getId(), f);
 	}
 
-	protected void registerLatestActivityId(String userId, Activity[] acts) {
+	protected void registerLatestActivityId(String userId, VerifiedActivity[] acts) {
 		latestActivityId.put(userId, acts[acts.length - 1].getId());
 	}
 

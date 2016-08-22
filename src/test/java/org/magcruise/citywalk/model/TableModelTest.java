@@ -6,14 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
 import org.magcruise.citywalk.model.input.SelectionInput;
-import org.magcruise.citywalk.model.relation.ActivitiesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
-import org.magcruise.citywalk.model.row.Activity;
+import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.model.row.VerifiedActivity;
 import org.magcruise.citywalk.model.task.SelectionTask;
 import org.nkjmlab.util.db.H2Server;
 
@@ -63,10 +63,10 @@ public class TableModelTest {
 				new SelectionTask("次の4つの部屋を、座席の多い順に並び替えて下さい．",
 						Arrays.asList("A", "C", "E", "G"), Arrays.asList(1), 2.0, false)));
 		log.debug(tasks.selectAll());
-		ActivitiesTable activities = new ActivitiesTable();
+		VerifiedActivitiesTable activities = new VerifiedActivitiesTable();
 		activities.remakeTable();
 		activities.insert(
-				new Activity("ayaki", "cafeteria", 38.4400, 134.11090, tid, 1.0,
+				new VerifiedActivity("ayaki", "cafeteria", 38.4400, 134.11090, tid, 1.0,
 						new SelectionInput("豚玉丼")));
 
 		UserAccountsTable users = new UserAccountsTable();

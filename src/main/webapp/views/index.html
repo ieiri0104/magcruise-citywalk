@@ -13,6 +13,7 @@ $(function() {
 				[  $(this).attr("id") ],
 				function(data) {
 					saveCityWalkData(data.result);
+					location.href = "login.html";
 				})).rpc();
 	});
 });
@@ -33,13 +34,13 @@ $(function() {
 				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。</div>
 			<div class="col-sm-12">
 				<div class="city">
-					<a href="login.html" id="waseda">Waseda 早稲田大学</a>
+					<a href="#" id="waseda">Waseda 早稲田大学</a>
 				</div>
 				<div class="city">
-					<a href="login.html" id="wasedasai">Wasedasai 2016  早稲田祭2016</a>
+					<a href="#" id="wasedasai">Wasedasai 2016  早稲田祭2016</a>
 				</div>
 				<div class="city">
-					<a href="login.html" id="toho">Toho 東邦大学</a>
+					<a href="#" id="toho">Toho 東邦大学</a>
 				</div>
 			</div>
 		</div>

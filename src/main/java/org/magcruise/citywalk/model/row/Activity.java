@@ -13,14 +13,11 @@ import org.magcruise.citywalk.model.input.PhotoInput;
 import org.magcruise.citywalk.model.input.QrCodeInput;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.relation.ActivitiesTable;
 
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.NoColumn;
-import net.sf.persist.annotations.Table;
 
-@Table(name = ActivitiesTable.TABLE_NAME)
-public class Activity extends RowModel<Activity> {
+public abstract class Activity extends RowModel<Activity> {
 
 	private long id;
 	private String userId;
@@ -37,7 +34,8 @@ public class Activity extends RowModel<Activity> {
 	public Activity() {
 	}
 
-	public Activity(String userId, String checkpointId, double lat, double lon, String taskId,
+	public Activity(String userId, String checkpointId, double lat, double lon,
+			String taskId,
 			double score, Input input) {
 		this.userId = userId;
 		this.setCheckpointId(checkpointId);
