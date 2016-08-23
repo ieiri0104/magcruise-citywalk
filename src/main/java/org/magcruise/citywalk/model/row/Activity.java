@@ -60,9 +60,9 @@ public class Activity extends RowModel<Activity> {
 		case "QrCodeTask":
 			return new QrCodeInput();
 		case "SelectionTask":
-			return new SelectionInput();
+			return new SelectionInput(inputs.get("value"));
 		case "DescriptionTask":
-			return new DescriptionInput();
+			return new DescriptionInput(inputs.get("value"));
 		}
 		throw new IllegalArgumentException(taskType);
 	}

@@ -1,6 +1,8 @@
 package org.magcruise.citywalk.model.relation;
 
-public class SubmittedActivitiesTable extends ActivitiesTable {
+import org.magcruise.citywalk.model.row.SubmittedActivity;
+
+public class SubmittedActivitiesTable extends ActivitiesTable<SubmittedActivity> {
 
 	public static final String TABLE_NAME = "SUBMITTED_ACTIVITIES";
 

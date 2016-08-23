@@ -4,15 +4,11 @@ public class SelectionInput extends Input {
 
 	private String value;
 
-	public static void main(String[] args) {
-		System.out.println(new SelectionInput("1").encodeToJson());
-	}
-
 	public SelectionInput() {
 	}
 
 	public SelectionInput(String value) {
-		this.setValue(value);
+		this.value = value;
 	}
 
 	public String getValue() {

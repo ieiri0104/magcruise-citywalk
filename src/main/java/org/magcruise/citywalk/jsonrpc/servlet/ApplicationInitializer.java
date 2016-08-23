@@ -9,6 +9,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
+import org.magcruise.citywalk.model.relation.BadgesTable;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.SubmittedActivitiesTable;
 import org.magcruise.citywalk.model.relation.TasksTable;
@@ -58,6 +59,7 @@ public class ApplicationInitializer implements ServletContextListener {
 		new CheckpointsTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
 		new UserAccountsTable().createTableIfNotExists();
+		new BadgesTable().createTableIfNotExists();
 		new VerifiedActivitiesTable().createTableIfNotExists();
 		new SubmittedActivitiesTable().createTableIfNotExists();
 

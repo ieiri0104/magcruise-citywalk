@@ -13,7 +13,7 @@ public class UserAccountsTable extends RelationalModel<User> {
 
 	@Override
 	protected String getRelationalSchema() {
-		return TABLE_NAME + "(" + ID + " varchar primary key, " + CREATED
+		return getRelationName() + "(" + ID + " varchar primary key, " + CREATED
 				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
 				+ " varchar, " + GROUP_ID + " varchar)";
 	}

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.magcruise.citywalk.model.row.Activity;
 
-public abstract class ActivitiesTable extends RelationalModel<Activity> {
+public abstract class ActivitiesTable<T extends Activity> extends RelationalModel<T> {
 
 	protected String tableName = "";
 
@@ -40,18 +40,25 @@ public abstract class ActivitiesTable extends RelationalModel<Activity> {
 				userId, latestActivityId);
 	}
 
-	public List<Activity> getActivities(String userId, String checkpointId, String taskId) {
-		return getClient().readList(Activity.class,
-				"SELECT * FROM " + getRelationName() + " WHERE " + USER_ID
-						+ "=? AND " + CHECKPOINT_ID + "=? AND " + TASK_ID + "=?",
-				userId, checkpointId, taskId);
-	}
-
 	public List<Activity> getActivities(String userId, String checkpointId) {
 		return getClient().readList(Activity.class,
 				"SELECT * FROM " + getRelationName() + " WHERE " + USER_ID
 						+ "=? AND " + CHECKPOINT_ID + "=?",
 				userId, checkpointId);
+	}
+
+	public List<Activity> getActivitiesLike(String userId, String partOfcheckpointId) {
+		return getClient().readList(Activity.class,
+				"SELECT * FROM " + getRelationName() + " WHERE " + USER_ID
+						+ "=? AND " + CHECKPOINT_ID + " LIKE ?",
+				userId, partOfcheckpointId);
+	}
+
+	public List<Activity> getActivities(String userId, String checkpointId, String taskId) {
+		return getClient().readList(Activity.class,
+				"SELECT * FROM " + getRelationName() + " WHERE " + USER_ID
+						+ "=? AND " + CHECKPOINT_ID + "=? AND " + TASK_ID + "=?",
+				userId, checkpointId, taskId);
 	}
 
 	public List<Map<String, Object>> sumsOfScoreGroupByUserIdOrderByScore() {

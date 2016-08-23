@@ -3,7 +3,9 @@ package org.magcruise.citywalk.model.relation;
 import java.util.List;
 import java.util.Map;
 
-public class VerifiedActivitiesTable extends ActivitiesTable {
+import org.magcruise.citywalk.model.row.VerifiedActivity;
+
+public class VerifiedActivitiesTable extends ActivitiesTable<VerifiedActivity> {
 
 	public static final String TABLE_NAME = "ACTIVITIES";
 
@@ -15,7 +17,7 @@ public class VerifiedActivitiesTable extends ActivitiesTable {
 		List<Map<String, Object>> scores = sumsOfScoreGroupByUserIdOrderByScore();
 		for (int i = 0; i < scores.size(); i++) {
 			if (scores.get(i).get(USER_ID).equals(userId)) {
-				return i+1;
+				return i + 1;
 			}
 
 		}

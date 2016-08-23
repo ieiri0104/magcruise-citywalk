@@ -9,12 +9,14 @@ import net.sf.persist.annotations.Table;
 
 @Table(name = VerifiedActivitiesTable.TABLE_NAME)
 public class VerifiedActivity extends Activity {
-	public VerifiedActivity() {
+
+	public VerifiedActivity(Activity activity) {
+		this(activity.getUserId(), activity.getCheckpointId(), activity.getLat(), activity.getLon(),
+				activity.getTaskId(), activity.getScore(), activity.getInputObject());
 	}
 
 	public VerifiedActivity(String userId, String checkpointId, double lat, double lon,
-			String taskId,
-			double score, Input input) {
+			String taskId, double score, Input input) {
 		super(userId, checkpointId, lat, lon, taskId, score, input);
 	}
 

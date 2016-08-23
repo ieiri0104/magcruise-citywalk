@@ -26,6 +26,7 @@ public abstract class RelationalModel<T extends RowModel<?>> {
 	public static final String CONTENT = "content";
 	public static final String GROUP_ID = "group_id";
 	public static final String SAVED = "saved";
+	public static final String BADGE = "badge";
 
 	public RelationalModel() {
 	}
