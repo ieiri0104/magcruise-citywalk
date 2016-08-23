@@ -1,7 +1,7 @@
 package org.magcruise.citywalk.jsonrpc.impl;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,7 +86,20 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	private List<String> calculateBadges(String userId) {
-		return Arrays.asList("早稲田マスター", "AEDマスター");
+		List<String> result = new ArrayList<>();
+		if (verifiedActivities.getActivities(userId, "cafeteria").size() > 0) {
+			result.add("食堂マスター");
+		}
+
+		if (verifiedActivities.getActivities(userId, "cafeteria").size() > 1) {
+			result.add("AEDマスター");
+		}
+
+		if (verifiedActivities.getActivities(userId).size() > 2) {
+			result.add("早稲田マスター");
+		}
+
+		return result;
 	}
 
 	@Override

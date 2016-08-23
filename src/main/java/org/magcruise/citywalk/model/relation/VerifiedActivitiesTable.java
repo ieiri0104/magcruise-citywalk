@@ -15,7 +15,7 @@ public class VerifiedActivitiesTable extends ActivitiesTable {
 		List<Map<String, Object>> scores = sumsOfScoreGroupByUserIdOrderByScore();
 		for (int i = 0; i < scores.size(); i++) {
 			if (scores.get(i).get(USER_ID).equals(userId)) {
-				return i;
+				return i+1;
 			}
 
 		}
