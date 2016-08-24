@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<artifactId>magcruise-citywalk-server</artifactId>
+	<artifactId>magcruise-citywalk</artifactId>
 	<parent>
 		<groupId>org.magcruise</groupId>
 		<artifactId>magcruise-parent</artifactId>
@@ -23,8 +23,8 @@
 	</repositories>
 
 	<scm>
-		<connection>scm:git:git@github.com:nkjmlab/MAGCruiseCityWalkServer.git</connection>
-		<url>https://github.com/nkjmlab/MAGCruiseCityWalkServer</url>
+		<connection>scm:git:git@github.com:magcruise/magcruise-citywalk.git</connection>
+		<url>https://github.com/magcruise/magcruise-citywalk</url>
 		<tag>HEAD</tag>
 	</scm>
 	<properties>

@@ -404,7 +404,7 @@
       "id":"",
       "checkpoint_ids": ["nakamura-candle"],  
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -426,7 +426,7 @@
       "id":"",
       "checkpoint_ids": ["toriiti"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -448,7 +448,7 @@
       "id":"",
       "checkpoint_ids": ["ibaraki"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -459,7 +459,7 @@
       "id":"",
       "checkpoint_ids": ["aritugu"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -470,7 +470,7 @@
       "id":"",
       "checkpoint_ids": ["ryusido"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -481,7 +481,7 @@
       "id":"",
       "checkpoint_ids": ["koyamaen"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -492,7 +492,7 @@
       "id":"",
       "checkpoint_ids": ["ito-kumihimo"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -503,7 +503,7 @@
       "id":"",
       "checkpoint_ids": ["nakanoisuke"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -536,7 +536,7 @@
       "id":"",
       "checkpoint_ids": ["turuya-yosinobu"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -558,7 +558,7 @@
       "id":"",
       "checkpoint_ids": ["kagizen"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -569,7 +569,7 @@
       "id":"",
       "checkpoint_ids": ["suzuki-syohudo"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -602,7 +602,7 @@
       "id":"",
       "checkpoint_ids": ["kansyundo"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -613,7 +613,7 @@
       "id":"",
       "checkpoint_ids": ["kaneido"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -624,7 +624,7 @@
       "id":"",
       "checkpoint_ids": ["jusanya"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -668,7 +668,7 @@
       "id":"",
       "checkpoint_ids": ["eirakuya"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -679,7 +679,7 @@
       "id":"",
       "checkpoint_ids": ["tuziri"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -690,7 +690,7 @@
       "id":"",
       "checkpoint_ids": ["kikuitimonzi"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -712,7 +712,7 @@
       "id":"",
       "checkpoint_ids": ["kyoto-city-hall"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -723,7 +723,7 @@
       "id":"",
       "checkpoint_ids": ["onishi-kyosendo"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -734,7 +734,7 @@
       "id":"",
       "checkpoint_ids": ["yasaka-shrine"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -745,7 +745,7 @@
       "id":"",
       "checkpoint_ids": ["zohiko"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -756,7 +756,7 @@
       "id":"",
       "checkpoint_ids": ["aiba"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -767,7 +767,7 @@
       "id":"",
       "checkpoint_ids": ["heian-shrine"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -778,7 +778,7 @@
       "id":"",
       "checkpoint_ids": ["kenzin-temple"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -789,7 +789,7 @@
       "id":"",
       "checkpoint_ids": ["hiiragiya"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -800,7 +800,7 @@
       "id":"",
       "checkpoint_ids": ["nijowakasaya"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -811,7 +811,7 @@
       "id":"",
       "checkpoint_ids": ["kyotogosyo"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -822,7 +822,7 @@
       "id":"",
       "checkpoint_ids": ["ryuouen"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -833,7 +833,7 @@
       "id":"",
       "checkpoint_ids": ["kyokado"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -844,7 +844,7 @@
       "id":"",
       "checkpoint_ids": ["miyako"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
@@ -855,7 +855,7 @@
       "id":"",
       "checkpoint_ids": ["murakami"],
       "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.QRCodeTask",
+        "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
         "point": 2.0,
         "label": "QRコードを撮って下さい．",
