@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ContentJson {
+
 	private String instanceClass;
 	private boolean checkin = false;
 	private double point;
@@ -16,6 +17,20 @@ public class ContentJson {
 	private List<String> answerTexts = new ArrayList<>();
 	private String answerQr = "";
 	private String imgSrc = "";
+
+	public ContentJson() {
+	}
+
+	public ContentJson(String instanceClass, boolean checkin, double point, String label,
+			String answerQr, String imgSrc) {
+		super();
+		this.instanceClass = instanceClass;
+		this.checkin = checkin;
+		this.point = point;
+		this.label = label;
+		this.answerQr = answerQr;
+		this.imgSrc = imgSrc;
+	}
 
 	public String getInstanceClass() {
 		return instanceClass;

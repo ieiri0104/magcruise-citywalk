@@ -27,17 +27,18 @@ public class CheckpointsAndTasksFactory {
 		CheckpointsAndTasksJson json = JsonUtils.decode(
 				"src/main/webapp/json/checkpoints-and-tasks/waseda.json",
 				CheckpointsAndTasksJson.class);
+		refreshCheckpointAtdTaskTable();
 		log.info(createCheckpoints(json.getCheckpoints()));
 		log.info(createTasks(json.getTasks()));
-		log.info(refreshAndInsertToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json"));
+		log.info(insertToDb("src/main/webapp/json/checkpoints-and-tasks/waseda.json"));
 	}
 
-	public static CheckpointsAndTasksJson refreshAndInsertToDb(String file) {
+	public static CheckpointsAndTasksJson insertToDb(String file) {
 		try {
 			CheckpointsAndTasksJson json = JSON.decode(FileUtils.getFileReader(file),
 					CheckpointsAndTasksJson.class);
-			log.info("mergeToDb:{}", json);
-			refreshAndInsertToDb(json);
+			log.info("insertToDb:{}", json);
+			insertToDb(json);
 			return json;
 		} catch (JSONException | IOException e) {
 			throw new RuntimeException(e);
@@ -45,15 +46,18 @@ public class CheckpointsAndTasksFactory {
 
 	}
 
-	public static void refreshAndInsertToDb(CheckpointsAndTasksJson json) {
-		new TasksTable().dropTableIfExists();
-		new CheckpointsTable().dropTableIfExists();
-		new TasksTable().createTableIfNotExists();
-		new CheckpointsTable().createTableIfNotExists();
+	public static void insertToDb(CheckpointsAndTasksJson json) {
 		new CheckpointsTable()
 				.insertBatch(createCheckpoints(json.getCheckpoints()).toArray(new Checkpoint[0]));
 		new TasksTable().insertBatch(createTasks(json.getTasks()).toArray(new Task[0]));
 
+	}
+
+	public static void refreshCheckpointAtdTaskTable() {
+		new TasksTable().dropTableIfExists();
+		new CheckpointsTable().dropTableIfExists();
+		new TasksTable().createTableIfNotExists();
+		new CheckpointsTable().createTableIfNotExists();
 	}
 
 	public static boolean validate(String json) {

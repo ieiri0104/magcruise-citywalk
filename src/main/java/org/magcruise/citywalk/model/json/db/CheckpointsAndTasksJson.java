@@ -32,4 +32,12 @@ public class CheckpointsAndTasksJson {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
+	public void addCheckpoint(CheckpointJson checkpointJson) {
+		checkpoints.add(checkpointJson);
+	}
+
+	public void addTask(TaskJson taskJson) {
+		tasks.add(taskJson);
+	}
+
 }
