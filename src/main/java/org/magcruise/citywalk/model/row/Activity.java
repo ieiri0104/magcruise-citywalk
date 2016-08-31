@@ -23,6 +23,7 @@ public class Activity extends RowModel<Activity> {
 	private long id;
 	private String userId;
 
+	private String checkpointGroupId;
 	private String checkpointId;
 	private double lat;
 	private double lon;
@@ -35,9 +36,10 @@ public class Activity extends RowModel<Activity> {
 	public Activity() {
 	}
 
-	public Activity(String userId, String checkpointId, double lat, double lon,
-			String taskId,
-			double score, Input input) {
+	public Activity(String checkpointGroupId, String userId, String checkpointId, double lat,
+			double lon,
+			String taskId, double score, Input input) {
+		this.checkpointGroupId = checkpointGroupId;
 		this.userId = userId;
 		this.setCheckpointId(checkpointId);
 		this.lat = lat;
@@ -48,8 +50,8 @@ public class Activity extends RowModel<Activity> {
 	}
 
 	public Activity(ActivityJson json) {
-		this(json.getUserId(), json.getCheckpointId(), json.getLat(), json.getLon(),
-				json.getTaskId(), json.getScore(),
+		this(json.getCheckpointGroupId(), json.getUserId(), json.getCheckpointId(), json.getLat(),
+				json.getLon(), json.getTaskId(), json.getScore(),
 				convertToInput(json.getTaskType(), json.getInputs()));
 	}
 
@@ -157,6 +159,14 @@ public class Activity extends RowModel<Activity> {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public String getCheckpointGroupId() {
+		return checkpointGroupId;
+	}
+
+	public void setCheckpointGroupId(String checkpointGroupId) {
+		this.checkpointGroupId = checkpointGroupId;
 	}
 
 }

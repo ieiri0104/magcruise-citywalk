@@ -7,7 +7,7 @@ import org.magcruise.citywalk.model.row.VerifiedActivity;
 
 public class VerifiedActivitiesTable extends ActivitiesTable<VerifiedActivity> {
 
-	public static final String TABLE_NAME = "ACTIVITIES";
+	public static final String TABLE_NAME = "VERIFIED_ACTIVITIES";
 
 	public VerifiedActivitiesTable() {
 		this.tableName = TABLE_NAME;

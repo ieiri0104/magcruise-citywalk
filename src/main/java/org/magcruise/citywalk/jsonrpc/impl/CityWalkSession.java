@@ -3,15 +3,17 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.row.User;
+import org.nkjmlab.util.log4j.ServletLogManager;
 
 public class CityWalkSession {
+
+	protected static Logger log = ServletLogManager.getLogger();
+
 	private static final String USER_ID = "userId";
 
 	private static final String GROUP_ID = "groupId";
-
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
 
 	private HttpSession session;
 

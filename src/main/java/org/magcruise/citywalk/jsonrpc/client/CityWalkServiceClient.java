@@ -5,7 +5,6 @@ import java.net.URL;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
 
@@ -32,29 +31,16 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 
 	public static void main(String[] args) {
 		CityWalkServiceClient client = new CityWalkServiceClient();
-		log.debug(client.getActivityLogs("ayaki"));
 	}
 
 	@Override
-	public boolean login(String userId, String groupId) {
-		return citywalkService.login(userId, groupId);
+	public boolean login(String checkpointGroupId, String userId, String groupId) {
+		return citywalkService.login(checkpointGroupId, userId, groupId);
 	}
 
 	@Override
 	public RewardJson addActivity(ActivityJson activity) {
 		return citywalkService.addActivity(activity);
-	}
-
-	@Override
-	public ActivityLogJson[] getActivityLogs(String userId) {
-		return citywalkService.getActivityLogs(userId);
-	}
-
-	@Override
-	public ActivityLogJson[] getNewActivityLogsOrderById(String userId,
-			long latestActivityId) {
-		return citywalkService.getNewActivityLogsOrderById(userId,
-				latestActivityId);
 	}
 
 	public <T> T create(Class<T> clazz, String serviceName) {

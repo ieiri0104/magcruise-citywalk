@@ -1,6 +1,7 @@
 /* Consntants */
 var KEY_CITY_WALK_DATA = "city_walk_data";
 var KEY_USER_ID = "user_id";
+var KEY_CHECKPOINT_GROUP_ID = "checkpoint_group_id";
 /** *********** */
 
 $(function() {
@@ -137,6 +138,14 @@ function setUserId(val) {
 function getUserId() {
 	return window.sessionStorage.getItem(KEY_USER_ID);
 }
+
+function setCheckpointGroupId(val) {
+	window.sessionStorage.setItem(KEY_CHECKPOINT_GROUP_ID, val);
+}
+function getCheckpointGroupId() {
+	return window.sessionStorage.getItem(KEY_CHECKPOINT_GROUP_ID);
+}
+
 
 /* Geo */
 function floatFormat(number, n) {

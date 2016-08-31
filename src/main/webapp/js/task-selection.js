@@ -46,6 +46,7 @@ function addActivity(task, indexes) {
 		lat		: lat,
 		lon		: lon,
 		userId	: getUserId(),
+		checkpointGroupId: getCheckpointGroupId(),
 		taskId	: task.id,
 		taskType: task.taskType,
 		score	: (isCorrect) ? task.point : 0,

@@ -13,6 +13,7 @@ public class ActivityJson {
 	private long id;
 	private String userId;
 
+	private String checkpointGroupId;
 	private String checkpointId;
 	private double lat;
 	private double lon;
@@ -32,6 +33,7 @@ public class ActivityJson {
 
 	public ActivityJson(Activity activity) {
 		this.id = activity.getId();
+		this.checkpointGroupId = activity.getCheckpointGroupId();
 		this.userId = activity.getUserId();
 		this.checkpointId = activity.getCheckpointId();
 		this.lat = activity.getLat();
@@ -123,6 +125,14 @@ public class ActivityJson {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public String getCheckpointGroupId() {
+		return checkpointGroupId;
+	}
+
+	public void setCheckpointGroupId(String checkpointGroupId) {
+		this.checkpointGroupId = checkpointGroupId;
 	}
 
 }

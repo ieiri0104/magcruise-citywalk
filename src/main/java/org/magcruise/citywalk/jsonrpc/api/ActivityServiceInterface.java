@@ -1,7 +1,6 @@
 package org.magcruise.citywalk.jsonrpc.api;
 
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 
 import jp.go.nict.langrid.commons.rpc.intf.Parameter;
@@ -12,12 +11,6 @@ public interface ActivityServiceInterface {
 			@Parameter(sample = "{\"userId\": \"ayaki\", " + "\"checkpointId\": \"1\", "
 					+ "\"taskId\": \"1\", " + "\"score\": 9.0, " + "\"inputs\": "
 					+ "{\"value\":\"1\"}}") ActivityJson json);
-
-	ActivityLogJson[] getActivityLogs(@Parameter(sample = "Yuya Ieiri") String userId);
-
-	ActivityLogJson[] getNewActivityLogsOrderById(
-			@Parameter(sample = "Yuya Ieiri") String userId,
-			@Parameter(sample = "1") long latestActivityId);
 
 	String uploadImage(
 			@Parameter(sample = "ayaki") String userId,

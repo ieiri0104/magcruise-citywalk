@@ -3,13 +3,11 @@ package org.magcruise.citywalk.jsonrpc.impl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.conv.InitialDataFactory;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
 import org.magcruise.citywalk.model.relation.BadgesTable;
@@ -22,7 +20,6 @@ import org.magcruise.citywalk.model.row.Badge;
 import org.magcruise.citywalk.model.row.SubmittedActivity;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
-import org.magcruise.citywalk.websocket.EventPublisher;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
 import org.nkjmlab.util.json.JsonUtils;
@@ -37,7 +34,7 @@ public class CityWalkService extends AbstractCityWalkService
 	private TasksTable tasks = new TasksTable();
 
 	@Override
-	public boolean login(String userId, String groupId) {
+	public boolean login(String chekipointGroupId, String userId, String groupId) {
 		CityWalkSession session = getSession();
 		users.merge(new User(userId, groupId));
 		if (session.isLogined()) {
@@ -51,22 +48,18 @@ public class CityWalkService extends AbstractCityWalkService
 				log.debug("groupId is changed from {} to {}", session.getGroupId(), groupId);
 				session.setGroupId(groupId);
 			}
-
-			EventPublisher.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		} else {
 			log.debug("create new session for {}", userId);
 			session.setMaxInactiveInterval(10 * 60 * 60);
 			session.setUserId(userId);
 			session.setGroupId(groupId);
-			EventPublisher.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		}
 	}
 
 	@Override
 	public RewardJson addActivity(ActivityJson json) {
-		EventPublisher.offerEvent(json.getUserId(), json);
 		SubmittedActivity a = new SubmittedActivity(json);
 		submittedActivities.insert(a);
 
@@ -76,8 +69,11 @@ public class CityWalkService extends AbstractCityWalkService
 	}
 
 	private void verifyActivity(Activity a) {
-		if (!verifiedActivities.contains(a.getUserId(), a.getCheckpointId(), a.getTaskId())) {
-			verifiedActivities.insert(new VerifiedActivity(a));
+		if (!verifiedActivities.contains(a.getCheckpointGroupId(), a.getUserId(),
+				a.getCheckpointId(), a.getTaskId())) {
+			VerifiedActivity va = new VerifiedActivity(a);
+			verifiedActivities.insert(va);
+			log.info("add verified activity={}", va);
 		}
 
 	}
@@ -115,22 +111,6 @@ public class CityWalkService extends AbstractCityWalkService
 		}
 
 		return result;
-	}
-
-	@Override
-	public ActivityLogJson[] getActivityLogs(String userId) {
-		return verifiedActivities.getActivities(userId).stream()
-				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
-				.collect(Collectors.toList()).toArray(new ActivityLogJson[0]);
-	}
-
-	@Override
-	public ActivityLogJson[] getNewActivityLogsOrderById(String userId,
-			long latestActivityId) {
-		return verifiedActivities.getNewActivitiesOrderById(userId, latestActivityId).stream()
-				.map(a -> new ActivityLogJson(a, tasks.isCheckin(a.getTaskId())))
-				.collect(Collectors.toList())
-				.toArray(new ActivityLogJson[0]);
 	}
 
 	@Override

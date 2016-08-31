@@ -1,12 +1,9 @@
 package org.magcruise.citywalk.srv;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
-import org.magcruise.citywalk.model.json.ActivityLogJson;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
 
 public class CityWalkServiceTest {
@@ -19,12 +16,10 @@ public class CityWalkServiceTest {
 	public void test() {
 		client.addActivity(
 				new ActivityJson(
-						new VerifiedActivity("ayaki", "cafeteria", 35.0, 138.2, "cafeteria-selection", 2.5,
+						new VerifiedActivity("waseda", "ayaki", "cafeteria", 35.0, 138.2,
+								"cafeteria-selection", 2.5,
 								new SelectionInput("10"))));
-		ActivityLogJson[] as = client.getActivityLogs("ayaki");
-		log.debug(Arrays.asList(as));
-		log.debug(Arrays.asList(client.getNewActivityLogsOrderById("ayaki", 3)));
-		log.debug(client.login("ayaki", "waseda_user"));
+		log.debug(client.login("waseda", "ayaki", "waseda_user"));
 	}
 
 }

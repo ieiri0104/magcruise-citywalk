@@ -72,6 +72,10 @@ public class ApplicationInitializer implements ServletContextListener {
 
 		new UserAccountsTable().createTableIfNotExists();
 		new BadgesTable().createTableIfNotExists();
+
+		new VerifiedActivitiesTable().dropTableIfExists();
+		new SubmittedActivitiesTable().dropTableIfExists();
+
 		new VerifiedActivitiesTable().createTableIfNotExists();
 		new SubmittedActivitiesTable().createTableIfNotExists();
 		Arrays.stream(new File(event.getServletContext().getRealPath("json/checkpoints-and-tasks/"))

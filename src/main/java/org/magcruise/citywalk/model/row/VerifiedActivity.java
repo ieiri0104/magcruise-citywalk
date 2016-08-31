@@ -11,13 +11,14 @@ import net.sf.persist.annotations.Table;
 public class VerifiedActivity extends Activity {
 
 	public VerifiedActivity(Activity activity) {
-		this(activity.getUserId(), activity.getCheckpointId(), activity.getLat(), activity.getLon(),
-				activity.getTaskId(), activity.getScore(), activity.getInputObject());
+		this(activity.getCheckpointGroupId(), activity.getUserId(), activity.getCheckpointId(),
+				activity.getLat(), activity.getLon(), activity.getTaskId(), activity.getScore(),
+				activity.getInputObject());
 	}
 
-	public VerifiedActivity(String userId, String checkpointId, double lat, double lon,
-			String taskId, double score, Input input) {
-		super(userId, checkpointId, lat, lon, taskId, score, input);
+	public VerifiedActivity(String checkpointGroupId, String userId, String checkpointId,
+			double lat, double lon, String taskId, double score, Input input) {
+		super(checkpointGroupId, userId, checkpointId, lat, lon, taskId, score, input);
 	}
 
 	public VerifiedActivity(ActivityJson json) {

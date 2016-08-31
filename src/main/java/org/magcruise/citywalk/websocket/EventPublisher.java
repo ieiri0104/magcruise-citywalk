@@ -1,11 +1,8 @@
 package org.magcruise.citywalk.websocket;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -21,42 +18,32 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.apache.logging.log4j.Logger;
-import org.magcruise.citywalk.model.row.VerifiedActivity;
+import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
+import org.magcruise.citywalk.model.row.Activity;
 import org.nkjmlab.util.log4j.ServletLogManager;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
-@ServerEndpoint("/websocket/events/{userId}")
+@ServerEndpoint("/websocket/activity/{checkpointGroupId}/{checkpointId}/{userId}")
 public class EventPublisher {
 
 	protected static Logger log = ServletLogManager.getLogger();
 
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
-	private static ScheduledExecutorService pool = Executors
-			.newScheduledThreadPool(20);
+	private static ScheduledExecutorService pool = Executors.newScheduledThreadPool(20);
 
-	private static Map<String, Long> latestActivityId = new ConcurrentHashMap<>();
-
-	private static Map<String, BlockingQueue<Object>> events = new ConcurrentHashMap<>();
-
-	public static void offerEvent(String userId, Object event) {
-		getQueue(userId).offer(event);
-	}
-
-	private static BlockingQueue<Object> getQueue(String userId) {
-		events.putIfAbsent(userId, new ArrayBlockingQueue<>(100));
-		return events.get(userId);
-	}
+	/** Map<userId, activityId> **/
+	private static Map<String, Long> latestReadActivityIds = new ConcurrentHashMap<>();
 
 	@OnOpen
 	public synchronized void onOpen(@PathParam("userId") String userId,
-			Session session) {
+			@PathParam("checkpointGroupId") String checkpointGroupId,
+			@PathParam("checkpointId") String checkpointId, Session session) {
 
 		if (workers.get(session.getId()) != null) {
-			finlizeSession(session);
+			log.warn("session {} has been already registered.", session.getId());
 			return;
 		}
-
 		Basic b = session.getBasicRemote();
 
 		ScheduledFuture<?> f = pool.scheduleWithFixedDelay(() -> {
@@ -64,20 +51,11 @@ public class EventPublisher {
 				if (Thread.interrupted()) {
 					return;
 				}
-				BlockingQueue<Object> queue = getQueue(userId);
-				synchronized (queue) {
-					List<Object> objs = new ArrayList<>();
-					queue.drainTo(objs);
-					b.sendText(JSON.encode(objs));
+				List<Activity> events = readEvents(userId, checkpointGroupId, checkpointId);
+				if (events.size() == 0) {
+					return;
 				}
-
-				// Activity[] acts = new CityWalkService()
-				// .getNewActivitiesOrderById(userId,
-				// getLatestActivityId(userId));
-				// if (acts.length > 0) {
-				// registerLatestActivityId(userId, acts);
-				// b.sendText(JSON.encode(acts));
-				// }
+				b.sendText(JSON.encode(events));
 			} catch (Exception e) {
 				log.error(e, e);
 			}
@@ -86,21 +64,27 @@ public class EventPublisher {
 		workers.put(session.getId(), f);
 	}
 
-	protected void registerLatestActivityId(String userId, VerifiedActivity[] acts) {
-		latestActivityId.put(userId, acts[acts.length - 1].getId());
+	private List<Activity> readEvents(String userId, String checkpointGroupId,
+			String checkpointId) {
+		long readId = getLatestReadId(userId);
+		List<Activity> result = new VerifiedActivitiesTable().getNewActivitiesOrderById(
+				checkpointGroupId, checkpointId, readId);
+		if (result.size() == 0) {
+			return result;
+		}
+		latestReadActivityIds.put(userId, result.get(result.size() - 1).getId());
+		return result;
 	}
 
-	protected long getLatestActivityId(String userId) {
-		latestActivityId.putIfAbsent(userId, -1L);
-		return latestActivityId.get(userId);
+	private long getLatestReadId(String userId) {
+		latestReadActivityIds.putIfAbsent(userId, -1L);
+		return latestReadActivityIds.get(userId);
 	}
 
 	@OnClose
 	public synchronized void onClose(@PathParam("userId") String userId,
 			Session session) {
-
 		finlizeSession(session);
-
 	}
 
 	private void finlizeSession(Session session) {

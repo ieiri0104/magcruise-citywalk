@@ -10,11 +10,12 @@
 	$(function() {
 		$(".city a").click(
 				function() {
+					var group_id = $(this).attr("id");
 					var data = new JsonRpcClient(new JsonRpcRequest(
-							getBaseUrl(), "getInitialData", [ $(this)
-									.attr("id") ], function(data) {
+							getBaseUrl(), "getInitialData", [ group_id ],
+							function(data) {
 								saveCityWalkData(data.result);
-								location.href = "login.html";
+								location.href = "login.html" + "#" + group_id;
 							})).rpc();
 				});
 	});
