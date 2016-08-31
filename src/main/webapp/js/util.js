@@ -34,6 +34,14 @@ function getBaseUrl() {
 	return urlPrefix + "CityWalkService";
 }
 
+function getActivityPublisherUrl() {
+	var u = parseUri(document.URL);
+	var urlPrefix = "ws://" + u.authority + "/"
+			+ u.directory.split("/")[1] + "/";
+	return urlPrefix + "websocket/activity";
+}
+
+
 function getCheckinURL(checkpoint) {
 	var suffix = "";
 	switch (checkpoint.checkin.taskType) {
@@ -151,4 +159,16 @@ function getCheckpointGroupId() {
 function floatFormat(number, n) {
 	var _pow = Math.pow(10, n);
 	return Math.round(number * _pow) / _pow;
+}
+
+function toFormatedDate(milliseconds){
+	  function padding(str) {
+	  return ('0' + str).slice(-2);
+	  }
+
+	  var date = new Date(milliseconds);
+	  var str = [date.getFullYear(), padding(date.getMonth() + 1), padding(date.getDate())].join('-');
+	  str += ' ';
+	  str += [padding(date.getHours()), padding(date.getMinutes()), padding(date.getSeconds())].join(':');
+	  return "[" + str + "] ";
 }

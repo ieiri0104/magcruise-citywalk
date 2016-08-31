@@ -32,7 +32,7 @@ public class EventPublisher {
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
 	private static ScheduledExecutorService pool = Executors.newScheduledThreadPool(20);
 
-	/** Map<userId, activityId> **/
+	/** Map<Session.id, activityId> **/
 	private static Map<String, Long> latestReadActivityIds = new ConcurrentHashMap<>();
 
 	@OnOpen
@@ -51,7 +51,8 @@ public class EventPublisher {
 				if (Thread.interrupted()) {
 					return;
 				}
-				List<Activity> events = readEvents(userId, checkpointGroupId, checkpointId);
+				List<Activity> events = readEvents(session.getId(), checkpointGroupId,
+						checkpointId);
 				if (events.size() == 0) {
 					return;
 				}
@@ -64,15 +65,15 @@ public class EventPublisher {
 		workers.put(session.getId(), f);
 	}
 
-	private List<Activity> readEvents(String userId, String checkpointGroupId,
+	private List<Activity> readEvents(String sessionId, String checkpointGroupId,
 			String checkpointId) {
-		long readId = getLatestReadId(userId);
+		long readId = getLatestReadId(sessionId);
 		List<Activity> result = new VerifiedActivitiesTable().getNewActivitiesOrderById(
 				checkpointGroupId, checkpointId, readId);
 		if (result.size() == 0) {
 			return result;
 		}
-		latestReadActivityIds.put(userId, result.get(result.size() - 1).getId());
+		latestReadActivityIds.put(sessionId, result.get(result.size() - 1).getId());
 		return result;
 	}
 
@@ -104,7 +105,7 @@ public class EventPublisher {
 	@OnError
 	public void onError(Session session, Throwable cause) {
 		finlizeSession(session);
-		log.error(cause, cause);
+		log.warn(cause.getMessage());
 	}
 
 }

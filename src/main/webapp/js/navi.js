@@ -12,6 +12,8 @@ $(function() {
 	var nextBtnText = "",
 		nextBtnHref = "";
 
+	$("#activity-title").text(checkpoint.name+"でのアクティビティ");
+
 	// チェックインorタスク
 	switch (checkpoint.checkin.taskType) {
 	case TaskType.Photo:
@@ -35,7 +37,26 @@ $(function() {
 	defaultOrientation = (screen.width > screen.height) ? "landscape" : "portrait";
 	// 電子コンパスイベントの取得
 	window.addEventListener("deviceorientation", onHeadingChange);
+	getEventsByWebsocket();
+
 });
+
+function getEventsByWebsocket() {
+	var wsUrl = getActivityPublisherUrl()+"/"+getCheckpointGroupId()+"/"+checkpoint.id+"/"+getUserId();
+	var connection = new WebSocket(wsUrl);
+	connection.onmessage = function(e) {
+		var messages = JSON.parse(e.data);
+		for (var i = 0; i < messages.length; i++) {
+			var a = messages[i];
+			$('#notification').append($('<li>').text(toFormatedDate(a.created)+" "+a.userId+"さんがチェックインしました．"));
+		}
+	};
+	return {
+		abort : function() {
+			connection.close();
+		}
+	};
+}
 
 function initMap() {
 	var center = {lat: checkpoint.lat, lng: checkpoint.lon};
