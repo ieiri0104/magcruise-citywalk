@@ -68,7 +68,7 @@ public class CityWalkViewService {
 			default:
 				CityWalkSession s = getSession(request);
 				if (s.isLogined()) {
-					return new Viewable("/views/checkpoints.html", s.getUser());
+					return new Viewable("/views/" + pageName + ".html");
 				}
 				return new Viewable("/views/index.html");
 			}
