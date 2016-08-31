@@ -48,7 +48,12 @@ function getEventsByWebsocket() {
 		var messages = JSON.parse(e.data);
 		for (var i = 0; i < messages.length; i++) {
 			var a = messages[i];
-			$('#notification').append($('<li>').text(toFormatedDate(a.created)+" "+a.userId+"さんがチェックインしました．"));
+			var elem = $('<div class="item">' + 
+							'<span class="time">' + toFormattedHourAndMinute(a.created) + '</span>' +
+							'<span class="name">' + a.userId + '</span>' +
+							'さんがチェックインしました。' +
+						'</div>');
+			$('#notification').append(elem);
 		}
 	};
 	return {
