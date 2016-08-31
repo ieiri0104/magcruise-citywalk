@@ -161,14 +161,23 @@ function floatFormat(number, n) {
 	return Math.round(number * _pow) / _pow;
 }
 
-function toFormatedDate(milliseconds){
-	  function padding(str) {
-	  return ('0' + str).slice(-2);
-	  }
+function toFormattedDate(milliseconds){
+	function padding(str) {
+		return ('0' + str).slice(-2);
+	}
 
-	  var date = new Date(milliseconds);
-	  var str = [date.getFullYear(), padding(date.getMonth() + 1), padding(date.getDate())].join('-');
-	  str += ' ';
-	  str += [padding(date.getHours()), padding(date.getMinutes()), padding(date.getSeconds())].join(':');
-	  return "[" + str + "] ";
+	var date = new Date(milliseconds);
+	var str = [date.getFullYear(), padding(date.getMonth() + 1), padding(date.getDate())].join('-');
+	str += ' ';
+	str += [padding(date.getHours()), padding(date.getMinutes()), padding(date.getSeconds())].join(':');
+	return "[" + str + "] ";
+}
+
+function toFormattedHourAndMinute(milliseconds){
+	function padding(str) {
+		return ('0' + str).slice(-2);
+	}
+	
+	var date = new Date(milliseconds);
+	return [padding(date.getHours()), padding(date.getMinutes())].join(':');
 }
