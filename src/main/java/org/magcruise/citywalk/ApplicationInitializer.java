@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.jsonrpc.servlet;
+package org.magcruise.citywalk;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -9,6 +9,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.gdata.GoogleSpreadsheetData;
 import org.magcruise.citywalk.model.json.db.CheckpointJson;
@@ -30,12 +31,12 @@ import org.nkjmlab.util.db.H2ClientWithConnectionPool;
 import org.nkjmlab.util.db.H2ConfigFactory;
 import org.nkjmlab.util.db.H2Server;
 import org.nkjmlab.util.io.FileUtils;
-import org.nkjmlab.util.log4j.ServertLogManager;
-import org.nkjmlab.util.log4j.ServletLogger;
+import org.nkjmlab.util.log4j.ServletLogManager;
 
 @WebListener
 public class ApplicationInitializer implements ServletContextListener {
-	protected ServletLogger log = ServertLogManager.getLogger();
+
+	protected Logger log = ServletLogManager.getLogger();
 
 	protected static H2ClientWithConnectionPool client;
 
@@ -63,6 +64,7 @@ public class ApplicationInitializer implements ServletContextListener {
 	 * @param event
 	 */
 	private void initializeDatabase(ServletContextEvent event) {
+
 		new CheckpointsTable().dropTableIfExists();
 		new TasksTable().dropTableIfExists();
 		new CheckpointsTable().createTableIfNotExists();

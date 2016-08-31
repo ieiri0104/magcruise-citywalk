@@ -20,14 +20,17 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
+import org.nkjmlab.util.log4j.ServletLogManager;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
-@ServerEndpoint("/websocket/newEvents/{userId}")
-public class EventManager {
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
+@ServerEndpoint("/websocket/events/{userId}")
+public class EventPublisher {
+
+	protected static Logger log = ServletLogManager.getLogger();
+
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
 	private static ScheduledExecutorService pool = Executors
 			.newScheduledThreadPool(20);
@@ -40,7 +43,7 @@ public class EventManager {
 		getQueue(userId).offer(event);
 	}
 
-	private static synchronized BlockingQueue<Object> getQueue(String userId) {
+	private static BlockingQueue<Object> getQueue(String userId) {
 		events.putIfAbsent(userId, new ArrayBlockingQueue<>(100));
 		return events.get(userId);
 	}
@@ -75,8 +78,6 @@ public class EventManager {
 				// registerLatestActivityId(userId, acts);
 				// b.sendText(JSON.encode(acts));
 				// }
-			} catch (IllegalStateException e) {
-				log.error(e, e);
 			} catch (Exception e) {
 				log.error(e, e);
 			}

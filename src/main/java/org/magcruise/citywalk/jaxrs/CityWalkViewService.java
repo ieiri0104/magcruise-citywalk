@@ -11,15 +11,17 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.server.mvc.Viewable;
 import org.magcruise.citywalk.jsonrpc.impl.CityWalkSession;
 import org.magcruise.citywalk.model.row.User;
+import org.nkjmlab.util.log4j.ServletLogManager;
 
 @Path("/")
 public class CityWalkViewService {
 
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
+	protected static Logger log = ServletLogManager.getLogger();
+
 	@Context
 	private HttpHeaders header;
 

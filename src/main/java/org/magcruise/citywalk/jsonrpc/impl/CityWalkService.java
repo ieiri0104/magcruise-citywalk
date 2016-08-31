@@ -22,7 +22,7 @@ import org.magcruise.citywalk.model.row.Badge;
 import org.magcruise.citywalk.model.row.SubmittedActivity;
 import org.magcruise.citywalk.model.row.User;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
-import org.magcruise.citywalk.websocket.EventManager;
+import org.magcruise.citywalk.websocket.EventPublisher;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
 import org.nkjmlab.util.json.JsonUtils;
@@ -52,21 +52,21 @@ public class CityWalkService extends AbstractCityWalkService
 				session.setGroupId(groupId);
 			}
 
-			EventManager.offerEvent(userId, userId + "@" + groupId + " is logined.");
+			EventPublisher.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		} else {
 			log.debug("create new session for {}", userId);
 			session.setMaxInactiveInterval(10 * 60 * 60);
 			session.setUserId(userId);
 			session.setGroupId(groupId);
-			EventManager.offerEvent(userId, userId + "@" + groupId + " is logined.");
+			EventPublisher.offerEvent(userId, userId + "@" + groupId + " is logined.");
 			return true;
 		}
 	}
 
 	@Override
 	public RewardJson addActivity(ActivityJson json) {
-		EventManager.offerEvent(json.getUserId(), json);
+		EventPublisher.offerEvent(json.getUserId(), json);
 		SubmittedActivity a = new SubmittedActivity(json);
 		submittedActivities.insert(a);
 

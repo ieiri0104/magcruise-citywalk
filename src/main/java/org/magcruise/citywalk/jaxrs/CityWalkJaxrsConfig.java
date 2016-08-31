@@ -5,6 +5,6 @@ import javax.ws.rs.ApplicationPath;
 import org.magcruise.citywalk.jaxrs.server.ApplicationConfig;
 
 @ApplicationPath("/views")
-public class CityWalkApplicationConfig extends ApplicationConfig {
+public class CityWalkJaxrsConfig extends ApplicationConfig {
 
 }

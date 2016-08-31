@@ -17,8 +17,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.server.mvc.Viewable;
 import org.glassfish.jersey.server.mvc.spi.AbstractTemplateProcessor;
+import org.nkjmlab.util.log4j.ServletLogManager;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -27,8 +29,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 public class ThymeleafTemplateProcessor
 		extends AbstractTemplateProcessor<String> implements Serializable {
 
-	protected static org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager
-			.getLogger();
+	protected static Logger log = ServletLogManager.getLogger();
 
 	@Context
 	private HttpServletRequest request;
