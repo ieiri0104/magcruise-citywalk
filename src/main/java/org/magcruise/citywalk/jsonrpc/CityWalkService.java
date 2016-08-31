@@ -1,10 +1,10 @@
-package org.magcruise.citywalk.jsonrpc.impl;
+package org.magcruise.citywalk.jsonrpc;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
+import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.conv.InitialDataFactory;
 import org.magcruise.citywalk.model.json.ActivityJson;
@@ -23,9 +23,13 @@ import org.magcruise.citywalk.model.row.VerifiedActivity;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
 import org.nkjmlab.util.json.JsonUtils;
+import org.nkjmlab.util.log4j.ServletLogManager;
 
-public class CityWalkService extends AbstractCityWalkService
-		implements CityWalkServiceInterface {
+import jp.go.nict.langrid.commons.ws.ServletServiceContext;
+import jp.go.nict.langrid.servicecontainer.service.AbstractService;
+
+public class CityWalkService extends AbstractService implements CityWalkServiceInterface {
+	protected static Logger log = ServletLogManager.getLogger();
 
 	private VerifiedActivitiesTable verifiedActivities = new VerifiedActivitiesTable();
 	private SubmittedActivitiesTable submittedActivities = new SubmittedActivitiesTable();
@@ -145,6 +149,11 @@ public class CityWalkService extends AbstractCityWalkService
 	@Override
 	public boolean validateCheckpointsAndTasksJson(String json) {
 		return CheckpointsAndTasksFactory.validate(json);
+	}
+
+	protected CityWalkSession getSession() {
+		return new CityWalkSession(
+				((ServletServiceContext) getServiceContext()).getRequest());
 	}
 
 }

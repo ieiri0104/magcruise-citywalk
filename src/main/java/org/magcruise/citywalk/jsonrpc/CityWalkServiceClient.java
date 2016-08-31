@@ -1,9 +1,8 @@
-package org.magcruise.citywalk.jsonrpc.client;
+package org.magcruise.citywalk.jsonrpc;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.magcruise.citywalk.jsonrpc.api.CityWalkServiceInterface;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;

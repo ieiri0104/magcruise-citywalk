@@ -1,9 +1,7 @@
-package org.magcruise.citywalk.jsonrpc.servlet;
+package org.magcruise.citywalk.jsonrpc;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
-
-import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
 
 import jp.go.nict.langrid.servicecontainer.handler.annotation.Service;
 import jp.go.nict.langrid.servicecontainer.handler.annotation.Services;

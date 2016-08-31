@@ -1,7 +1,7 @@
 package org.magcruise.citywalk.srv;
 
 import org.junit.Test;
-import org.magcruise.citywalk.jsonrpc.client.CityWalkServiceClient;
+import org.magcruise.citywalk.jsonrpc.CityWalkServiceClient;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.row.VerifiedActivity;

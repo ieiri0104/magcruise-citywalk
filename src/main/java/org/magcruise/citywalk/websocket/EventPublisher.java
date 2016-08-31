@@ -92,7 +92,7 @@ public class EventPublisher {
 		try {
 			session.close();
 		} catch (IOException e) {
-			log.error(e, e);
+			log.warn(e.getMessage());
 		}
 
 		ScheduledFuture<?> f = workers.remove(session.getId());

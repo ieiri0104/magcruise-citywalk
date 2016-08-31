@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.magcruise.citywalk.jsonrpc.impl.CityWalkService;
+import org.magcruise.citywalk.jsonrpc.CityWalkService;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
 import org.magcruise.citywalk.model.relation.TasksTable;

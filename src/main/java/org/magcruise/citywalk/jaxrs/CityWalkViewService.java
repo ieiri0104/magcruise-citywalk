@@ -13,8 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.server.mvc.Viewable;
-import org.magcruise.citywalk.jsonrpc.impl.CityWalkSession;
-import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.jsonrpc.CityWalkSession;
 import org.nkjmlab.util.log4j.ServletLogManager;
 
 @Path("/")
@@ -57,34 +56,32 @@ public class CityWalkViewService {
 	@Path("/{pageName}.html")
 	@Produces(MediaType.TEXT_HTML)
 	public Viewable getHtml(@PathParam("pageName") String pageName) {
-		try {
-			return new Viewable("/views/" + pageName + ".html");
-		} catch (Exception e) {
-			log.error(e, e);
-			throw new RuntimeException(e);
-		}
+		return getPage(pageName);
 	}
 
-	@GET
-	@Path("/checkpoints.html")
-	@Produces(MediaType.TEXT_HTML)
-	public Viewable getCheckpoints() {
+	private Viewable getPage(String pageName) {
 		try {
-			CityWalkSession s = getSession(request);
-			if (s.isLogined()) {
-				return new Viewable("/views/checkpoints.html", s.getUser());
+			switch (pageName) {
+			case "login":
+			case "index":
+				return new Viewable("/views/" + pageName + ".html");
+			default:
+				CityWalkSession s = getSession(request);
+				if (s.isLogined()) {
+					return new Viewable("/views/checkpoints.html", s.getUser());
+				}
+				return new Viewable("/views/index.html");
 			}
 
-			return new Viewable("/views/checkpoints.html",
-					new User("ieiri", "waseda"));
 		} catch (Exception e) {
 			log.error(e, e);
 			throw new RuntimeException(e);
 		}
+
 	}
 
-	private CityWalkSession getSession(HttpServletRequest request2) {
-		return new CityWalkSession(request2);
+	private CityWalkSession getSession(HttpServletRequest request) {
+		return new CityWalkSession(request);
 	}
 
 }

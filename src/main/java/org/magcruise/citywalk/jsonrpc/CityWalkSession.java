@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.jsonrpc.impl;
+package org.magcruise.citywalk.jsonrpc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
