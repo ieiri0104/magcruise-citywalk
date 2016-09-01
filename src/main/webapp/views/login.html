@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="../css/login.css" />
 <title>ログイン</title>
 </head>
+<head th:remove="all">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<script src="../js/citywalk.js"></script>
+</head>
 <body>
 	<div class="container">
 		<div class="row" th:fragment="top-menu">
@@ -17,23 +23,26 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="margin-container">
-				<div class="col-sm-12" style="margin-top:10px;">
+				<div class="col-sm-12" style="margin-top: 10px;">
 					<form>
 						<div class="form-group">
-							<label class="description">ユーザ名</label>
-							<input class="form-control" type="text" id="user-id" name="user-id" size="20" value="Yuya Ieiri" pattern=".{3,}" required />
+							<label class="description">ユーザ名</label> <input
+								class="form-control" type="text" id="user-id" name="user-id"
+								size="20" value="Yuya Ieiri" pattern=".{3,}" required />
 						</div>
 						<div class="form-group">
-							<label class="description">グループ名</label>
-							<input class="form-control" type="text" id="group-id" name="group-id" size="20" value="hisiyamalab" />
+							<label class="description">グループ名</label> <input
+								class="form-control" type="text" id="group-id" name="group-id"
+								size="20" value="hisiyamalab" />
 						</div>
 						<div class="btn-group btn-group-justified submit" role="group">
 							<a class="btn btn-primary" role="button" id="login-btn">ログイン</a>
 						</div>
-						<input id="submit-for-validation" type="submit" formmethod="POST" style="display: none;">
+						<input id="submit-for-validation" type="submit" formmethod="POST"
+							style="display: none;">
 					</form>
 				</div>
 			</div>

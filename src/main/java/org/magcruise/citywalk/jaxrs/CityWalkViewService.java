@@ -66,7 +66,7 @@ public class CityWalkViewService {
 			case "index":
 				return new Viewable("/views/" + pageName + ".html");
 			default:
-				CityWalkSession s = getSession(request);
+				CityWalkSession s = CityWalkSession.create(request);
 				if (s.isLogined()) {
 					return new Viewable("/views/" + pageName + ".html");
 				}
@@ -78,10 +78,6 @@ public class CityWalkViewService {
 			throw new RuntimeException(e);
 		}
 
-	}
-
-	private CityWalkSession getSession(HttpServletRequest request) {
-		return new CityWalkSession(request);
 	}
 
 }

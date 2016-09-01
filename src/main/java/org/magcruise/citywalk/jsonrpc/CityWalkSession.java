@@ -75,4 +75,8 @@ public class CityWalkSession {
 		session.setAttribute(GROUP_ID, groupId);
 	}
 
+	public static CityWalkSession create(HttpServletRequest request) {
+		return new CityWalkSession(request);
+	}
+
 }
