@@ -17,8 +17,8 @@
 <body>
 	<input id="file-input" name="file-input" type="file" accept="image/*"
 		onchange="handleFiles(this.files)" />
-	<div th:replace="/templates/header.html :: top-menu"></div>
 	<div class="container">
+		<div th:replace="/templates/header.html :: top-menu"></div>
 		<div class="row">
 			<div class="description">左側の写真と同じような写真を撮って下さい。</div>
 		</div>
