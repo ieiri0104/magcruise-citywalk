@@ -2,7 +2,7 @@
 @import "mixins";
 	
 .checkpoint {
-	margin-top: 10px;
+	margin-top: $baseMargin;
 	background: white;
 	border: 1px solid #DDDDDD;
 	box-shadow: 0px 1px 1px 0px rgba(198,198,198,0.50);
