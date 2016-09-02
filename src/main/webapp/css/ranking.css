@@ -1,0 +1,20 @@
+.rank-text {
+  font-size: 20px;
+  color: #38A997; }
+
+.rank-first-img {
+  height: 50px;
+  margin-right: 10px; }
+
+.rank-second-img {
+  height: 40px;
+  margin-right: 20px; }
+
+.rank-third-img {
+  height: 30px;
+  margin-right: 30px; }
+
+.point {
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
