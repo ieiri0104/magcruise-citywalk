@@ -10,7 +10,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import org.apache.logging.log4j.Logger;
-import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
+import org.magcruise.citywalk.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.gdata.GoogleSpreadsheetData;
 import org.magcruise.citywalk.model.json.db.CheckpointJson;
 import org.magcruise.citywalk.model.json.db.CheckpointsAndTasksJson;

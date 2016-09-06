@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.conv;
+package org.magcruise.citywalk.conv;
 
 import java.util.List;
 import java.util.stream.Collectors;

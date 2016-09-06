@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
-import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
-import org.magcruise.citywalk.model.conv.InitialDataFactory;
+import org.magcruise.citywalk.conv.CheckpointsAndTasksFactory;
+import org.magcruise.citywalk.conv.InitialDataFactory;
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.BadgeJson;
 import org.magcruise.citywalk.model.json.RankJson;

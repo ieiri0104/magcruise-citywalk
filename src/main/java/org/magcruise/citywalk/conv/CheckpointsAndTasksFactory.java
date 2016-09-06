@@ -1,4 +1,4 @@
-package org.magcruise.citywalk.model.conv;
+package org.magcruise.citywalk.conv;
 
 import java.io.IOException;
 import java.util.List;
