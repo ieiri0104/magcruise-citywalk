@@ -18,11 +18,11 @@ public class ActivityLogJson {
 	public ActivityLogJson() {
 	}
 
-	public ActivityLogJson(Activity verifiedActivity, boolean checkin) {
-		this.id = verifiedActivity.getId();
-		this.userId = verifiedActivity.getUserId();
-		this.checkpointId = verifiedActivity.getCheckpointId();
-		this.saved = verifiedActivity.getSaved();
+	public ActivityLogJson(Activity activity, boolean checkin) {
+		this.id = activity.getId();
+		this.userId = activity.getUserId();
+		this.checkpointId = activity.getCheckpointId();
+		this.saved = activity.getSaved();
 
 	}
 

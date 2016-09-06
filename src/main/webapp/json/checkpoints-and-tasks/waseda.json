@@ -2,204 +2,178 @@
   "checkpoints": [
     {
       "id":"cafeteria",
-      "name":"食堂",
-      "label":"みんなの食堂",
-      "lat": 35.7062,
-      "lon": 139.707808,
+      "lat": 35.706489,
+      "lon": 139.708019,
+      "name": "大食堂",
+      "label": "お昼は激こみ",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id":"pc-room",
-      "name":"PCルーム",
-      "label":"演習で使うよ",
-      "lat": 35.705538,
-      "lon": 139.7047416,
+      "lat": 35.705672,
+      "lon": 139.705188,
+      "name": "PCルーム",
+      "label": "みんなで課題",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id":"aed-1",
-      "name":"aed-1",
-      "label":"A号館のAED",
-      "lat": 35.70609,
-      "lon": 139.705095,
+      "lat": 35.705517,
+      "lon": 139.706716,
+      "name": "aed1",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id": "aed-2",
-      "name":"aed-2",
-      "label":"B号館のAED",
-      "lat": 35.70602,
-      "lon": 139.70717,
+      "lat": 35.705975,
+      "lon": 139.706664,
+      "name": "aed2",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id": "aed-3",
-      "name":"aed-3",
-      "label":"B号館のAED",
-      "lat": 35.7053833,
-      "lon": 139.706755,
+      "lat": 35.7063,
+      "lon": 139.70827,
+      "name": "aed3",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id": "aed-4",
-      "name":"aed-4",
-      "label":"B号館のAED",
-      "lat": 35.70573,
-      "lon": 139.7070466,
+      "lat": 35.705642,
+      "lon": 139.707068,
+      "name": "aed4",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     },
     {
       "id": "aed-5",
-      "name":"aed-5",
-      "label":"B号館のAED",
-      "lat": 35.70624,
-      "lon": 139.7072,
+      "lat": 35.705621,
+      "lon": 139.705007,
+      "name": "aed5",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     },
     {
-      "id": "sake",
-      "name":"sake",
-      "label":"酒のタスクがあるよ",
-      "lat": 35.7059,
-      "lon": 139.7080833,
+      "id": "aed-6",
+      "lat": 35.706405,
+      "lon": 139.707198,
+      "name": "aed6",
+      "label": "場所を知っておこう",
       "checkpoint_group_ids": ["waseda"]
     }
   ],
   "tasks": [
     {
-      "id":"cafeteria-checkin",
+      "id": "cafeteria-phpto",
       "checkpoint_ids": ["cafeteria"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.PhotoTask",
         "checkin": true,
-        "point": 2.0,
         "label": "表示されている写真と同じ写真を撮って下さい．",
-        "imgSrc": "task/checkin-cafeteria.jpg"
+        "answer": "task/ieiri_photo_00.jpg"
       }
     },
     {
-      "id":"pc-room-checkin",
+      "id": "pc-room-qr",
       "checkpoint_ids": ["pc-room"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_00.jpg"
       }
     },
     {
-      "id":"aed1-checkin",
+      "id": "aed-1-qr",
       "checkpoint_ids": ["aed-1"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_01.jpg"
       }
     },
     {
-      "id":"aed2-checkin",
+      "id": "aed-2-qr",
       "checkpoint_ids": ["aed-2"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_02.jpg"
       }
     },
     {
-      "id":"aed3-checkin",
+      "id": "aed-3-qr",
       "checkpoint_ids": ["aed-3"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_03.jpg"
       }
     },
     {
-      "id":"aed4-checkin",
+      "id": "aed-4-qr",
       "checkpoint_ids": ["aed-4"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_04.jpg"
       }
     },
     {
-      "id":"aed5-checkin",
+      "id": "aed-5-qr",
       "checkpoint_ids": ["aed-5"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_05.jpg"
       }
     },
     {
-      "id":"sake-checkin",
-      "checkpoint_ids": ["sake"],
+      "id": "aed-6-qr",
+      "checkpoint_ids": ["aed-6"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.QrCodeTask",
         "checkin": true,
-        "point": 2.0,
         "label": "QRコードを撮って下さい．",
-        "answerQr": "decodedqr"
+        "answer": "task/ieiri_qr_code_06.jpg"
       }
     },
     {
-      "id":"cafeteria-selection",
+      "id": "cafeteria-selection",
       "checkpoint_ids": ["cafeteria"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SelectionTask",
-        "point": 2.0,
         "label": "次のうち、理工の学食が発祥の地であるメニューはどれ？",
         "selections": ["豚玉丼","チキンおろしだれ", "カツカレー","ポーク焼肉"],
-        "answerIndexes": [1]
+        "answerIndex": 1
       }
     },
     {
-      "id":"pc-room-sort",
+      "id": "pc-room-selection",
       "checkpoint_ids": ["pc-room"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SortTask",
-        "point": 2.0,
         "label": "次の4つの部屋を、座席の多い順に並び替えよ！",
         "selections": ["A","C","E","G"],
-        "answerIndexes": [2,1,3,4]
+        "answerIndex": 2134
       }
     },
     {
-      "id":"aed-selection",
-      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4","aed-5"],
+      "id": "aed-selection",
+      "checkpoint_ids": ["aed-1","aed-2","aed-3","aed-4","aed-5","aed-6"],
       "content":{
         "instanceClass": "org.magcruise.citywalk.model.task.SelectionTask",
-        "point": 2.0,
         "label": "次のうち、AEDの使い方として、間違っているのはどれ？",
         "selections": ["パッドは右胸と左わき腹に貼る","心電図解析中は体に触らない","放電ボタンを押す時は、体から離れる","呼吸が戻ったらパッドを速やかにはずす"],
-        "answerIndexes": [4]
-      }
-    },
-    {
-      "id":"sake-description",
-      "checkpoint_ids": ["sake"],
-      "content":{
-        "instanceClass": "org.magcruise.citywalk.model.task.DescriptionTask",
-        "point": 2.0,
-        "label": "伏見の大手酒造メーカーを一つ挙げて下さい。",
-        "answerTexts": [
-          "宝",
-          "黄桜",
-          "月桂冠",
-          "キンシ正宗"
-        ]
+        "answerIndex": 4
       }
     }
   ]
