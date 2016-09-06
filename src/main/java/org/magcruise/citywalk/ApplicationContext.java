@@ -70,9 +70,7 @@ public class ApplicationContext implements ServletContextListener {
 		new CheckpointsTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
 
-		new UserAccountsTable().dropTableIfExists();
 		new UserAccountsTable().createTableIfNotExists();
-		new BadgesTable().dropTableIfExists();
 		new BadgesTable().createTableIfNotExists();
 
 		new VerifiedActivitiesTable().dropTableIfExists();

@@ -10,7 +10,7 @@ import jp.go.nict.langrid.servicecontainer.handler.annotation.Services;
 		@WebInitParam(name = "dumpRequests", value = "false"),
 		@WebInitParam(name = "additionalResponseHeaders", value = "Access-Control-Allow-Origin: *") })
 @Services({ @Service(name = "CityWalkService", impl = CityWalkService.class) })
-public class CityWalkServiceServlet extends
+public class CityWalkServiceEndpoint extends
 		jp.go.nict.langrid.servicecontainer.handler.jsonrpc.servlet.JsonRpcServlet {
 
 }
