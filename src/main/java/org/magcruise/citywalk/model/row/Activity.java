@@ -6,19 +6,19 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.common.JsonConstructiveObject;
 import org.magcruise.citywalk.model.input.DescriptionInput;
 import org.magcruise.citywalk.model.input.Input;
 import org.magcruise.citywalk.model.input.PhotoInput;
 import org.magcruise.citywalk.model.input.QrCodeInput;
 import org.magcruise.citywalk.model.input.SelectionInput;
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.nkjmlab.util.json.JsonObject;
 
 import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.NoTable;
 
 @NoTable
-public class Activity extends RowModel<Activity> {
+public class Activity {
 
 	private long id;
 	private String userId;
@@ -32,6 +32,7 @@ public class Activity extends RowModel<Activity> {
 	private double score;
 	private Input input;
 	private Date saved = new Timestamp(new Date().getTime());
+	private Date created = new Timestamp(new Date().getTime());
 
 	public Activity() {
 	}
@@ -110,11 +111,11 @@ public class Activity extends RowModel<Activity> {
 	}
 
 	public String getInput() {
-		return input.encodeToJson();
+		return input.toJson();
 	}
 
 	public void setInput(String json) {
-		this.input = JsonConstructiveObject.decodeFromJson(Input.class, json);
+		this.input = JsonObject.decodeFromJson(Input.class, json);
 	}
 
 	@NoColumn
@@ -167,6 +168,14 @@ public class Activity extends RowModel<Activity> {
 
 	public void setCheckpointGroupId(String checkpointGroupId) {
 		this.checkpointGroupId = checkpointGroupId;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

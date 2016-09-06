@@ -1,5 +1,7 @@
 package org.magcruise.citywalk.model.relation;
 
+import static org.magcruise.citywalk.model.relation.ActivitiesTable.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,7 @@ public class VerifiedActivitiesTable extends ActivitiesTable<VerifiedActivity> {
 	public static final String TABLE_NAME = "VERIFIED_ACTIVITIES";
 
 	public VerifiedActivitiesTable() {
-		this.tableName = TABLE_NAME;
+		super(TABLE_NAME);
 	}
 
 	public int getRank(String userId) {

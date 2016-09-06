@@ -12,7 +12,7 @@ import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
 import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
-import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.model.row.UserAccount;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
 import org.magcruise.citywalk.model.task.SelectionTask;
 import org.nkjmlab.util.db.H2Server;
@@ -71,10 +71,10 @@ public class TableModelTest {
 
 		UserAccountsTable users = new UserAccountsTable();
 		users.remakeTable();
-		users.insert(new User("ayaki", "houchimin"));
-		users.insert(new User("ieiri", "waseda-u"));
-		users.insert(new User("reiko", "waseda-u"));
-		users.insert(new User("nkjm", "toho-u"));
+		users.insert(new UserAccount("ayaki", "houchimin"));
+		users.insert(new UserAccount("ieiri", "waseda-u"));
+		users.insert(new UserAccount("reiko", "waseda-u"));
+		users.insert(new UserAccount("nkjm", "toho-u"));
 		log.debug(users.selectAll());
 
 		log.debug(

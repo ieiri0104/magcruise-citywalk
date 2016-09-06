@@ -9,7 +9,7 @@ $(function() {
 					}
 				}
 				var checkpointGroupId = parseUri(location).anchor;
-				var userId = $('#user-id').val();
+				var userId = $('#user-id').val().replace("@","-at-");
 				var groupId = $('#group-id').val();
 				new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "login", [
 						checkpointGroupId, userId, groupId ], function() {

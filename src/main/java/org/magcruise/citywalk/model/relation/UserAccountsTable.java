@@ -1,21 +1,29 @@
 package org.magcruise.citywalk.model.relation;
 
-import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.ApplicationContext;
+import org.magcruise.citywalk.model.row.UserAccount;
+import org.nkjmlab.util.db.Keyword;
+import org.nkjmlab.util.db.RelationalModel;
 
-public class UserAccountsTable extends RelationalModel<User> {
+public class UserAccountsTable extends RelationalModel<UserAccount> {
 
 	public static final String TABLE_NAME = "USER_ACCOUNTS";
 
-	@Override
-	protected String getRelationName() {
-		return TABLE_NAME;
+	public static final String ID = "id";
+	public static final String CREATED = "created";
+	public static final String GROUP_ID = "group_id";
+
+	public UserAccountsTable() {
+		super(TABLE_NAME, ApplicationContext.getDbClient());
+		setAttribute(ID, Keyword.VARCHAR, Keyword.PRIMARY_KEY);
+		setAttribute(CREATED, Keyword.TIMESTAMP_AS_CURRENT_TIMESTAMP);
+		setAttribute(GROUP_ID, Keyword.VARCHAR);
 	}
 
-	@Override
-	protected String getRelationalSchema() {
-		return getRelationName() + "(" + ID + " varchar primary key, " + CREATED
-				+ " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, " + INSTANCE_CLASS
-				+ " varchar, " + GROUP_ID + " varchar)";
+	public boolean exists(String userId) {
+		UserAccount user = new UserAccount();
+		user.setId(userId);
+		return getClient().exists(user);
 	}
 
 }

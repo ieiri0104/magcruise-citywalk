@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.magcruise.citywalk.model.common.JsonConstructiveObject;
 import org.magcruise.citywalk.model.json.db.CheckpointJson;
 import org.magcruise.citywalk.model.json.db.CheckpointsAndTasksJson;
 import org.magcruise.citywalk.model.json.db.TaskJson;
@@ -14,6 +13,7 @@ import org.magcruise.citywalk.model.row.Checkpoint;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.task.TaskContent;
 import org.nkjmlab.util.io.FileUtils;
+import org.nkjmlab.util.json.JsonObject;
 import org.nkjmlab.util.json.JsonUtils;
 
 import net.arnx.jsonic.JSON;
@@ -79,7 +79,7 @@ public class CheckpointsAndTasksFactory {
 		List<Task> tasks = json.stream().map(task -> {
 			try {
 				@SuppressWarnings("unchecked")
-				TaskContent content = JsonConstructiveObject.decodeFromJson(
+				TaskContent content = JsonObject.decodeFromJson(
 						(Class<? extends TaskContent>) Class
 								.forName(task.getContent().getInstanceClass()),
 						JSON.encode(task.getContent()));

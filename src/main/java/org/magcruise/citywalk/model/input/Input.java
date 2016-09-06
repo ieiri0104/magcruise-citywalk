@@ -1,7 +1,7 @@
 package org.magcruise.citywalk.model.input;
 
-import org.magcruise.citywalk.model.common.JsonConstructiveObject;
+import org.nkjmlab.util.json.JsonObject;
 
-public class Input extends JsonConstructiveObject<Input> {
+public class Input extends JsonObject<Input> {
 
 }

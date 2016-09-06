@@ -31,12 +31,12 @@ import org.nkjmlab.util.db.H2ClientWithConnectionPool;
 import org.nkjmlab.util.db.H2ConfigFactory;
 import org.nkjmlab.util.db.H2Server;
 import org.nkjmlab.util.io.FileUtils;
-import org.nkjmlab.util.log4j.ServletLogManager;
+import org.nkjmlab.util.log4j.LogManager;
 
 @WebListener
-public class ApplicationInitializer implements ServletContextListener {
+public class ApplicationContext implements ServletContextListener {
 
-	protected Logger log = ServletLogManager.getLogger();
+	protected Logger log = LogManager.getLogger();
 
 	protected static H2ClientWithConnectionPool client;
 
@@ -70,7 +70,9 @@ public class ApplicationInitializer implements ServletContextListener {
 		new CheckpointsTable().createTableIfNotExists();
 		new TasksTable().createTableIfNotExists();
 
+		new UserAccountsTable().dropTableIfExists();
 		new UserAccountsTable().createTableIfNotExists();
+		new BadgesTable().dropTableIfExists();
 		new BadgesTable().createTableIfNotExists();
 
 		new VerifiedActivitiesTable().dropTableIfExists();

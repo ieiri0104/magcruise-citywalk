@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.model.row;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.relation.UserAccountsTable;
@@ -7,16 +10,16 @@ import org.magcruise.citywalk.model.relation.UserAccountsTable;
 import net.sf.persist.annotations.Table;
 
 @Table(name = UserAccountsTable.TABLE_NAME)
-public class User extends RowModel<User> {
+public class UserAccount {
 
-	/** e-mail address, as a general rule. **/
 	private String id;
 	private String groupId;
+	private Date created = new Timestamp(new Date().getTime());
 
-	public User() {
+	public UserAccount() {
 	}
 
-	public User(String userId, String groupId) {
+	public UserAccount(String userId, String groupId) {
 		this.id = userId;
 		this.groupId = groupId;
 	}
@@ -40,6 +43,14 @@ public class User extends RowModel<User> {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

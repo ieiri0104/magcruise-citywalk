@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.model.row;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.relation.BadgesTable;
@@ -8,11 +11,12 @@ import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;
 
 @Table(name = BadgesTable.TABLE_NAME)
-public class Badge extends RowModel<Badge> {
+public class Badge {
 
 	private long id;
 	private String userId;
 	private String badge;
+	private Date created = new Timestamp(new Date().getTime());
 
 	public Badge() {
 	}
@@ -50,6 +54,14 @@ public class Badge extends RowModel<Badge> {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

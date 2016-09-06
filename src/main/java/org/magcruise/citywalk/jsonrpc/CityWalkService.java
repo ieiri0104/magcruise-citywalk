@@ -22,18 +22,19 @@ import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
 import org.magcruise.citywalk.model.row.Activity;
 import org.magcruise.citywalk.model.row.Badge;
 import org.magcruise.citywalk.model.row.SubmittedActivity;
-import org.magcruise.citywalk.model.row.User;
+import org.magcruise.citywalk.model.row.UserAccount;
 import org.magcruise.citywalk.model.row.VerifiedActivity;
 import org.nkjmlab.util.base64.Base64ImageUtils;
 import org.nkjmlab.util.io.FileUtils;
 import org.nkjmlab.util.json.JsonUtils;
-import org.nkjmlab.util.log4j.ServletLogManager;
+import org.nkjmlab.util.log4j.LogManager;
+import org.nkjmlab.webui.common.user.model.UserSession;
 
 import jp.go.nict.langrid.commons.ws.ServletServiceContext;
 import jp.go.nict.langrid.servicecontainer.service.AbstractService;
 
 public class CityWalkService extends AbstractService implements CityWalkServiceInterface {
-	protected static Logger log = ServletLogManager.getLogger();
+	protected static Logger log = LogManager.getLogger();
 
 	private VerifiedActivitiesTable verifiedActivities = new VerifiedActivitiesTable();
 	private SubmittedActivitiesTable submittedActivities = new SubmittedActivitiesTable();
@@ -43,8 +44,8 @@ public class CityWalkService extends AbstractService implements CityWalkServiceI
 
 	@Override
 	public boolean login(String chekipointGroupId, String userId, String groupId) {
-		CityWalkSession session = getSession();
-		users.merge(new User(userId, groupId));
+		users.insertIfAbsent(new UserAccount(userId, groupId));
+		UserSession session = getSession();
 		if (session.isLogined()) {
 			log.debug("already logined as {}", session.getUserId());
 
@@ -155,8 +156,8 @@ public class CityWalkService extends AbstractService implements CityWalkServiceI
 		return CheckpointsAndTasksFactory.validate(json);
 	}
 
-	protected CityWalkSession getSession() {
-		return new CityWalkSession(
+	protected UserSession getSession() {
+		return UserSession.of(
 				((ServletServiceContext) getServiceContext()).getRequest());
 	}
 

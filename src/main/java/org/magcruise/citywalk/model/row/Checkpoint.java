@@ -1,21 +1,23 @@
 package org.magcruise.citywalk.model.row;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.magcruise.citywalk.model.relation.CheckpointsTable;
-import org.magcruise.citywalk.model.relation.RelationalModel;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.sf.persist.annotations.Column;
 import net.sf.persist.annotations.Table;
 
 @Table(name = CheckpointsTable.TABLE_NAME)
-public class Checkpoint extends RowModel<Checkpoint> {
+public class Checkpoint {
 
 	private String id;
+	private Date created = new Timestamp(new Date().getTime());
 	private String name;
 	private String label;
 	private double lat;
@@ -72,7 +74,7 @@ public class Checkpoint extends RowModel<Checkpoint> {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	@Column(name = RelationalModel.CHECKPOINT_GROUP_IDS)
+	@Column(name = CheckpointsTable.CHECKPOINT_GROUP_IDS)
 	public String getCheckpointGroupIdsString() {
 		return JSON.encode(checkpointGroupIds);
 	}
@@ -97,6 +99,14 @@ public class Checkpoint extends RowModel<Checkpoint> {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

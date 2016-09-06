@@ -1,14 +1,15 @@
 package org.magcruise.citywalk.model.row;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.magcruise.citywalk.model.common.JsonConstructiveObject;
-import org.magcruise.citywalk.model.relation.RelationalModel;
 import org.magcruise.citywalk.model.relation.TasksTable;
 import org.magcruise.citywalk.model.task.TaskContent;
+import org.nkjmlab.util.json.JsonObject;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
@@ -17,11 +18,12 @@ import net.sf.persist.annotations.NoColumn;
 import net.sf.persist.annotations.Table;
 
 @Table(name = TasksTable.TABLE_NAME)
-public class Task extends RowModel<Task> {
+public class Task {
 
 	private String id;
 	private List<String> checkpointIds = new ArrayList<>();
 	private TaskContent content;
+	private Date created = new Timestamp(new Date().getTime());
 
 	public Task() {
 	}
@@ -40,7 +42,7 @@ public class Task extends RowModel<Task> {
 		this.id = id;
 	}
 
-	@Column(name = RelationalModel.CHECKPOINT_IDS)
+	@Column(name = TasksTable.CHECKPOINT_IDS)
 	public String getCheckpointIdsString() {
 		return JSON.encode(checkpointIds);
 	}
@@ -61,12 +63,11 @@ public class Task extends RowModel<Task> {
 	}
 
 	public String getContent() {
-		return content.encodeToJson();
+		return content.toJson();
 	}
 
 	public void setContent(String json) {
-		this.content = JsonConstructiveObject.decodeFromJson(TaskContent.class,
-				json);
+		this.content = JsonObject.decodeFromJson(TaskContent.class, json);
 	}
 
 	@JSONHint(ignore = true)
@@ -81,8 +82,15 @@ public class Task extends RowModel<Task> {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 }

@@ -3,24 +3,26 @@ package org.magcruise.citywalk.model.relation;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.magcruise.citywalk.ApplicationContext;
 import org.magcruise.citywalk.model.row.Task;
 import org.magcruise.citywalk.model.task.TaskContent;
+import org.nkjmlab.util.db.Keyword;
+import org.nkjmlab.util.db.RelationalModel;
 
 public class TasksTable extends RelationalModel<Task> {
 
 	public static final String TABLE_NAME = "TASKS";
+	private static final String ID = "id";
+	private static final String CREATED = "created";
+	public static final String CHECKPOINT_IDS = "checkpoint_ids";
+	private static final String CONTENT = "content";
 
-	@Override
-	protected String getRelationName() {
-		return TABLE_NAME;
-	}
-
-	@Override
-	protected String getRelationalSchema() {
-		return TABLE_NAME + "(" + ID + " VARCHAR PRIMARY KEY , "
-				+ CREATED + " TIMESTAMP AS CURRENT_TIMESTAMP NOT NULL, "
-				+ INSTANCE_CLASS + " VARCHAR, " + CHECKPOINT_IDS + " VARCHAR, "
-				+ CONTENT + " VARCHAR)";
+	public TasksTable() {
+		super(TABLE_NAME, ApplicationContext.getDbClient());
+		setAttribute(ID, Keyword.VARCHAR, Keyword.PRIMARY_KEY);
+		setAttribute(CREATED, Keyword.TIMESTAMP_AS_CURRENT_TIMESTAMP);
+		setAttribute(CHECKPOINT_IDS, Keyword.VARCHAR);
+		setAttribute(CONTENT, Keyword.VARCHAR);
 	}
 
 	public List<Task> getTasks(String checkpointId) {

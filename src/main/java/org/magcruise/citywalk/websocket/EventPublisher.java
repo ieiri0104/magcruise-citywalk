@@ -20,14 +20,14 @@ import javax.websocket.server.ServerEndpoint;
 import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.relation.VerifiedActivitiesTable;
 import org.magcruise.citywalk.model.row.Activity;
-import org.nkjmlab.util.log4j.ServletLogManager;
+import org.nkjmlab.util.log4j.LogManager;
 
 import jp.go.nict.langrid.repackaged.net.arnx.jsonic.JSON;
 
 @ServerEndpoint("/websocket/activity/{checkpointGroupId}/{checkpointId}/{userId}")
 public class EventPublisher {
 
-	protected static Logger log = ServletLogManager.getLogger();
+	protected static Logger log = LogManager.getLogger();
 
 	private static Map<String, ScheduledFuture<?>> workers = new ConcurrentHashMap<>();
 	private static ScheduledExecutorService pool = Executors.newScheduledThreadPool(20);
