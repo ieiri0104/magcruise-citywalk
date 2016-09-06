@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-<object th:include="/templates/header.html::meta-fragment"
+<object th:include="/templates/header.html :: meta-fragment"
 	th:remove="tag"></object>
 <link rel="stylesheet" href="../css/top.css" />
 <title>MAGCruiseCityWalk</title>
@@ -29,14 +29,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row" th:fragment="top-menu">
-			<div class="col-sm-12">
-				<div id="mag-nav">
-					<span id="nav-title"></span>
-				</div>
-			</div>
-		</div>
-
+		<div th:replace="/templates/header.html :: top-menu"></div>
 		<div class="row">
 			<div class="col-sm-12 description">
 				このサービスは〜〜〜による〜〜〜のための〜〜〜サービスです。これにより〜〜〜が〜〜〜になることを目指しています。</div>
