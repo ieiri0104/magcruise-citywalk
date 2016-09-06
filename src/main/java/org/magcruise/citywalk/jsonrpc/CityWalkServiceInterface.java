@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.BadgeJson;
+import org.magcruise.citywalk.model.json.RankingJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
 
@@ -27,6 +29,10 @@ public interface CityWalkServiceInterface {
 					+ "{\"value\":\"1\"}}") ActivityJson json);
 
 	void addMovements(List<Map<String, Object>> movements);
+
+	BadgeJson[] getBadges(@Parameter(sample = "ayaki") String userId);
+
+	RankingJson getRanking(@Parameter(sample = "ayaki") String userId);
 
 	String uploadImage(
 			@Parameter(sample = "ayaki") String userId,

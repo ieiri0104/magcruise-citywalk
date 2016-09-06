@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
 import org.magcruise.citywalk.model.conv.InitialDataFactory;
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.BadgeJson;
+import org.magcruise.citywalk.model.json.RankJson;
+import org.magcruise.citywalk.model.json.RankingJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
 import org.magcruise.citywalk.model.relation.BadgesTable;
@@ -160,6 +163,38 @@ public class CityWalkService extends AbstractService implements CityWalkServiceI
 	@Override
 	public void addMovements(List<Map<String, Object>> movements) {
 		log.info(movements);
+	}
+
+	@Override
+	public BadgeJson[] getBadges(String userId) {
+		List<BadgeJson> badges = new ArrayList<>();
+		badges.add(new BadgeJson("AEDマスター", "img/badge-aed-master.jog"));
+		badges.add(new BadgeJson("早稲田マスター", "img/badge-waseda-master.jog"));
+
+		return badges.toArray(new BadgeJson[0]);
+	}
+
+	@Override
+	public RankingJson getRanking(String userId) {
+		RankingJson rankingJson = new RankingJson();
+		rankingJson.setGroupRank(new RankJson("StubGroup", 8));
+		rankingJson.setRank(new RankJson(userId, 5));
+
+		List<RankJson> ranking = new ArrayList<>();
+		ranking.add(new RankJson("Player1", 1));
+		ranking.add(new RankJson("Player2", 2));
+		ranking.add(new RankJson("Player3", 2));
+		ranking.add(new RankJson("Player5", 4));
+		ranking.add(new RankJson("Player4", 5));
+		rankingJson.setRanking(ranking);
+		List<RankJson> groupRanking = new ArrayList<>();
+		ranking.add(new RankJson("Group1", 1));
+		ranking.add(new RankJson("Group2", 2));
+		ranking.add(new RankJson("Group3", 3));
+		ranking.add(new RankJson("Group4", 4));
+		ranking.add(new RankJson("Group5", 5));
+		rankingJson.setGroupRanking(groupRanking);
+		return rankingJson;
 	}
 
 }

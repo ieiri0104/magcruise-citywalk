@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.magcruise.citywalk.model.json.ActivityJson;
+import org.magcruise.citywalk.model.json.BadgeJson;
+import org.magcruise.citywalk.model.json.RankingJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
 
@@ -77,6 +79,16 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 	@Override
 	public void addMovements(List<Map<String, Object>> movements) {
 		citywalkService.addMovements(movements);
+	}
+
+	@Override
+	public BadgeJson[] getBadges(String userId) {
+		return citywalkService.getBadges(userId);
+	}
+
+	@Override
+	public RankingJson getRanking(String userId) {
+		return citywalkService.getRanking(userId);
 	}
 
 }
