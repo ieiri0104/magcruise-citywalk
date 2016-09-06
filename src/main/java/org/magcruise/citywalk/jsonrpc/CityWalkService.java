@@ -3,6 +3,7 @@ package org.magcruise.citywalk.jsonrpc;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
 import org.magcruise.citywalk.model.conv.CheckpointsAndTasksFactory;
@@ -154,6 +155,11 @@ public class CityWalkService extends AbstractService implements CityWalkServiceI
 	protected CityWalkSession getSession() {
 		return new CityWalkSession(
 				((ServletServiceContext) getServiceContext()).getRequest());
+	}
+
+	@Override
+	public void addMovements(List<Map<String, Object>> movements) {
+		log.info(movements);
 	}
 
 }

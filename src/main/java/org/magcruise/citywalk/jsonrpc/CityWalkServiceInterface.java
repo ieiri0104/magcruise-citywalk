@@ -1,5 +1,8 @@
 package org.magcruise.citywalk.jsonrpc;
 
+import java.util.List;
+import java.util.Map;
+
 import org.magcruise.citywalk.model.json.ActivityJson;
 import org.magcruise.citywalk.model.json.RewardJson;
 import org.magcruise.citywalk.model.json.init.InitialDataJson;
@@ -22,6 +25,8 @@ public interface CityWalkServiceInterface {
 			@Parameter(sample = "{\"userId\": \"ayaki\", " + "\"checkpointId\": \"1\", "
 					+ "\"taskId\": \"1\", " + "\"score\": 9.0, " + "\"inputs\": "
 					+ "{\"value\":\"1\"}}") ActivityJson json);
+
+	void addMovements(List<Map<String, Object>> movements);
 
 	String uploadImage(
 			@Parameter(sample = "ayaki") String userId,
