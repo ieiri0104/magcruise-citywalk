@@ -1,7 +1,5 @@
 package org.magcruise.citywalk.model.relation;
 
-import static org.magcruise.citywalk.model.relation.ActivitiesTable.*;
-
 import java.util.List;
 import java.util.Map;
 
