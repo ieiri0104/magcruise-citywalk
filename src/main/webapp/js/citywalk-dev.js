@@ -1,7 +1,9 @@
 document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />');
 document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" />');
+document.write('<link rel="stylesheet" href="css/common.css" />');
 document.write('<link rel="stylesheet" href="css/remodal-default-theme.css" />');
-document.write('<link rel="stylesheet" href="remodal.css" />');
+document.write('<link rel="stylesheet" href="css/remodal.css" />');
+
 document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>');
 document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>');
 document.write('<script src="js/jsonrpc.js"></script>');

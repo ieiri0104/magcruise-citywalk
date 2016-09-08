@@ -53,7 +53,7 @@
             <AppenderRef ref="stdout" />
             <AppenderRef ref="stderr" />
         </Logger>
-        <Logger name="org.nkjmlab.util.log4j.ServletLogger" level="DEBUG" additivity="false">
+        <Logger name="org.nkjmlab.util.log4j.MultiLogger" level="DEBUG" additivity="false">
             <AppenderRef ref="stdout_suppress" />
             <AppenderRef ref="stderr_suppress" />
         </Logger>

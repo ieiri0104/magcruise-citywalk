@@ -28,14 +28,6 @@ public class CityWalkServiceClient implements CityWalkServiceInterface {
 				"CityWalkService");
 	}
 
-	public CityWalkServiceClient() {
-		this("http://localhost:8080/magcruise-citywalk-server");
-	}
-
-	public static void main(String[] args) {
-		CityWalkServiceClient client = new CityWalkServiceClient();
-	}
-
 	@Override
 	public boolean login(String checkpointGroupId, String userId, String groupId) {
 		return citywalkService.login(checkpointGroupId, userId, groupId);
