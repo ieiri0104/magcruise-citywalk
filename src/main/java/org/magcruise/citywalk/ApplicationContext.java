@@ -82,27 +82,32 @@ public class ApplicationContext implements ServletContextListener {
 				.listFiles((FilenameFilter) (dir, name) -> {
 					return name.endsWith(".json");
 				})).forEach(f -> CheckpointsAndTasksFactory.insertToDb(f.getPath()));
+		importFromGoogleSpreadsheets();
+	}
 
-		File conf = FileUtils.getFileInUserDirectory("priv/google-api.json");
-		if (!conf.exists()) {
-			return;
+	private void importFromGoogleSpreadsheets() {
+		try {
+			File conf = FileUtils.getFileInUserDirectory("priv/google-api.json");
+			if (!conf.exists()) {
+				return;
+			}
+			GoogleSpreadsheetService factory = GoogleSpreadsheetServiceFactory.create(conf);
+			String spradsheetName = "MagcruiseCityWalkCheckpoints";
+			factory.createSpreadsheetServiceClient().getWorksheetsNames(spradsheetName)
+					.forEach(name -> {
+						if (name.equalsIgnoreCase("readme")) {
+							return;
+						}
+						log.info(name);
+						List<GoogleSpreadsheetData> result = factory
+								.createWorksheetServiceClient(spradsheetName, name)
+								.rows(GoogleSpreadsheetData.class);
+						CheckpointsAndTasksJson json = convert(name, result);
+						CheckpointsAndTasksFactory.insertToDb(json);
+					});
+		} catch (Exception e) {
+			log.warn(e.getMessage());
 		}
-
-		GoogleSpreadsheetService factory = GoogleSpreadsheetServiceFactory.create(conf);
-		String spradsheetName = "MagcruiseCityWalkCheckpoints";
-		factory.createSpreadsheetServiceClient().getWorksheetsNames(spradsheetName)
-				.forEach(name -> {
-					if (name.equalsIgnoreCase("readme")) {
-						return;
-					}
-					log.info(name);
-					List<GoogleSpreadsheetData> result = factory
-							.createWorksheetServiceClient(spradsheetName, name)
-							.rows(GoogleSpreadsheetData.class);
-					CheckpointsAndTasksJson json = convert(name, result);
-					CheckpointsAndTasksFactory.insertToDb(json);
-				});
-
 	}
 
 	private CheckpointsAndTasksJson convert(String checkpointGroupId,
