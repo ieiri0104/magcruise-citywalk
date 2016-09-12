@@ -251,9 +251,7 @@ var postMovementsFunc = function() {
 	}
 	removeItem(KEY_MOVEMENT_LIST); // クリア
 	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addMovements", [movements], function(data) {
-		console.log(data);
-		console.log("clear");
-		console.log(getMovementQueue());
+		// console.log(data);
 	}, function(data, textStatus, errorThrown) {
 		console.error("fail to add movement.");
         console.error(textStatus+ ', ' + errorThrown + '. response: ' + JSON.stringify(data));
