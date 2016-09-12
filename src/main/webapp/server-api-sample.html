@@ -5,11 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/citywalk-dev.js"></script>
 <script>
-	var u = parseUri(document.URL);
-	var urlPrefix = u.protocol + "://" + u.authority + "/"
-			+ u.directory.split("/")[1] + "/";
-	var url = urlPrefix + "CityWalkService";
-
 	function getEventsByWebsocket(wsUrl) {
 		var connection = new WebSocket(wsUrl);
 		connection.onmessage = function(e) {
@@ -26,40 +21,39 @@
 	}
 
 	$(function() {
-		$('#insert-activity')
-				.on(
-						'click',
-						function() {
-							var arg = {
-								userId : "ayaki",
-								taskId : "task2",
-								score : 9.0,
-								input : {
-									instanceClass : "org.magcruise.citywalk.model.content.SelectionInput",
-									value : "1"
-								}
-							};
-							new JsonRpcClient(new JsonRpcRequest(url,
-									"addActivity", [ arg ])).rpc();
-						});
+		$('#insert-activity').on(
+				'click',
+				function() {
+					new JsonRpcClient(new JsonRpcRequest(getBaseUrl(),
+							"addActivity", JSON.parse($(
+									'#insert-activity-input').val()),
+							function(data) {
+								$('#insert-activity-result').append(
+										JSON.stringify(data.result) + " ");
+							})).rpc();
+				});
 	});
 	$(function() {
 		$('#login').on(
 				'click',
 				function() {
-					new JsonRpcClient(new JsonRpcRequest(url, "login", [
-							"ayaki", "houchimin" ])).rpc();
+					new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "login",
+							JSON.parse($('#login-input').val()),
+							function(data) {
+								$('#login-result').append(JSON.stringify(data.result) + " ");
+							})).rpc();
 				});
 	});
 	$(function() {
-		var uri = new parseUri(location);
-		var wsUrl = 'ws://' + uri.host + ":" + uri.port + "/"
-				+ uri.path.split("/")[1] + "/websocket/newEvents/" + "ayaki";
+		var checkpointGroupId = "waseda";
+		var checkpointId = "cafeteria";
+		var userId = "ayaki";
+		var wsUrl = getActivityPublisherUrl() + "/" + checkpointGroupId + "/"
+				+ checkpointId + "/" + userId;
 		getEventsByWebsocket(wsUrl);
 	});
 
 	$(function() {
-
 		$('#files')
 				.on(
 						'change',
@@ -86,8 +80,10 @@
 																						'src',
 																						fileContent.target.result)));
 										new JsonRpcClient(new JsonRpcRequest(
-												url, "uploadImage",
-												[ fileContent.target.result ]))
+												getBaseUrl(), "uploadImage",
+												["ayaki", fileContent.target.result ],function(data){
+													$('#image-upload-result').append(JSON.stringify(data.result) + " ");
+												}))
 												.rpc();
 									};
 								})(files[i]);
@@ -101,19 +97,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>JSON-RPC API呼び出しテスト</h1>
-				<a href="/magcruise-citywalk-server/CityWalkService">CityWalkService
-					JSON-RPC API</a>
-				<h1>JSON-RPCでInsert</h1>
-				<div>
-					<a id="insert-activity" class="btn btn-primary">insert activity</a>
-					<a id="login" class="btn btn-primary">login</a>
-				</div>
+				<h1>Server APIテスト</h1>
+				<a href="./">Index</a>
+				<h2>JSON-RPCでLogin</h2>
+				<textarea id="login-input">["waseda","ayaki","houchimin"]</textarea>
+				<a id="login" class="btn btn-primary">login</a>
+				<p id="login-result"></p>
+				<h2>JSON-RPCでActivityをInsert</h2>
+				<textarea id="insert-activity-input">
+[{
+    "checkpointGroupId": "waseda",
+    "checkpointId": "cafeteria",
+    "inputs": {
+        "value": "1"
+    },
+    "lat": "35.6947058",
+    "lon": "139.982618",
+    "score": 0,
+    "taskId": "cafeteria-selection",
+    "taskType": "SelectionTask",
+    "userId": "ayaki"
+}]
+				</textarea>
+				<a id="insert-activity" class="btn btn-primary">insert activity</a>
+				<p id="insert-activity-result"></p>
+				<h2>JSON-RPCで画像をアップロード</h2>
 				<input type="file" id="files" name="files[]" multiple />
 				<output id="image_outputs"></output>
+				<p id="image-upload-result"></p>
 				<div id="result"></div>
-				<h1>Websocketで通知を取得</h1>
+				<h2>Websocketでwaseda，cafeteriaの通知を取得</h2>
 				<div id="notification" class="well"></div>
+
 			</div>
 		</div>
 	</div>

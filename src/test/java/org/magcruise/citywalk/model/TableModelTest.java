@@ -44,7 +44,7 @@ public class TableModelTest {
 		checkpoints.merge(
 				new Checkpoint("pc-room", "PCルーム", "演習で使うPCルーム", 38.4400, 134.11090,
 						Arrays.asList("waseda")));
-		log.debug(checkpoints.selectAll());
+		log.debug(checkpoints.readAll());
 
 		TasksTable tasks = new TasksTable();
 		tasks.remakeTable();
@@ -62,7 +62,7 @@ public class TableModelTest {
 		tasks.insert(new Task("pc-room-sort", Arrays.asList("pc_room"),
 				new SelectionTask("次の4つの部屋を、座席の多い順に並び替えて下さい．",
 						Arrays.asList("A", "C", "E", "G"), Arrays.asList(1), 2.0, false)));
-		log.debug(tasks.selectAll());
+		log.debug(tasks.readAll());
 		VerifiedActivitiesTable activities = new VerifiedActivitiesTable();
 		activities.remakeTable();
 		activities.insert(
@@ -75,7 +75,7 @@ public class TableModelTest {
 		users.insert(new UserAccount("ieiri", "waseda-u"));
 		users.insert(new UserAccount("reiko", "waseda-u"));
 		users.insert(new UserAccount("nkjm", "toho-u"));
-		log.debug(users.selectAll());
+		log.debug(users.readAll());
 
 		log.debug(
 				JSON.encode(tasks.getTasksForCheckpointGroup("waseda"), true));
