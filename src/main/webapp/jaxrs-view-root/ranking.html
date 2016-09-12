@@ -5,6 +5,7 @@
 <object th:include="/templates/header.html :: meta-fragment"
 	th:remove="tag"></object>
 <title>ランキング</title>
+<script type="text/javascript" src="../js/ranking.js"></script>
 <link rel="stylesheet" href="../css/ranking.css" />
 </head>
 <head th:remove="all">
@@ -17,23 +18,20 @@
 	<div class="container">
 		<div th:replace="/templates/header.html :: top-menu"></div>
 		<div class="row">
-			<h1>グループランキング</h1>
-			<ul class="list-group">
-				<li class="list-group-item rank-text"><img src="../img/rank_first.png" class="rank-first-img"/>ほげほげ チーム<p class="pull-right">100pt</p></li>
-				<li class="list-group-item rank-text"><img src="../img/rank_second.png" class="rank-second-img"/>ほげほげ チーム<p class="pull-right">80pt</p></li>
-				<li class="list-group-item rank-text"><img src="../img/rank_third.png" class="rank-third-img"/>ほげほげ チーム<p class="pull-right">50pt</p></li>
-				<li class="list-group-item">4. ほげほげ チーム<p class="pull-right">30pt</p></li>
-				<li class="list-group-item">5. ほげほげ チーム<p class="pull-right">20pt</p></li>
-			</ul>
+			<p class="pull-right my-ranking">個人順位<span id="my-rank" class="rank"></span>位</p>
+		</div>
+		<div class="row">
+			<p class="pull-right my-ranking">グループ順位<span id="my-group-rank" class="rank"></span>位</p>
 		</div>
 		<div class="row">
 			<h1>個人ランキング</h1>
-			<ul class="list-group">
-				<li class="list-group-item rank-text"><img src="../img/rank_first.png" class="rank-first-img"/>ほげほげ さん<p class="pull-right">100pt</p></li>
-				<li class="list-group-item rank-text"><img src="../img/rank_second.png" class="rank-second-img"/>ほげほげ さん<p class="pull-right">80pt</p></li>
-				<li class="list-group-item rank-text"><img src="../img/rank_third.png" class="rank-third-img"/>ほげほげ さん<p class="pull-right">50pt</p></li>
-				<li class="list-group-item">4. ほげほげ さん<p class="pull-right">30pt</p></li>
-				<li class="list-group-item">5. ほげほげ さん<p class="pull-right">20pt</p></li>
+			<ul id="rankings" class="list-group">
+			</ul>
+		</div>
+		
+		<div class="row">
+			<h1>グループランキング</h1>
+			<ul id="group-rankings"  class="list-group">
 			</ul>
 		</div>
 	</div>
