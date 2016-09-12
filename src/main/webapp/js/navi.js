@@ -1,12 +1,16 @@
-var id = getParamDic()["id"];
-var checkpoint = getCheckpoint(id);
+var checkpointId = getParamDic()["id"];
+var checkpoint = getCheckpoint(checkpointId);
 document.title = checkpoint.name; // タイトルの変更
 var cPos; // 現在地
 var ePos; // チェックポイント
+var cHeading; // 絶対角
 var map;
 var watchID;
 var compassElem;
 var defaultOrientation;
+
+var POST_MOVEMENT_INTERVAL = 1000 * 10; // msec
+var KEY_MOVEMENT_LIST = "movement_list";
 
 $(function() {
 	var nextBtnText = "",
@@ -38,7 +42,8 @@ $(function() {
 	// 電子コンパスイベントの取得
 	window.addEventListener("deviceorientation", onHeadingChange);
 	getEventsByWebsocket();
-
+	// 移動ログの送信
+	setInterval(postMovementsFunc, POST_MOVEMENT_INTERVAL);
 });
 
 function getEventsByWebsocket() {
@@ -90,6 +95,7 @@ function watchCurrentPosition() {
 			cPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 			console.log("currentPosition: " + pos.coords.latitude + ", " + pos.coords.longitude);
 			showDistance();
+			enqueueMovement(pos);
 		},
 		function(error){
 			alert('位置情報の取得に失敗しました');
@@ -156,7 +162,7 @@ function getBrowserOrientation() {
 }
 
 function onHeadingChange(event) {
-	var cHeading = event.alpha;
+	cHeading = event.alpha;
 	if (typeof event.webkitCompassHeading !== "undefined") {
 		cHeading = event.webkitCompassHeading; //iOS non-standard
 	}
@@ -208,4 +214,42 @@ function showCompass(heading) {
 	} else if (compassElem.css("webkitTransform")) {
 		compassElem.css("webkitTransform", 'rotate('+ (absoluteAngle - heading) +'deg)');
 	}
+}
+
+/* セッションストレージにムーブメントを追加する */
+function enqueueMovement(pos) {
+	var movement = {
+			userId				: getUserId(),
+			lat     			: pos.coords.latitude,
+			lng    	 			: pos.coords.longitude,
+			heading 			: cHeading,
+			checkpointGroupId	: getCheckpointGroupId(),
+			checkpointId		: checkpointId,
+	};
+	var movements = getMovementQueue();
+	movements.push(movement);
+	setMovementQueue(movements);
+}
+
+/* セッションストレージから未送信ムーブメントを取得する */
+function getMovementQueue() {
+	var movements = getItem(KEY_MOVEMENT_LIST);
+	return (movements != null) ? JSON.parse(movements) : [];
+}
+
+/* セッションストレージにムーブメントを保存する */
+function setMovementQueue(movements) {
+	setItem(KEY_MOVEMENT_LIST, JSON.stringify(movements));
+}
+
+/* 一定周期で呼び出され、ムーブメントを送信する */
+var postMovementsFunc = function() {
+	var movements = getMovementQueue();
+	if (movements.length == 0) {
+		return;
+	}
+	removeItem(KEY_MOVEMENT_LIST); // クリア。下記JsonRpcでエラーハンドリングできるなら、送信失敗時にデータを戻したい
+	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addMovements", [movements], function(data) {
+		// console.log(data);
+	})).rpc();
 }
