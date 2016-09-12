@@ -130,7 +130,7 @@ qrcode.process = function(ctx){
     var start = new Date().getTime();
 
     var image = qrcode.grayScaleToBitmap(qrcode.grayscale());
-    //var image = qrcode.binarize(128);
+    image = qrcode.binarize(128);
     
     if(qrcode.debug)
     {
