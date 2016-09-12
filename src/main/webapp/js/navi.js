@@ -54,7 +54,7 @@ function getEventsByWebsocket() {
 		for (var i = 0; i < messages.length; i++) {
 			var a = messages[i];
 			var elem = $('<div class="item">' + 
-							'<span class="time">' + toFormattedHourAndMinute(a.created) + '</span>' +
+							'<span class="time">' + toFormattedShortDate(a.created) + '</span>' +
 							'<span class="name">' + a.userId + '</span>' +
 							'さんがチェックインしました。' +
 						'</div>');
