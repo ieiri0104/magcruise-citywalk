@@ -1,16 +1,20 @@
 var JsonRpcRequest = (function() {
-  var JsonRpcRequest = function(url, method, params, done) {
+  var JsonRpcRequest = function(url, method, params, done, fail) {
     this.url = url;
     this.method = method;
     this.params = params;
     this.done = (done != null)? done : function(data){
         console.log(data)
     };
+    this.fail = (fail != null)? fail : function(data, textStatus, errorThrown){
+        console.error(textStatus+ ', ' + errorThrown + '. response: ' + JSON.stringify(data));
+        console.error('request: ' + JSON.stringify(JSON.stringify(this)));
+    };
     this.delay = 1000;
     this.initialDelay = 0;
     this.timeout = 60000;
   };
-  
+
 return JsonRpcRequest;
 })();
 
@@ -31,9 +35,6 @@ var JsonRpcClient = (function() {
 
   p.rpc = function () {
     var req  = JSON.stringify(this.request);
-    var failFunc=function(data, textStatus, errorThrown){
-           console.error(data + ':' + textStatus+ ':' + errorThrown + ':' + req);
-    };
     this.jqXHR = $.ajax({
       type : "POST",
       dataType : "json",
@@ -42,10 +43,10 @@ var JsonRpcClient = (function() {
       timeout : this.request.timeout,
     })
     .done(this.request.done)
-    .fail(failFunc)
+    .fail(this.request.fail)
     return this;
   }
-  
+
   p.schedule = function() {
     var client = this;
     client.printedError=false;
@@ -80,7 +81,7 @@ var JsonRpcClient = (function() {
     setTimeout(function(){refresh();}, client.request.initialDelay);
     return client;
   }
-  
+
   p.loop = function(times){
     var client = this;
     var callback = this.request.done;
@@ -95,12 +96,12 @@ var JsonRpcClient = (function() {
     }
     return this.schedule()
   }
-  
-  
+
+
   p.abort = function() {
     if(this.jqXHR!=null){this.jqXHR.abort();}
     this.isFinish=true;
   }
-  
+
 return JsonRpcClient;
 })();
