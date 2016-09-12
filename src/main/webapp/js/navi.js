@@ -216,7 +216,7 @@ function showCompass(heading) {
 	}
 }
 
-/* セッションストレージにムーブメントを追加する */
+/* ローカルストレージにムーブメントを追加する */
 function enqueueMovement(pos) {
 	var movement = {
 			userId				: getUserId(),
@@ -231,13 +231,13 @@ function enqueueMovement(pos) {
 	setMovementQueue(movements);
 }
 
-/* セッションストレージから未送信ムーブメントを取得する */
+/* ローカルストレージから未送信ムーブメントを取得する */
 function getMovementQueue() {
 	var movements = getItem(KEY_MOVEMENT_LIST);
 	return (movements != null) ? JSON.parse(movements) : [];
 }
 
-/* セッションストレージにムーブメントを保存する */
+/* ローカルストレージにムーブメントを保存する */
 function setMovementQueue(movements) {
 	setItem(KEY_MOVEMENT_LIST, JSON.stringify(movements));
 }
@@ -245,11 +245,21 @@ function setMovementQueue(movements) {
 /* 一定周期で呼び出され、ムーブメントを送信する */
 var postMovementsFunc = function() {
 	var movements = getMovementQueue();
+	var lastMovements = getMovementQueue();
 	if (movements.length == 0) {
 		return;
 	}
-	removeItem(KEY_MOVEMENT_LIST); // クリア。下記JsonRpcでエラーハンドリングできるなら、送信失敗時にデータを戻したい
+	removeItem(KEY_MOVEMENT_LIST); // クリア
 	new JsonRpcClient(new JsonRpcRequest(getBaseUrl(), "addMovements", [movements], function(data) {
-		// console.log(data);
+		console.log(data);
+		console.log("clear");
+		console.log(getMovementQueue());
+	}, function(data, textStatus, errorThrown) {
+		console.error("fail to add movement.");
+        console.error(textStatus+ ', ' + errorThrown + '. response: ' + JSON.stringify(data));
+        console.error('request: ' + JSON.stringify(JSON.stringify(this)));
+        // リストア
+        var newMovements = lastMovements.concat(getMovementQueue());
+        setMovementQueue(newMovements);
 	})).rpc();
 }
